@@ -1,0 +1,5 @@
+Beta 1.0.0.1
+- Reversed download order to start at chapter 1 rather than [newest chapter]
+- Added support for webtoons
+- Prevent item that is currently being downloaded from being read
+- Alert user that download cannot proceed if legacy mode is not detected
