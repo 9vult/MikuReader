@@ -46,7 +46,7 @@ namespace MikuReader
             }
         }
 
-        private void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (browser.Url != null)
             {

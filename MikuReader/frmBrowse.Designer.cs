@@ -46,7 +46,7 @@
             this.browser.Size = new System.Drawing.Size(1730, 840);
             this.browser.TabIndex = 0;
             this.browser.Url = new System.Uri("https://mangadex.org/", System.UriKind.Absolute);
-            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
+            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.Browser_DocumentCompleted);
             // 
             // mnuNav
             // 

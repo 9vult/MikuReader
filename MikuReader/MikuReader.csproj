@@ -99,7 +99,14 @@
     <Compile Include="FrmDoublePageReader.Designer.cs">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMangaSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMangaSettings.Designer.cs">
+      <DependentUpon>FrmMangaSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manga.cs" />
+    <Compile Include="MangaSettingsContainer.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
@@ -142,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDoublePageReader.resx">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMangaSettings.resx">
+      <DependentUpon>FrmMangaSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmReader.resx">
       <DependentUpon>FrmReader.cs</DependentUpon>

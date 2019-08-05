@@ -36,13 +36,13 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lstNames = new System.Windows.Forms.ListBox();
             this.btnRead = new System.Windows.Forms.Button();
-            this.btnAbout = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtLangCode = new System.Windows.Forms.TextBox();
+            this.btnGlobalSettings = new System.Windows.Forms.Button();
             this.lblDownloading = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.currentProgress = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMangaSettings = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,9 +68,9 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(282, 354);
+            this.btnBrowse.Location = new System.Drawing.Point(282, 343);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(234, 47);
+            this.btnBrowse.Size = new System.Drawing.Size(190, 47);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = "Browse For Manga";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -78,13 +78,13 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(282, 417);
+            this.btnRefresh.Location = new System.Drawing.Point(282, 396);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(114, 32);
+            this.btnRefresh.Size = new System.Drawing.Size(190, 32);
             this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Refresh All";
             this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.BtnViewFolder_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // lstNames
             // 
@@ -98,41 +98,23 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(522, 354);
+            this.btnRead.Location = new System.Drawing.Point(478, 343);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(146, 47);
+            this.btnRead.Size = new System.Drawing.Size(190, 47);
             this.btnRead.TabIndex = 1;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.BtnRead_Click);
             // 
-            // btnAbout
+            // btnGlobalSettings
             // 
-            this.btnAbout.Location = new System.Drawing.Point(577, 417);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(91, 32);
-            this.btnAbout.TabIndex = 6;
-            this.btnAbout.Text = "Settings";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(402, 423);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Lang Code:";
-            // 
-            // txtLangCode
-            // 
-            this.txtLangCode.Enabled = false;
-            this.txtLangCode.Location = new System.Drawing.Point(499, 420);
-            this.txtLangCode.Name = "txtLangCode";
-            this.txtLangCode.Size = new System.Drawing.Size(64, 26);
-            this.txtLangCode.TabIndex = 8;
-            this.txtLangCode.Text = "gb";
+            this.btnGlobalSettings.Location = new System.Drawing.Point(478, 434);
+            this.btnGlobalSettings.Name = "btnGlobalSettings";
+            this.btnGlobalSettings.Size = new System.Drawing.Size(190, 32);
+            this.btnGlobalSettings.TabIndex = 6;
+            this.btnGlobalSettings.Text = "Global Settings";
+            this.btnGlobalSettings.UseVisualStyleBackColor = true;
+            this.btnGlobalSettings.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
             // lblDownloading
             // 
@@ -165,21 +147,41 @@
             this.pictureBox1.Image = global::MikuReader.Properties.Resources.miku;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(256, 437);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(256, 454);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnMangaSettings
+            // 
+            this.btnMangaSettings.Location = new System.Drawing.Point(478, 396);
+            this.btnMangaSettings.Name = "btnMangaSettings";
+            this.btnMangaSettings.Size = new System.Drawing.Size(190, 32);
+            this.btnMangaSettings.TabIndex = 12;
+            this.btnMangaSettings.Text = "Selected Settings";
+            this.btnMangaSettings.UseVisualStyleBackColor = true;
+            this.btnMangaSettings.Click += new System.EventHandler(this.BtnMangaSettings_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(282, 433);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(190, 32);
+            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.Text = "Update All";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // FrmStartPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 466);
+            this.ClientSize = new System.Drawing.Size(680, 477);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnMangaSettings);
             this.Controls.Add(this.currentProgress);
             this.Controls.Add(this.lblDownloading);
-            this.Controls.Add(this.txtLangCode);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnGlobalSettings);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.lstNames);
             this.Controls.Add(this.btnRefresh);
@@ -209,12 +211,12 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ListBox lstNames;
         private System.Windows.Forms.Button btnRead;
-        private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtLangCode;
+        private System.Windows.Forms.Button btnGlobalSettings;
         private System.Windows.Forms.Label lblDownloading;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ProgressBar currentProgress;
+        private System.Windows.Forms.Button btnMangaSettings;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 

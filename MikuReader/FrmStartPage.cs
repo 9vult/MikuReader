@@ -77,7 +77,7 @@ namespace MikuReader
             new FrmBrowse(this).Show();
         }
 
-        private void BtnViewFolder_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
             RefreshContents();
         }
@@ -141,12 +141,18 @@ namespace MikuReader
                 File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
             }
 
-            MessageBox.Show("Downloading data...");
+            Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
+
+            DialogResult result = new FrmMangaSettings(m).ShowDialog();
+
+            MessageBox.Show("Downloading data...\nYou may close the Browser as you desire.");
             foreach (var chapterID in contents.chapter)
             {
                 foreach (var chapter in chapterID)
                 {
-                    if (chapter.lang_code == txtLangCode.Text.ToLower() && !DQDuplicate((string)chapter.chapter))
+                    if (chapter.lang_code == m.settings.lang && // Correct language
+                        (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
+                        !DQDuplicate((string)chapter.chapter)) // Not a dupe chapter
                     {
                         string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
                         Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
@@ -155,8 +161,51 @@ namespace MikuReader
                     }
                 }
             }
-
             DownloadNextFromQueue(mangaDirectory);
+
+            RefreshContents();
+        }
+
+        private void UpdateAll()
+        {
+            DirectoryInfo root = new DirectoryInfo(homeFolder);
+            DirectoryInfo[] mangoDirectories = root.GetDirectories("*", SearchOption.TopDirectoryOnly);
+
+            foreach (DirectoryInfo mango in mangoDirectories)
+            {
+                string api = "https://mangadex.org/api/manga/" + mango.Name;
+                string json;
+                using (var wc = new System.Net.WebClient())
+                {
+                    json = wc.DownloadString(api);
+                }
+
+                // Deserialize the JSON file
+                dynamic contents = JsonConvert.DeserializeObject(json);
+                string mangaName = contents.manga.title;
+                string mangaDirectory = homeFolder + "\\" + mango.Name;
+
+                File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
+                Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
+                m.LoadSettings();
+                foreach (var chapterID in contents.chapter)
+                {
+                    foreach (var chapter in chapterID)
+                    {
+                        if (chapter.lang_code == m.settings.lang && // Correct language
+                            (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
+                            !DQDuplicate((string)chapter.chapter) && // Not a dupe chapter
+                            !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) // Chapter isn't already downloaded
+                        {
+                            string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
+                            Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
+                            downloadStack.Push(dc);
+                            downloads++;
+                        }
+                    }
+                }
+                DownloadNextFromQueue(mangaDirectory);
+            }
 
             RefreshContents();
         }
@@ -238,6 +287,7 @@ namespace MikuReader
                 dynamic contents = JsonConvert.DeserializeObject(json);
                 string mangaName = contents.manga.title;
                 Manga m = new Manga(mangaName, dir, trackerData[0], trackerData[1]);
+
                 mangas.Add(m);
                 string name = m.name;
                 if (name.Length > 21)
@@ -253,8 +303,6 @@ namespace MikuReader
             {
                 lstNames.SelectedIndex = 0;
             }
-
-            txtLangCode.Text = (string)Properties.Settings.Default["languageCode"];
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -263,6 +311,23 @@ namespace MikuReader
                 lblDownloading.Hide();
             else
                 lblDownloading.Show();
+        }
+
+        private void BtnMangaSettings_Click(object sender, EventArgs e)
+        {
+            foreach(Manga m in mangas)
+            {
+                if (m.name.StartsWith(lstNames.SelectedItem.ToString().Split('|')[0].Trim()))
+                {
+                    new FrmMangaSettings(m).ShowDialog();
+                    break;
+                }
+            }
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateAll();
         }
     }
 }
