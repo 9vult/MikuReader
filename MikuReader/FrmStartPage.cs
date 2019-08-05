@@ -173,38 +173,43 @@ namespace MikuReader
 
             foreach (DirectoryInfo mango in mangoDirectories)
             {
-                string api = "https://mangadex.org/api/manga/" + mango.Name;
-                string json;
-                using (var wc = new System.Net.WebClient())
+                if (mango.Name == "update")
+                    continue;
+                else
                 {
-                    json = wc.DownloadString(api);
-                }
-
-                // Deserialize the JSON file
-                dynamic contents = JsonConvert.DeserializeObject(json);
-                string mangaName = contents.manga.title;
-                string mangaDirectory = homeFolder + "\\" + mango.Name;
-
-                File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
-                Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
-                m.LoadSettings();
-                foreach (var chapterID in contents.chapter)
-                {
-                    foreach (var chapter in chapterID)
+                    string api = "https://mangadex.org/api/manga/" + mango.Name;
+                    string json;
+                    using (var wc = new System.Net.WebClient())
                     {
-                        if (chapter.lang_code == m.settings.lang && // Correct language
-                            (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
-                            !DQDuplicate((string)chapter.chapter) && // Not a dupe chapter
-                            !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) // Chapter isn't already downloaded
+                        json = wc.DownloadString(api);
+                    }
+
+                    // Deserialize the JSON file
+                    dynamic contents = JsonConvert.DeserializeObject(json);
+                    string mangaName = contents.manga.title;
+                    string mangaDirectory = homeFolder + "\\" + mango.Name;
+
+                    File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
+                    Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
+                    m.LoadSettings();
+                    foreach (var chapterID in contents.chapter)
+                    {
+                        foreach (var chapter in chapterID)
                         {
-                            string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
-                            Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
-                            downloadStack.Push(dc);
-                            downloads++;
+                            if (chapter.lang_code == m.settings.lang && // Correct language
+                                (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
+                                !DQDuplicate((string)chapter.chapter) && // Not a dupe chapter
+                                !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) // Chapter isn't already downloaded
+                            {
+                                string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
+                                Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
+                                downloadStack.Push(dc);
+                                downloads++;
+                            }
                         }
                     }
+                    DownloadNextFromQueue(mangaDirectory);
                 }
-                DownloadNextFromQueue(mangaDirectory);
             }
 
             RefreshContents();
@@ -280,24 +285,30 @@ namespace MikuReader
 
             foreach (DirectoryInfo dir in dirs)
             {
-                var json = File.ReadAllText(dir.FullName + "\\manga.json");
-                var tracker = File.ReadAllText(dir.FullName + "\\tracker");
-                string[] trackerData = tracker.Split('|');
-                // Deserialize the JSON file
-                dynamic contents = JsonConvert.DeserializeObject(json);
-                string mangaName = contents.manga.title;
-                Manga m = new Manga(mangaName, dir, trackerData[0], trackerData[1]);
+                if (dir.Name == "update")
+                    continue;
+                else
+                {
+                    var json = File.ReadAllText(dir.FullName + "\\manga.json");
+                    var tracker = File.ReadAllText(dir.FullName + "\\tracker");
+                    string[] trackerData = tracker.Split('|');
+                    // Deserialize the JSON file
+                    dynamic contents = JsonConvert.DeserializeObject(json);
+                    string mangaName = contents.manga.title;
+                    Manga m = new Manga(mangaName, dir, trackerData[0], trackerData[1]);
 
-                mangas.Add(m);
-                string name = m.name;
-                if (name.Length > 21)
-                {
-                    name = name.Substring(0, 21);
-                } else
-                {
-                    name = name.PadRight(21);
+                    mangas.Add(m);
+                    string name = m.name;
+                    if (name.Length > 21)
+                    {
+                        name = name.Substring(0, 21);
+                    }
+                    else
+                    {
+                        name = name.PadRight(21);
+                    }
+                    lstNames.Items.Add(name + "  |  c" + trackerData[0] + ",p" + trackerData[1]);
                 }
-                lstNames.Items.Add(name + "  |  c" + trackerData[0] + ",p" + trackerData[1]);
             }
             if (lstNames.Items.Count > 0)
             {
