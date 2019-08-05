@@ -39,15 +39,6 @@ namespace MikuReader
 
         private void FrmStartPage_Load(object sender, EventArgs e)
         {
-            // updater
-            if ((bool)Properties.Settings.Default["checkForUpdates"] == true)
-            {
-                AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
-                AutoUpdater.RunUpdateAsAdmin = true;
-                AutoUpdater.DownloadPath = homeFolder + "\\update";
-            }
-
-
             if ((string)Properties.Settings.Default["homeDirectory"] == "")
             {
                 homeFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MikuReader";
@@ -70,6 +61,15 @@ namespace MikuReader
             {
                 Directory.CreateDirectory(homeFolder);
             }
+
+            // updater
+            if ((bool)Properties.Settings.Default["checkForUpdates"] == true)
+            {
+                AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
+                AutoUpdater.RunUpdateAsAdmin = true;
+                AutoUpdater.DownloadPath = homeFolder + "\\update";
+            }
+
         }
 
         private void BtnBrowse_Click(object sender, EventArgs e)
