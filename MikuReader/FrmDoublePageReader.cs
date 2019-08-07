@@ -28,6 +28,11 @@ namespace MikuReader
         private ArrayList chapters = new ArrayList();
         private int numPagesInCurrentChapter = 0;
         
+        /// <summary>
+        /// Preperation
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="startPage"></param>
         public void StartUp(Manga m, FrmStartPage startPage)
         {
             this.root = m.mangaDirectory;
@@ -58,6 +63,11 @@ namespace MikuReader
             cmboPage.SelectedItem = m.currentPage;
         }
 
+        /// <summary>
+        /// Sorts the chapters by accending number order
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         private Chapter[] SortChapters(Chapter[] items)
         {
             // Get the numeric values of the items.
@@ -80,6 +90,11 @@ namespace MikuReader
             return items;
         }
 
+        /// <summary>
+        /// Sort the pages by accending number order
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         private Page[] SortPages(Page[] items)
         {
             // Get the numeric values of the items.
@@ -102,6 +117,9 @@ namespace MikuReader
             return items;
         }
 
+        /// <summary>
+        /// Go to the next page
+        /// </summary>
         private void NextPage() // +
         {
             if (cmboPage.SelectedIndex < cmboPage.Items.Count - 2)
@@ -119,6 +137,9 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Go to the previous page
+        /// </summary>
         private void PreviousPage() // -
         {
             if (cmboPage.SelectedIndex > 1)
@@ -136,6 +157,11 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Display the current page in the picturebox
+        /// </summary>
+        /// <param name="page1"></param>
+        /// <param name="page2"></param>
         private void DisplayPage(Page page1, Page page2)
         {
             if (pictureBox1.Image != null) pictureBox1.Image.Dispose();
@@ -153,6 +179,9 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Update the chapter list
+        /// </summary>
         private void UpdateChapters()
         {
             cmboChapter.Items.Clear();
@@ -164,6 +193,10 @@ namespace MikuReader
             cmboChapter.SelectedItem = curChapter.num;
         }
 
+        /// <summary>
+        /// Update the page lsit for the current chapter
+        /// </summary>
+        /// <param name="chap"></param>
         private void UpdatePages(Chapter chap)
         {            
             cmboPage.Items.Clear();
@@ -271,6 +304,11 @@ namespace MikuReader
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        /// <summary>
+        /// Save tracking information when the user closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmReader_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (File.Exists(root.FullName + "\\tracker"))

@@ -114,7 +114,7 @@
             this.btnGlobalSettings.TabIndex = 6;
             this.btnGlobalSettings.Text = "Global Settings";
             this.btnGlobalSettings.UseVisualStyleBackColor = true;
-            this.btnGlobalSettings.Click += new System.EventHandler(this.BtnAbout_Click);
+            this.btnGlobalSettings.Click += new System.EventHandler(this.BtnSettings_Click);
             // 
             // lblDownloading
             // 

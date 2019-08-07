@@ -23,6 +23,10 @@ namespace MikuReader
             Setup(contents);
         }
 
+        /// <summary>
+        /// Apply existing settings to the window
+        /// </summary>
+        /// <param name="contents">JSON</param>
         private void Setup(dynamic contents)
         {
             m.LoadSettings();
@@ -52,6 +56,11 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Checks if the group is already in the list of groups
+        /// </summary>
+        /// <param name="group">Group name</param>
+        /// <returns></returns>
         private bool IsGroupInList(string group)
         {
             for (int i = 0; i < cmboGroup.Items.Count; i++)

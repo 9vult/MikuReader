@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MikuReader
 {
+    /// <summary>
+    /// Webbrowser for finding new mangas
+    /// </summary>
     public partial class FrmBrowse : Form
     {
         FrmStartPage startPage;
@@ -25,6 +28,11 @@ namespace MikuReader
             browser.GoBack();
         }
 
+        /// <summary>
+        /// Checks if the URL is valid and calls for the manga to be added
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddThisTitleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (browser.Url != null)
@@ -46,6 +54,11 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Enables/disables the Add button depending on the URL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (browser.Url != null)

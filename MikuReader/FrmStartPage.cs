@@ -18,6 +18,9 @@ using AutoUpdaterDotNET;
 
 namespace MikuReader
 {
+    /// <summary>
+    /// Start page for MikuReader
+    /// </summary>
     public partial class FrmStartPage : Form
     {
         string homeFolder;
@@ -26,17 +29,30 @@ namespace MikuReader
         Stack downloadStack = new Stack();
         int downloads = 0;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FrmStartPage()
         {
             InitializeComponent();
         }
 
-        private void BtnAbout_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Display the Settings dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSettings_Click(object sender, EventArgs e)
         {
             new FrmSettings(this).ShowDialog();
             //new FrmAbout().ShowDialog();
         }
 
+        /// <summary>
+        /// General setting up, called when the form first loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmStartPage_Load(object sender, EventArgs e)
         {
             if ((string)Properties.Settings.Default["homeDirectory"] == "")
@@ -44,7 +60,8 @@ namespace MikuReader
                 homeFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MikuReader";
                 Properties.Settings.Default["homeDirectory"] = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MikuReader";
                 Properties.Settings.Default.Save();
-            } else
+            }
+            else
             {
                 homeFolder = (string)Properties.Settings.Default["homeDirectory"];
             }
@@ -72,16 +89,27 @@ namespace MikuReader
 
         }
 
+        /// <summary>
+        /// Display the manga browser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBrowse_Click(object sender, EventArgs e)
         {
             new FrmBrowse(this).Show();
         }
+
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             RefreshContents();
         }
 
+        /// <summary>
+        /// Opens the reader to the selected manga if it is not currently downloading.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRead_Click(object sender, EventArgs e)
         {
             if (lstNames.Items.Count > 0)
@@ -105,7 +133,8 @@ namespace MikuReader
                                 reader.Show();
                                 reader.StartUp(m, this);
                             }
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("Cannot read '" + m.name + "' because it is currently being downloaded");
                         }
@@ -113,10 +142,10 @@ namespace MikuReader
                     }
                 }
             }
-        }        
+        }
 
         /// <summary>
-        /// Adds a manga
+        /// Adds a manga to the database, doubles as a full check of all the files
         /// </summary>
         /// <param name="api">API link</param>
         /// <param name="num">Chapter Number</param>
@@ -152,7 +181,7 @@ namespace MikuReader
                 {
                     if (chapter.lang_code == m.settings.lang && // Correct language
                         (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
-                        !DQDuplicate((string)chapter.chapter)) // Not a dupe chapter
+                        !DSDuplicate((string)chapter.chapter)) // Not a dupe chapter
                     {
                         string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
                         Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
@@ -166,6 +195,9 @@ namespace MikuReader
             RefreshContents();
         }
 
+        /// <summary>
+        /// Checks for new chapters and downloads them
+        /// </summary>
         private void UpdateAll()
         {
             DirectoryInfo root = new DirectoryInfo(homeFolder);
@@ -198,7 +230,7 @@ namespace MikuReader
                         {
                             if (chapter.lang_code == m.settings.lang && // Correct language
                                 (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
-                                !DQDuplicate((string)chapter.chapter) && // Not a dupe chapter
+                                !DSDuplicate((string)chapter.chapter) && // Not a dupe chapter
                                 !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) // Chapter isn't already downloaded
                             {
                                 string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
@@ -215,6 +247,9 @@ namespace MikuReader
             RefreshContents();
         }
 
+        /// <summary>
+        /// Alerts the user if the download could not proceed because they are not in legacy mode
+        /// </summary>
         public void DownloadFailedNoLegacy()
         {
             MessageBox.Show("Could not download because Reader is not set to Legacy.\n" +
@@ -223,7 +258,12 @@ namespace MikuReader
             DownloadFinished();
         }
 
-        private bool DQDuplicate(string num)
+        /// <summary>
+        /// Check if there is already a copy of the chapter number in the stack
+        /// </summary>
+        /// <param name="num">Chapter Number</param>
+        /// <returns></returns>
+        private bool DSDuplicate(string num)
         {
             foreach (Download d in downloadStack)
             {
@@ -233,6 +273,10 @@ namespace MikuReader
             return false;
         }
 
+        /// <summary>
+        /// Actually a stack, but downloads the next item from the top
+        /// </summary>
+        /// <param name="mangaDirectory">Manga Directory</param>
         public void DownloadNextFromQueue(string mangaDirectory)
         {
             if (downloadStack.Count > 0)
@@ -243,7 +287,8 @@ namespace MikuReader
                 UpdateDownloadProgress();
                 Download next = (Download)downloadStack.Pop();
                 next.StartDownloading();
-            } else
+            }
+            else
             {
                 DownloadFinished();
                 File.Delete(mangaDirectory + "\\downloading");
@@ -251,6 +296,9 @@ namespace MikuReader
 
         }
 
+        /// <summary>
+        /// Called when all downloads are complete
+        /// </summary>
         private void DownloadFinished()
         {
             if (timer1.Enabled) timer1.Stop();
@@ -260,21 +308,25 @@ namespace MikuReader
             currentProgress.Value = 0;
         }
 
+        /// <summary>
+        /// Updates the download progress bar
+        /// </summary>
         public void UpdateDownloadProgress()
         {
             int done = downloads - downloadStack.Count;
-            float multiplier = 100.0f / (float) downloads;
+            float multiplier = 100.0f / (float)downloads;
             try
             {
-                currentProgress.Value = (int) (done * multiplier);
-            } catch (Exception e)
+                currentProgress.Value = (int)(done * multiplier);
+            }
+            catch (Exception e)
             {
 
             }
         }
 
         /// <summary>
-        /// Refreshes the UI
+        /// Refreshes the UI and its contents
         /// </summary>
         public void RefreshContents()
         {
@@ -316,6 +368,11 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Controls the blinking "Downloading" label
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer1_Tick(object sender, EventArgs e)
         {
             if (lblDownloading.Visible)
@@ -324,9 +381,14 @@ namespace MikuReader
                 lblDownloading.Show();
         }
 
+        /// <summary>
+        /// Opens the Manga Settings dialog for the selected item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnMangaSettings_Click(object sender, EventArgs e)
         {
-            foreach(Manga m in mangas)
+            foreach (Manga m in mangas)
             {
                 if (m.name.StartsWith(lstNames.SelectedItem.ToString().Split('|')[0].Trim()))
                 {

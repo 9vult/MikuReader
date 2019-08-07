@@ -21,6 +21,11 @@ namespace MikuReader
             this.startPage = startPage;
         }
 
+        /// <summary>
+        /// Open a FileDialog for the user to select a folder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnChangeDirectory_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog
@@ -34,6 +39,11 @@ namespace MikuReader
             }
         }
 
+        /// <summary>
+        /// Load the settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmSettings_Load(object sender, EventArgs e)
         {
             chkUpdates.Checked = (bool)Properties.Settings.Default["checkForUpdates"];
@@ -66,6 +76,11 @@ namespace MikuReader
             new FrmAbout().ShowDialog();
         }
 
+        /// <summary>
+        /// Save, checking if the user changed the directory, and warning if it is the case.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSave_Click(object sender, EventArgs e)
         {
             // Save Update Checking preference 

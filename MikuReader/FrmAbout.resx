@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBoxDescription.Text" xml:space="preserve">
-    <value>MikuReader is a manga-reading platform that uses MangaDex as it's exclusive source.
+    <value>MikuReader is a manga-reading platform that uses MangaDex as its exclusive source.
 
 Disclaimers:
 This application and its creator are not affiliated with MangaDex in any way or form.
