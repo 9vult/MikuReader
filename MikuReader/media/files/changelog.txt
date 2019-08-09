@@ -1,7 +1,3 @@
-Beta 1.0.0.3
-- Added nHentai support
-- Added ability to change the name of any title in your library.  If you are having issues with this, delete the 'settings' file from the manga folder.
-- Added tabs to the home screen
-- Condensed some of the codebase
-- Made downloads a little more resource friendly
-- Many other small changes
+Beta 1.0.0.5
+- All user-facing webbrowsers now use GeckoFX45
+- *Auto-Updater Test*

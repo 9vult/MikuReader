@@ -277,6 +277,7 @@
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
     <Content Include="media\images\miku.png" />
+    <Content Include="media\images\uninstall.ico" />
     <Content Include="mikureader.ico" />
   </ItemGroup>
   <ItemGroup>

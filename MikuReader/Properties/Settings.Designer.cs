@@ -70,17 +70,5 @@ namespace MikuReader.Properties {
                 this["doublePageReader"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool highDPI {
-            get {
-                return ((bool)(this["highDPI"]));
-            }
-            set {
-                this["highDPI"] = value;
-            }
-        }
     }
 }

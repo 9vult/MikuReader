@@ -82,9 +82,9 @@ namespace MikuReader
             // updater
             if ((bool)Properties.Settings.Default["checkForUpdates"] == true)
             {
-                // AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
-                // AutoUpdater.RunUpdateAsAdmin = true;
-                // AutoUpdater.DownloadPath = homeFolder + "\\update";
+                AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
+                AutoUpdater.RunUpdateAsAdmin = true;
+                AutoUpdater.DownloadPath = homeFolder + "\\update";
             }
 
         }
