@@ -69,9 +69,9 @@ namespace MikuReader
             if (Directory.Exists(homeFolder))
             {
                 RefreshContents();
-                if (lstNames.Items.Count > 0)
+                if (lstManga.Items.Count > 0)
                 {
-                    lstNames.SelectedIndex = 0;
+                    lstManga.SelectedIndex = 0;
                 }
             }
             else
@@ -82,9 +82,9 @@ namespace MikuReader
             // updater
             if ((bool)Properties.Settings.Default["checkForUpdates"] == true)
             {
-                AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
-                AutoUpdater.RunUpdateAsAdmin = true;
-                AutoUpdater.DownloadPath = homeFolder + "\\update";
+                // AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
+                // AutoUpdater.RunUpdateAsAdmin = true;
+                // AutoUpdater.DownloadPath = homeFolder + "\\update";
             }
 
         }
@@ -94,13 +94,13 @@ namespace MikuReader
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnBrowse_Click(object sender, EventArgs e)
+        private void BtnBrowseManga_Click(object sender, EventArgs e)
         {
-            new FrmBrowse(this).Show();
+            new FrmMangaBrowser(this).Show();
         }
 
 
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefreshManga_Click(object sender, EventArgs e)
         {
             RefreshContents();
         }
@@ -110,37 +110,67 @@ namespace MikuReader
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnRead_Click(object sender, EventArgs e)
+        private void BtnReadManga_Click(object sender, EventArgs e)
         {
-            if (lstNames.Items.Count > 0)
+            if (lstManga.Items.Count > 0)
             {
-                string selectedName = lstNames.SelectedItem.ToString().Split('|')[0].Trim();
+                string selectedName = lstManga.SelectedItem.ToString().Split('»')[0].Trim();
+                foreach (Manga m in mangas)
+                {
+                    if (m.settings.name.StartsWith(selectedName))
+                    {
+                        read(m);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opens the reader to the selected hentai if it is not currently downloading.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReadHentai_Click(object sender, EventArgs e)
+        {
+            if (lstHentai.Items.Count > 0)
+            {
+                string selectedName = lstHentai.SelectedItem.ToString().Split('»')[0].Trim();
                 foreach (Manga m in mangas)
                 {
                     if (m.name.StartsWith(selectedName))
                     {
-                        if (!File.Exists(m.mangaDirectory.FullName + "\\downloading"))
-                        {
-                            if ((bool)Properties.Settings.Default["doublePageReader"] == false)
-                            {
-                                FrmReader reader = new FrmReader();
-                                reader.Show();
-                                reader.StartUp(m, this);
-                            }
-                            else
-                            {
-                                FrmDoublePageReader reader = new FrmDoublePageReader();
-                                reader.Show();
-                                reader.StartUp(m, this);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cannot read '" + m.name + "' because it is currently being downloaded");
-                        }
+                        read(m);
                         break;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Handles opening the reader
+        /// </summary>
+        /// <param name="m"></param>
+        private void read(Manga m)
+        {
+            if (!File.Exists(m.mangaDirectory.FullName + "\\downloading"))
+            {
+                if ((bool)Properties.Settings.Default["doublePageReader"] == false)
+                {
+                    FrmReader reader = new FrmReader();
+                    reader.Show();
+                    reader.StartUp(m, this);
+                }
+                else
+                {
+                    FrmDoublePageReader reader = new FrmDoublePageReader();
+                    reader.Show();
+                    reader.StartUp(m, this);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cannot read '" + m.name + "' because it is currently being downloaded");
             }
         }
 
@@ -149,12 +179,18 @@ namespace MikuReader
         /// </summary>
         /// <param name="api">API link</param>
         /// <param name="num">Chapter Number</param>
-        public void AddManga(string api, string num)
+        public void AddManga(string api, string num, bool update)
         {
             string json;
-            using (var wc = new System.Net.WebClient())
+            if (api != null)
+            { 
+                using (var wc = new System.Net.WebClient())
+                {
+                    json = wc.DownloadString(api);
+                }
+            } else
             {
-                json = wc.DownloadString(api);
+                json = File.ReadAllText(homeFolder + "\\" + num + "\\manga.json");
             }
 
             // Deserialize the JSON file
@@ -167,8 +203,8 @@ namespace MikuReader
                 Directory.CreateDirectory(mangaDirectory);
                 File.WriteAllText(mangaDirectory + "\\manga.json", json); // Write the JSON to a file
                 File.WriteAllText(mangaDirectory + "\\tracker", "1|1"); // Write initial tracking info to a file
-                File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
             }
+            File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
 
             Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
 
@@ -183,10 +219,14 @@ namespace MikuReader
                         (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
                         !DSDuplicate((string)chapter.chapter)) // Not a dupe chapter
                     {
-                        string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
-                        Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
-                        downloadStack.Push(dc);
-                        downloads++;
+                        if ((update && !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) || // If "update" only add if the folder doesn't exist
+                            !update)
+                        {
+                            string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
+                            Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, DownloadType.MANGA, this);
+                            downloadStack.Push(dc);
+                            downloads++;
+                        }
                     }
                 }
             }
@@ -196,9 +236,37 @@ namespace MikuReader
         }
 
         /// <summary>
+        /// Add a Hentai to the database
+        /// </summary>
+        /// <param name="numbers">le numbers</param>
+        public void AddHentai(string numbers, string title)
+        {
+            string hentaiDirectory = homeFolder + "\\h" + numbers;
+
+            if (!Directory.Exists(hentaiDirectory))
+            {
+                Directory.CreateDirectory(hentaiDirectory);
+                File.WriteAllText(hentaiDirectory + "\\tracker", "1|1"); // Write initial tracking info to a file
+                File.WriteAllText(hentaiDirectory + "\\title", title); // Write the title to a file
+            }
+            File.WriteAllText(hentaiDirectory + "\\downloading", ""); // Create "Downloading" file
+
+            Manga m = new Manga("", new DirectoryInfo(hentaiDirectory), "1", "1");
+            DialogResult r = new FrmHentaiSettings(m).ShowDialog();
+
+            MessageBox.Show("Downloading data...\nYou may close the Browser as you desire.");
+            string dlUrl = "https://nhentai.net/g/" + numbers + "/1";
+            Download dc = new Download("1", numbers, hentaiDirectory, dlUrl, DownloadType.HENTAI, this);
+            downloadStack.Push(dc);
+            downloads++;
+            DownloadNextFromQueue(hentaiDirectory);
+            RefreshContents();
+        }
+
+        /// <summary>
         /// Checks for new chapters and downloads them
         /// </summary>
-        private void UpdateAll()
+        private void UpdateAllManga()
         {
             DirectoryInfo root = new DirectoryInfo(homeFolder);
             DirectoryInfo[] mangoDirectories = root.GetDirectories("*", SearchOption.TopDirectoryOnly);
@@ -207,40 +275,9 @@ namespace MikuReader
             {
                 if (mango.Name == "update")
                     continue;
-                else
+                else if (!mango.Name.StartsWith("h"))
                 {
-                    string api = "https://mangadex.org/api/manga/" + mango.Name;
-                    string json;
-                    using (var wc = new System.Net.WebClient())
-                    {
-                        json = wc.DownloadString(api);
-                    }
-
-                    // Deserialize the JSON file
-                    dynamic contents = JsonConvert.DeserializeObject(json);
-                    string mangaName = contents.manga.title;
-                    string mangaDirectory = homeFolder + "\\" + mango.Name;
-
-                    File.WriteAllText(mangaDirectory + "\\downloading", ""); // Create "Downloading" file
-                    Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
-                    m.LoadSettings();
-                    foreach (var chapterID in contents.chapter)
-                    {
-                        foreach (var chapter in chapterID)
-                        {
-                            if (chapter.lang_code == m.settings.lang && // Correct language
-                                (m.settings.group == "{Any}" || chapter.group_name == m.settings.group) && // Correct group
-                                !DSDuplicate((string)chapter.chapter) && // Not a dupe chapter
-                                !Directory.Exists(mangaDirectory + "\\" + chapter.chapter)) // Chapter isn't already downloaded
-                            {
-                                string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
-                                Download dc = new Download(chapter.chapter, chapterID.Name, mangaDirectory, dlUrl, this);
-                                downloadStack.Push(dc);
-                                downloads++;
-                            }
-                        }
-                    }
-                    DownloadNextFromQueue(mangaDirectory);
+                    AddManga(null, mango.Name, true);
                 }
             }
 
@@ -250,7 +287,7 @@ namespace MikuReader
         /// <summary>
         /// Alerts the user if the download could not proceed because they are not in legacy mode
         /// </summary>
-        public void DownloadFailedNoLegacy()
+        public void MDownloadFailedNoLegacy()
         {
             MessageBox.Show("Could not download because Reader is not set to Legacy.\n" +
                     "To fix, go to MangaDex Settings, and set Reader to Legacy.");
@@ -276,8 +313,8 @@ namespace MikuReader
         /// <summary>
         /// Actually a stack, but downloads the next item from the top
         /// </summary>
-        /// <param name="mangaDirectory">Manga Directory</param>
-        public void DownloadNextFromQueue(string mangaDirectory)
+        /// <param name="directory">Manga Directory</param>
+        public void DownloadNextFromQueue(string directory)
         {
             if (downloadStack.Count > 0)
             {
@@ -291,7 +328,7 @@ namespace MikuReader
             else
             {
                 DownloadFinished();
-                File.Delete(mangaDirectory + "\\downloading");
+                File.Delete(directory + "\\downloading");
             }
 
         }
@@ -330,7 +367,8 @@ namespace MikuReader
         /// </summary>
         public void RefreshContents()
         {
-            lstNames.Items.Clear();
+            lstManga.Items.Clear();
+            lstHentai.Items.Clear();
             mangas.Clear();
             DirectoryInfo root = new DirectoryInfo(homeFolder);
             DirectoryInfo[] dirs = root.GetDirectories("*", SearchOption.TopDirectoryOnly);
@@ -339,7 +377,7 @@ namespace MikuReader
             {
                 if (dir.Name == "update")
                     continue;
-                else
+                else if (!dir.Name.StartsWith("h"))
                 {
                     var json = File.ReadAllText(dir.FullName + "\\manga.json");
                     var tracker = File.ReadAllText(dir.FullName + "\\tracker");
@@ -348,7 +386,32 @@ namespace MikuReader
                     dynamic contents = JsonConvert.DeserializeObject(json);
                     string mangaName = contents.manga.title;
                     Manga m = new Manga(mangaName, dir, trackerData[0], trackerData[1]);
+                    m.LoadSettings();
+                    if (m.settings.name == "" || m.settings.name == null)
+                    {
+                        m.SaveSettings(m.settings.lang, m.settings.group, mangaName);
+                        m.LoadSettings();
+                    }
 
+                    mangas.Add(m);
+                    string name = m.settings.name;
+                    if (name.Length > 21)
+                    {
+                        name = name.Substring(0, 21);
+                    }
+                    else
+                    {
+                        name = name.PadRight(21);
+                    }
+                    lstManga.Items.Add(name + "  »  c" + trackerData[0] + ",p" + trackerData[1]);
+                }
+                else // Hentai
+                {
+                    string title = File.ReadAllText(dir.FullName + "\\title");
+                    var tracker = File.ReadAllText(dir.FullName + "\\tracker");
+                    string[] trackerData = tracker.Split('|');
+
+                    Manga m = new Manga(title, dir, trackerData[0], trackerData[1]);
                     mangas.Add(m);
                     string name = m.name;
                     if (name.Length > 21)
@@ -359,12 +422,16 @@ namespace MikuReader
                     {
                         name = name.PadRight(21);
                     }
-                    lstNames.Items.Add(name + "  |  c" + trackerData[0] + ",p" + trackerData[1]);
+                    lstHentai.Items.Add(name + "  »  p" + trackerData[1]);
                 }
             }
-            if (lstNames.Items.Count > 0)
+            if (lstManga.Items.Count > 0)
             {
-                lstNames.SelectedIndex = 0;
+                lstManga.SelectedIndex = 0;
+            }
+            if (lstHentai.Items.Count > 0)
+            {
+                lstHentai.SelectedIndex = 0;
             }
         }
 
@@ -386,21 +453,53 @@ namespace MikuReader
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnMangaSettings_Click(object sender, EventArgs e)
+        private void BtnIndMangaSettings_Click(object sender, EventArgs e)
         {
             foreach (Manga m in mangas)
             {
-                if (m.name.StartsWith(lstNames.SelectedItem.ToString().Split('|')[0].Trim()))
+                if (m.settings != null)
                 {
-                    new FrmMangaSettings(m).ShowDialog();
-                    break;
+                    if (m.settings.name.StartsWith(lstManga.SelectedItem.ToString().Split('»')[0].Trim()))
+                    {
+                        new FrmMangaSettings(m).ShowDialog();
+                        break;
+                    }
                 }
+                
             }
+            RefreshContents();
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateAll();
+            UpdateAllManga();
+        }
+
+        private void BtnBrowseHentai_Click(object sender, EventArgs e)
+        {
+            new FrmHentaiBrowser(this).Show();
+        }
+
+        private void btnHentaiSettings_Click(object sender, EventArgs e)
+        {
+            foreach (Manga m in mangas)
+            {
+                if (File.Exists(m.mangaDirectory.FullName + "\\title"))
+                {
+                    string title = File.ReadAllText(m.mangaDirectory.FullName + "\\title");
+                    if (title.StartsWith(lstHentai.SelectedItem.ToString().Split('»')[0].Trim()))
+                    {
+                        new FrmHentaiSettings(m).ShowDialog();
+                        break;
+                    }
+                }
+            }
+            RefreshContents();
+        }
+
+        private void btnRefreshHentai_Click(object sender, EventArgs e)
+        {
+            RefreshContents();
         }
     }
 }

@@ -46,6 +46,7 @@ namespace MikuReader
                     }
                 }
             }
+
             foreach (string localeOption in cmboLang.Items)
             {
                 if (localeOption.StartsWith(m.settings.lang))
@@ -53,6 +54,14 @@ namespace MikuReader
                     cmboLang.SelectedItem = localeOption;
                     break;
                 }
+            }
+
+            if (m.settings.name == "" || m.settings.name == null)
+            {
+                txtName.Text = m.name;
+            } else
+            {
+                txtName.Text = m.settings.name;
             }
         }
 
@@ -80,13 +89,13 @@ namespace MikuReader
 
         private void FrmMangaSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show("Any changes will be saved.");
+            // MessageBox.Show("Any changes will be saved.");
             Save();
         }
 
         private void Save()
         {
-            m.SaveSettings(cmboLang.SelectedItem.ToString().Substring(0, 2), cmboGroup.SelectedItem.ToString());
+            m.SaveSettings(cmboLang.SelectedItem.ToString().Substring(0, 2), cmboGroup.SelectedItem.ToString(), txtName.Text);
             m.LoadSettings();
             DialogResult = DialogResult.OK;
         }

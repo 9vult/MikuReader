@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -92,74 +92,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Download.cs" />
-    <Compile Include="FrmDoublePageReader.cs">
+    <Compile Include="classes\Download.cs" />
+    <Compile Include="classes\DownloadType.cs" />
+    <Compile Include="forms\FrmDoublePageReader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDoublePageReader.Designer.cs">
+    <Compile Include="forms\FrmDoublePageReader.Designer.cs">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMangaSettings.cs">
+    <Compile Include="forms\FrmHentaiBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMangaSettings.Designer.cs">
+    <Compile Include="forms\FrmHentaiBrowser.Designer.cs">
+      <DependentUpon>FrmHentaiBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmHentaiSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmHentaiSettings.Designer.cs">
+      <DependentUpon>FrmHentaiSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\FrmMangaSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FrmMangaSettings.Designer.cs">
       <DependentUpon>FrmMangaSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manga.cs" />
-    <Compile Include="MangaSettingsContainer.cs" />
-    <Compile Include="Page.cs" />
-    <Compile Include="FrmAbout.cs">
+    <Compile Include="classes\Manga.cs" />
+    <Compile Include="classes\MangaSettingsContainer.cs" />
+    <Compile Include="classes\Page.cs" />
+    <Compile Include="forms\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAbout.Designer.cs">
+    <Compile Include="forms\FrmAbout.Designer.cs">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmBrowse.cs">
+    <Compile Include="forms\FrmMangaBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmBrowse.Designer.cs">
-      <DependentUpon>FrmBrowse.cs</DependentUpon>
+    <Compile Include="forms\FrmMangaBrowser.Designer.cs">
+      <DependentUpon>FrmMangaBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmReader.cs">
+    <Compile Include="forms\FrmReader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmReader.Designer.cs">
+    <Compile Include="forms\FrmReader.Designer.cs">
       <DependentUpon>FrmReader.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStartPage.cs">
+    <Compile Include="forms\FrmStartPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmStartPage.Designer.cs">
+    <Compile Include="forms\FrmStartPage.Designer.cs">
       <DependentUpon>FrmStartPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Chapter.cs" />
+    <Compile Include="classes\Chapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FrmSettings.cs">
+    <Compile Include="forms\FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSettings.Designer.cs">
+    <Compile Include="forms\FrmSettings.Designer.cs">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmAbout.resx">
+    <EmbeddedResource Include="forms\FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmBrowse.resx">
-      <DependentUpon>FrmBrowse.cs</DependentUpon>
+    <EmbeddedResource Include="forms\FrmHentaiBrowser.resx">
+      <DependentUpon>FrmHentaiBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDoublePageReader.resx">
+    <EmbeddedResource Include="forms\FrmHentaiSettings.resx">
+      <DependentUpon>FrmHentaiSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmMangaBrowser.resx">
+      <DependentUpon>FrmMangaBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FrmDoublePageReader.resx">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMangaSettings.resx">
+    <EmbeddedResource Include="forms\FrmMangaSettings.resx">
       <DependentUpon>FrmMangaSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmReader.resx">
+    <EmbeddedResource Include="forms\FrmReader.resx">
       <DependentUpon>FrmReader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSettings.resx">
+    <EmbeddedResource Include="forms\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStartPage.resx">
+    <EmbeddedResource Include="forms\FrmStartPage.resx">
       <DependentUpon>FrmStartPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

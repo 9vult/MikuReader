@@ -1,3 +1,7 @@
-Beta 1.0.0.2
-- Added Per-Manga settings to allow for specific languages or groups to be selected
-- Added "Update All" button which will download any new chapters.
+Beta 1.0.0.3
+- Added nHentai support
+- Added ability to change the name of any title in your library.  If you are having issues with this, delete the 'settings' file from the manga folder.
+- Added tabs to the home screen
+- Condensed some of the codebase
+- Made downloads a little more resource friendly
+- Many other small changes

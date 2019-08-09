@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MikuReader
 {
-    public class MangaSettingsContainer
+    public enum DownloadType
     {
-        public string lang;
-        public string group;
+        MANGA, HENTAI
     }
 }

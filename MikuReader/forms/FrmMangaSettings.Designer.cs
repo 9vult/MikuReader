@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmboLang = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmboGroup
@@ -113,7 +115,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(505, 91);
+            this.btnSave.Location = new System.Drawing.Point(505, 147);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(132, 39);
             this.btnSave.TabIndex = 4;
@@ -121,11 +123,29 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(298, 104);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(339, 26);
+            this.txtName.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Override Title";
+            // 
             // FrmMangaSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 141);
+            this.ClientSize = new System.Drawing.Size(649, 198);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cmboLang);
             this.Controls.Add(this.label2);
@@ -151,5 +171,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmboLang;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label3;
     }
 }

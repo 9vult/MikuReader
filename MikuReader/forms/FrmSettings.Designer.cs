@@ -55,7 +55,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(362, 299);
+            this.btnSave.Location = new System.Drawing.Point(377, 299);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(93, 32);
             this.btnSave.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(263, 299);
+            this.btnCancel.Location = new System.Drawing.Point(278, 299);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(93, 32);
             this.btnCancel.TabIndex = 2;
@@ -78,9 +78,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 20);
+            this.label1.Size = new System.Drawing.Size(148, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Language Code:";
+            this.label1.Text = "Default Manga lang";
             // 
             // cmboLang
             // 
@@ -127,9 +127,9 @@
             "tr | Turkish",
             "ua | Ukrainian",
             "vn | Vietnamese"});
-            this.cmboLang.Location = new System.Drawing.Point(145, 51);
+            this.cmboLang.Location = new System.Drawing.Point(177, 51);
             this.cmboLang.Name = "cmboLang";
-            this.cmboLang.Size = new System.Drawing.Size(310, 27);
+            this.cmboLang.Size = new System.Drawing.Size(293, 27);
             this.cmboLang.TabIndex = 4;
             // 
             // label2
@@ -137,21 +137,21 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(8, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 20);
+            this.label2.Size = new System.Drawing.Size(162, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Save Directory:";
+            this.label2.Text = "Global Save Directory";
             // 
             // txtDirectory
             // 
             this.txtDirectory.Enabled = false;
-            this.txtDirectory.Location = new System.Drawing.Point(145, 88);
+            this.txtDirectory.Location = new System.Drawing.Point(176, 89);
             this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.Size = new System.Drawing.Size(266, 26);
+            this.txtDirectory.Size = new System.Drawing.Size(249, 26);
             this.txtDirectory.TabIndex = 6;
             // 
             // btnChangeDirectory
             // 
-            this.btnChangeDirectory.Location = new System.Drawing.Point(417, 84);
+            this.btnChangeDirectory.Location = new System.Drawing.Point(431, 85);
             this.btnChangeDirectory.Name = "btnChangeDirectory";
             this.btnChangeDirectory.Size = new System.Drawing.Size(38, 30);
             this.btnChangeDirectory.TabIndex = 7;
@@ -181,7 +181,7 @@
             // 
             // btnViewFolder
             // 
-            this.btnViewFolder.Location = new System.Drawing.Point(334, 120);
+            this.btnViewFolder.Location = new System.Drawing.Point(348, 121);
             this.btnViewFolder.Name = "btnViewFolder";
             this.btnViewFolder.Size = new System.Drawing.Size(121, 32);
             this.btnViewFolder.TabIndex = 10;
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 343);
+            this.ClientSize = new System.Drawing.Size(482, 343);
             this.Controls.Add(this.chkDblReader);
             this.Controls.Add(this.btnViewFolder);
             this.Controls.Add(this.btnAbout);

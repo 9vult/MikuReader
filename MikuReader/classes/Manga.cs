@@ -46,20 +46,30 @@ namespace MikuReader
             if (settings != null)
                 settings = null;
 
+            if (units.Length < 3)
+            {
+                string[] temp = new string[3];
+                temp[0] = units[0];
+                temp[1] = units[1];
+                temp[2] = "";
+                units = temp;
+            }
+
             settings = new MangaSettingsContainer
             {
                 lang = units[0],
-                group = units[1]
+                group = units[1],
+                name = units[2]
             };
             return true;
         }
 
-        public void SaveSettings(string lang, string group)
+        public void SaveSettings(string lang, string group, string overrideName)
         {
             if (File.Exists(mangaDirectory.FullName + "\\settings"))
             {
                 File.WriteAllText(mangaDirectory.FullName + "\\settings", String.Empty);
-                File.WriteAllText(mangaDirectory.FullName + "\\settings", lang + "|" + group);
+                File.WriteAllText(mangaDirectory.FullName + "\\settings", lang + "|" + group + "|" + overrideName);
             }
         }
     }

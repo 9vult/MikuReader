@@ -10,14 +10,11 @@ using System.Windows.Forms;
 
 namespace MikuReader
 {
-    /// <summary>
-    /// Webbrowser for finding new mangas
-    /// </summary>
-    public partial class FrmBrowse : Form
+    public partial class FrmHentaiBrowser : Form
     {
-        FrmStartPage startPage;
+        private FrmStartPage startPage;
 
-        public FrmBrowse(FrmStartPage startPage)
+        public FrmHentaiBrowser(FrmStartPage startPage)
         {
             InitializeComponent();
             this.startPage = startPage;
@@ -29,7 +26,7 @@ namespace MikuReader
         }
 
         /// <summary>
-        /// Checks if the URL is valid and calls for the manga to be added
+        /// Checks if the URL is valid and calls for the hentai to be added
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -38,33 +35,31 @@ namespace MikuReader
             if (browser.Url != null)
             {
                 string api = browser.Url.ToString();
-                string name = string.Empty;
                 string num = string.Empty;
-                if (api.StartsWith("https://mangadex.org/title/"))
+                if (api.StartsWith("https://nhentai.net/g/"))
                 {
-                    name = api.Split('/')[5];
                     num = api.Split('/')[4];
-                    api = "https://mangadex.org/api/manga/" + num;
-                    startPage.AddManga(api, num);
+                    startPage.AddHentai(num, GetTitle());
                 }
                 else
                 {
-                    MessageBox.Show("Error: Not a valid MangaDex URL");
+                    MessageBox.Show("Error: Not a valid nHentai URL");
                 }
             }
         }
 
-        /// <summary>
-        /// Enables/disables the Add button depending on the URL
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private string GetTitle()
+        {
+            string fullTitle = browser.DocumentTitle;
+            return fullTitle.Substring(0, fullTitle.IndexOf("nhentai:") - 3);
+        }
+
         private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (browser.Url != null)
             {
                 string url = browser.Url.ToString();
-                if (url.StartsWith("https://mangadex.org/title/"))
+                if (url.StartsWith("https://nhentai.net/g/"))
                 {
                     addThisTitleToolStripMenuItem.Enabled = true;
                 }

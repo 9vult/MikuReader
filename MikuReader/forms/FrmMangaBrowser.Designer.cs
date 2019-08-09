@@ -1,6 +1,6 @@
 ﻿namespace MikuReader
 {
-    partial class FrmBrowse
+    partial class FrmMangaBrowser
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBrowse));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMangaBrowser));
             this.browser = new System.Windows.Forms.WebBrowser();
             this.mnuNav = new System.Windows.Forms.MenuStrip();
             this.goBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
