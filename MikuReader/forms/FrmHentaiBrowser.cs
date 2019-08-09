@@ -8,16 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Gecko;
+using Gecko.Events;
+
 namespace MikuReader
 {
     public partial class FrmHentaiBrowser : Form
     {
         private FrmStartPage startPage;
 
+        private GeckoWebBrowser browser;
+
         public FrmHentaiBrowser(FrmStartPage startPage)
         {
             InitializeComponent();
+            InitializeBrowser();
             this.startPage = startPage;
+        }
+
+        private void InitializeBrowser()
+        {
+
+            browser = new GeckoWebBrowser();
+            browser.Dock = DockStyle.Fill;
+            this.browserPanel.Controls.Add(browser);
+            Xpcom.Initialize("Firefox");
+            browser.Navigate("https://nhentai.net");
+            browser.DocumentCompleted += Browser_DocumentCompleted;
         }
 
         private void GoBackToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +71,7 @@ namespace MikuReader
             return fullTitle.Substring(0, fullTitle.IndexOf("nhentai:") - 3);
         }
 
-        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void Browser_DocumentCompleted(object sender, GeckoDocumentCompletedEventArgs e)
         {
             if (browser.Url != null)
             {

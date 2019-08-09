@@ -33,6 +33,7 @@ namespace MikuReader
             this.type = type;
             this.startPage = startPage;
             browser = new WebBrowser();
+            browser.ScriptErrorsSuppressed = true;
             browser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(DocumentCompletedCallback);
             clients = new ArrayList();
         }

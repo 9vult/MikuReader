@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Gecko;
+using Gecko.Events;
+
 namespace MikuReader
 {
     /// <summary>
@@ -17,15 +20,33 @@ namespace MikuReader
     {
         FrmStartPage startPage;
 
+        private GeckoWebBrowser browser;
+
         public FrmMangaBrowser(FrmStartPage startPage)
         {
             InitializeComponent();
+            InitializeBrowser();
             this.startPage = startPage;
+        }
+
+        private void InitializeBrowser()
+        {
+
+            browser = new GeckoWebBrowser();
+            browser.Dock = DockStyle.Fill;
+            this.browserPanel.Controls.Add(browser);
+            Xpcom.Initialize("Firefox");
+            browser.Navigate("https://mangadex.org");
+            browser.DocumentCompleted += Browser_DocumentCompleted;
         }
 
         private void GoBackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            browser.GoBack();
+            try
+            {
+                browser.GoBack();
+            }
+            catch (Exception ex) { }
         }
 
         /// <summary>
@@ -54,12 +75,7 @@ namespace MikuReader
             }
         }
 
-        /// <summary>
-        /// Enables/disables the Add button depending on the URL
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void Browser_DocumentCompleted(object sender, GeckoDocumentCompletedEventArgs e)
         {
             if (browser.Url != null)
             {
@@ -73,6 +89,11 @@ namespace MikuReader
                     addThisTitleToolStripMenuItem.Enabled = false;
                 }
             }
+        }
+
+        private void FrmMangaBrowser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            browser.Dispose();
         }
     }
 }

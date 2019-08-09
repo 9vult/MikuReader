@@ -29,23 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHentaiBrowser));
-            this.browser = new System.Windows.Forms.WebBrowser();
             this.mnuNav = new System.Windows.Forms.MenuStrip();
             this.goBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addThisTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.browserPanel = new System.Windows.Forms.Panel();
             this.mnuNav.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // browser
-            // 
-            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browser.Location = new System.Drawing.Point(0, 33);
-            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser.Name = "browser";
-            this.browser.Size = new System.Drawing.Size(1730, 840);
-            this.browser.TabIndex = 2;
-            this.browser.Url = new System.Uri("https://nhentai.net/language/english", System.UriKind.Absolute);
-            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.Browser_DocumentCompleted);
             // 
             // mnuNav
             // 
@@ -74,12 +63,20 @@
             this.addThisTitleToolStripMenuItem.Text = "Add This Title";
             this.addThisTitleToolStripMenuItem.Click += new System.EventHandler(this.AddThisTitleToolStripMenuItem_Click);
             // 
+            // browserPanel
+            // 
+            this.browserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browserPanel.Location = new System.Drawing.Point(0, 33);
+            this.browserPanel.Name = "browserPanel";
+            this.browserPanel.Size = new System.Drawing.Size(1730, 840);
+            this.browserPanel.TabIndex = 4;
+            // 
             // FrmHentaiBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1730, 873);
-            this.Controls.Add(this.browser);
+            this.Controls.Add(this.browserPanel);
             this.Controls.Add(this.mnuNav);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmHentaiBrowser";
@@ -93,10 +90,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.WebBrowser browser;
         private System.Windows.Forms.MenuStrip mnuNav;
         private System.Windows.Forms.ToolStripMenuItem goBackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addThisTitleToolStripMenuItem;
+        private System.Windows.Forms.Panel browserPanel;
     }
 }
