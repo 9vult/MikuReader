@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_03565FD352464661883234DA24880C0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_08A184F5D37B44E7C694E5378690885B"
         "OwnerKey" = "8:_BDB73EE58041454FAA9F331902D50857"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,8 +33,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_11B95431D0424243BCD2BC69F8C24926"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1608F9B4EB3E4CBA9B264ED7D932D4F8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_25A858C10A164EE88992849F4BB6C848"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_279DDC1E8BE3B9E0456C10A0DCEED619"
         "OwnerKey" = "8:_BDB73EE58041454FAA9F331902D50857"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2E4EBD059A7448A48D381A1E286C33E8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_30DD27466B57458E86257E83C1542F30"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,7 +75,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_36AE06245DA24FF084689543D3726828"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_49DB7801E2CB474B93DD44AA2EB2872E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_517602E991854F90A787369BBC36AF93"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_56A98154856F494EB5102DFD41BBEE01"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5FEE3FE8E2DE49DEA1B5511CDB3ABEA7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6103AEBD31474885A526C26CB834718C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_69AC24B1CA984083B94AFCF767B9C422"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,8 +135,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8D7466D6F72542439C6751B0770EA01C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9E15FDEAC817E30430F51086266E6CD0"
         "OwnerKey" = "8:_BDB73EE58041454FAA9F331902D50857"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A9988D474DE04DD5A4C60ED50E3B481C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,14 +165,44 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B80E6C3C393942DAB466D24385FA6A92"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BDB73EE58041454FAA9F331902D50857"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08A184F5D37B44E7C694E5378690885B"
+        "MsmKey" = "8:_C2B2ACE971F1477B82C36F5D8C5740EE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C37896EC38FD4D0F8E4CF42E551E288D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E212E44D1D9842B1B813F53CD8AEA626"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FA23CFB98BE74ACDA7B61D02156576E4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FD95C178534346CDA50040F64FC38E37"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -125,6 +239,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B2B63FF2C6B36E6C4A4BA5DBEE9B81BD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_08A184F5D37B44E7C694E5378690885B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -177,6 +297,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -206,6 +334,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03565FD352464661883234DA24880C0B"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\breakpadinjector.dll"
+            "TargetName" = "8:breakpadinjector.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08A184F5D37B44E7C694E5378690885B"
             {
             "AssemblyRegister" = "3:1"
@@ -235,6 +383,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_11B95431D0424243BCD2BC69F8C24926"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\libGLESv2.dll"
+            "TargetName" = "8:libGLESv2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1608F9B4EB3E4CBA9B264ED7D932D4F8"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\nss3.dll"
+            "TargetName" = "8:nss3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_25A858C10A164EE88992849F4BB6C848"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\icudt58.dll"
+            "TargetName" = "8:icudt58.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_279DDC1E8BE3B9E0456C10A0DCEED619"
@@ -268,6 +476,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E4EBD059A7448A48D381A1E286C33E8"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\icuin58.dll"
+            "TargetName" = "8:icuin58.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30DD27466B57458E86257E83C1542F30"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\xul.dll"
+            "TargetName" = "8:xul.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3136FDAE6AAE95E9F4F897171D0DDB3D"
             {
             "AssemblyRegister" = "3:1"
@@ -299,6 +547,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36AE06245DA24FF084689543D3726828"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\plugin-hang-ui.exe"
+            "TargetName" = "8:plugin-hang-ui.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49DB7801E2CB474B93DD44AA2EB2872E"
             {
             "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
@@ -308,6 +576,106 @@
             "Condition" = "8:Not Installed"
             "Transitive" = "11:FALSE"
             "Vital" = "11:FALSE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_517602E991854F90A787369BBC36AF93"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\libEGL.dll"
+            "TargetName" = "8:libEGL.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56A98154856F494EB5102DFD41BBEE01"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\icuuc58.dll"
+            "TargetName" = "8:icuuc58.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5FEE3FE8E2DE49DEA1B5511CDB3ABEA7"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\plugin-container.exe"
+            "TargetName" = "8:plugin-container.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6103AEBD31474885A526C26CB834718C"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\mozglue.dll"
+            "TargetName" = "8:mozglue.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69AC24B1CA984083B94AFCF767B9C422"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\AccessibleMarshal.dll"
+            "TargetName" = "8:AccessibleMarshal.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
@@ -370,6 +738,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D7466D6F72542439C6751B0770EA01C"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\lgpllibs.dll"
+            "TargetName" = "8:lgpllibs.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E15FDEAC817E30430F51086266E6CD0"
             {
             "AssemblyRegister" = "3:1"
@@ -399,6 +787,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9988D474DE04DD5A4C60ED50E3B481C"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\nssckbi.dll"
+            "TargetName" = "8:nssckbi.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B2B63FF2C6B36E6C4A4BA5DBEE9B81BD"
@@ -438,6 +846,126 @@
             "TargetName" = "8:uninstall.ico"
             "Tag" = "8:"
             "Folder" = "8:_9C14C9DBD79048D584901651A7519572"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B80E6C3C393942DAB466D24385FA6A92"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\sandboxbroker.dll"
+            "TargetName" = "8:sandboxbroker.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2B2ACE971F1477B82C36F5D8C5740EE"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\freebl3.dll"
+            "TargetName" = "8:freebl3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C37896EC38FD4D0F8E4CF42E551E288D"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\softokn3.dll"
+            "TargetName" = "8:softokn3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E212E44D1D9842B1B813F53CD8AEA626"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\nssdbm3.dll"
+            "TargetName" = "8:nssdbm3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FA23CFB98BE74ACDA7B61D02156576E4"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\d3dcompiler_47.dll"
+            "TargetName" = "8:d3dcompiler_47.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD95C178534346CDA50040F64FC38E37"
+            {
+            "SourcePath" = "8:..\\MikuReader\\Firefox\\omni.ja"
+            "TargetName" = "8:omni.ja"
+            "Tag" = "8:"
+            "Folder" = "8:_6F909A09F89D44878C0BFDD63210A983"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -512,6 +1040,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_6F909A09F89D44878C0BFDD63210A983"
+                    {
+                    "Name" = "8:Firefox"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_808F65F5822D4F55AA8C562C2904F77F"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -530,15 +1069,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MikuReader"
-        "ProductCode" = "8:{73F0F4DE-AA07-437F-8C5F-0A4009285A06}"
-        "PackageCode" = "8:{BA0D4ED9-8FB0-4401-85A1-99703537A174}"
+        "ProductCode" = "8:{FF7AA712-918A-44E8-AE3A-D45295617F1C}"
+        "PackageCode" = "8:{6F681437-87BB-42E5-B179-C1F24D29B99E}"
         "UpgradeCode" = "8:{0893B86A-F8C9-4A9F-91F0-628E120942BA}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:9volt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -654,7 +1193,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_47F01AE76F63477297E293C75C17B893"
             {
             "Name" = "8:Uninstall"
-            "Arguments" = "8:/x {73F0F4DE-AA07-437F-8C5F-0A4009285A06} /qr"
+            "Arguments" = "8:/x {FF7AA712-918A-44E8-AE3A-D45295617F1C} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"

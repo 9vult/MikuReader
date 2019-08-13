@@ -243,7 +243,7 @@
             this.btnRefreshHentai.TabIndex = 16;
             this.btnRefreshHentai.Text = "Refresh All";
             this.btnRefreshHentai.UseVisualStyleBackColor = true;
-            this.btnRefreshHentai.Click += new System.EventHandler(this.btnRefreshHentai_Click);
+            this.btnRefreshHentai.Click += new System.EventHandler(this.BtnRefreshHentai_Click);
             // 
             // btnReadHentai
             // 
@@ -253,7 +253,7 @@
             this.btnReadHentai.TabIndex = 14;
             this.btnReadHentai.Text = "Read";
             this.btnReadHentai.UseVisualStyleBackColor = true;
-            this.btnReadHentai.Click += new System.EventHandler(this.btnReadHentai_Click);
+            this.btnReadHentai.Click += new System.EventHandler(this.BtnReadHentai_Click);
             // 
             // btnHentaiSettings
             // 
@@ -263,7 +263,7 @@
             this.btnHentaiSettings.TabIndex = 18;
             this.btnHentaiSettings.Text = "Hentai Settings";
             this.btnHentaiSettings.UseVisualStyleBackColor = true;
-            this.btnHentaiSettings.Click += new System.EventHandler(this.btnHentaiSettings_Click);
+            this.btnHentaiSettings.Click += new System.EventHandler(this.BtnHentaiSettings_Click);
             // 
             // pictureBox1
             // 

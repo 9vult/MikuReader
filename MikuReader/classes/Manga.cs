@@ -25,11 +25,11 @@ namespace MikuReader
 
         private void CreateSettings()
         {
-            File.WriteAllText(mangaDirectory.FullName + "\\settings", 
+            File.WriteAllText(mangaDirectory.FullName + "\\settings",
                 Properties.Settings.Default["languageCode"].ToString() + "|{Any}");
             LoadSettings();
         }
-        
+
         public bool LoadSettings()
         {
             if (!File.Exists(mangaDirectory.FullName + "\\settings"))
@@ -39,7 +39,7 @@ namespace MikuReader
                 return false;
             }
 
-            string file = File.ReadAllText(mangaDirectory.FullName + "\\settings");            
+            string file = File.ReadAllText(mangaDirectory.FullName + "\\settings");
 
             string[] units = file.Split('|');
 
@@ -72,5 +72,7 @@ namespace MikuReader
                 File.WriteAllText(mangaDirectory.FullName + "\\settings", lang + "|" + group + "|" + overrideName);
             }
         }
+
+        public string MangaDirectory => mangaDirectory.FullName;
     }
 }
