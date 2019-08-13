@@ -1,3 +1,8 @@
-Beta 1.0.0.5
-- All user-facing webbrowsers now use GeckoFX45
-- *Auto-Updater Test*
+Beta 1.0.0.7
+- Use MangaDex API to get images (why didn't I know this part of the API existed?)
+- Legacy Reader is no longer required \o/
+- Downloading improvements
+
+If you are having issues, try deleting the save folder, the default location is %appdata%\MikuReader
+
+As always, if you find a bug, let me know.

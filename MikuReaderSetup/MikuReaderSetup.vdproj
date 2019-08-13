@@ -304,6 +304,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -1069,15 +1077,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MikuReader"
-        "ProductCode" = "8:{FF7AA712-918A-44E8-AE3A-D45295617F1C}"
-        "PackageCode" = "8:{6F681437-87BB-42E5-B179-C1F24D29B99E}"
+        "ProductCode" = "8:{BAA53506-3DD0-4206-A28F-95996F54E521}"
+        "PackageCode" = "8:{ABAA1AF4-A3AF-4C90-96EC-7C0DB5C2FF4B}"
         "UpgradeCode" = "8:{0893B86A-F8C9-4A9F-91F0-628E120942BA}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.4"
         "Manufacturer" = "8:9volt"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1193,7 +1201,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_47F01AE76F63477297E293C75C17B893"
             {
             "Name" = "8:Uninstall"
-            "Arguments" = "8:/x {FF7AA712-918A-44E8-AE3A-D45295617F1C} /qr"
+            "Arguments" = "8:/x {BAA53506-3DD0-4206-A28F-95996F54E521} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
@@ -1202,20 +1210,6 @@
             "Folder" = "8:_11BAABA0A1E6421683A3FEF37A23B31F"
             "WorkingFolder" = "8:_3B859E94CC144A2AB445ECA3AA9A9BBC"
             "Icon" = "8:_B4362229F3614143943547015CF5F9E8"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C32DAC1A86F5478FBFE9AF24E4B61560"
-            {
-            "Name" = "8:MikuReader"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_BDB73EE58041454FAA9F331902D50857"
-            "Folder" = "8:_5724314113734F2886C00FCD964C4245"
-            "WorkingFolder" = "8:_9C14C9DBD79048D584901651A7519572"
-            "Icon" = "8:_6E4DF3596B714EE7978406BEB234D04E"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FEDEF0DBEEAD47FAA57AC1C78F276AB7"

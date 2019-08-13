@@ -32,7 +32,6 @@
             this.mnuNav = new System.Windows.Forms.MenuStrip();
             this.goBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addThisTitleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setReaderInSettingsToLEGACYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browserPanel = new System.Windows.Forms.Panel();
             this.mnuNav.SuspendLayout();
             this.SuspendLayout();
@@ -42,8 +41,7 @@
             this.mnuNav.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mnuNav.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.goBackToolStripMenuItem,
-            this.addThisTitleToolStripMenuItem,
-            this.setReaderInSettingsToLEGACYToolStripMenuItem});
+            this.addThisTitleToolStripMenuItem});
             this.mnuNav.Location = new System.Drawing.Point(0, 0);
             this.mnuNav.Name = "mnuNav";
             this.mnuNav.Size = new System.Drawing.Size(1730, 33);
@@ -64,14 +62,6 @@
             this.addThisTitleToolStripMenuItem.Size = new System.Drawing.Size(131, 29);
             this.addThisTitleToolStripMenuItem.Text = "Add This Title";
             this.addThisTitleToolStripMenuItem.Click += new System.EventHandler(this.AddThisTitleToolStripMenuItem_Click);
-            // 
-            // setReaderInSettingsToLEGACYToolStripMenuItem
-            // 
-            this.setReaderInSettingsToLEGACYToolStripMenuItem.Enabled = false;
-            this.setReaderInSettingsToLEGACYToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.setReaderInSettingsToLEGACYToolStripMenuItem.Name = "setReaderInSettingsToLEGACYToolStripMenuItem";
-            this.setReaderInSettingsToLEGACYToolStripMenuItem.Size = new System.Drawing.Size(356, 29);
-            this.setReaderInSettingsToLEGACYToolStripMenuItem.Text = "*Set \"Reader\" in settings to \"LEGACY\"*";
             // 
             // browserPanel
             // 
@@ -105,7 +95,6 @@
         private System.Windows.Forms.MenuStrip mnuNav;
         private System.Windows.Forms.ToolStripMenuItem goBackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addThisTitleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setReaderInSettingsToLEGACYToolStripMenuItem;
         private System.Windows.Forms.Panel browserPanel;
     }
 }
