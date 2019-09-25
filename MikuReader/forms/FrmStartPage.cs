@@ -37,26 +37,12 @@ namespace MikuReader
         }
 
         /// <summary>
-        /// Display the Settings dialog
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnSettings_Click(object sender, EventArgs e)
-        {
-            new FrmSettings(this).ShowDialog();
-            //new FrmAbout().ShowDialog();
-        }
-
-        /// <summary>
         /// General setting up, called when the form first loads
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FrmStartPage_Load(object sender, EventArgs e)
         {
-            // Download d = new Download(null, null, null, "https://mangadex.org/chapter/199733/1", DownloadType.MANGA, this);
-            // d.StartDownloading();
-
             downloadManager = new DownloadManager(this);
 
             if ((string)Properties.Settings.Default["homeDirectory"] == "")
@@ -69,6 +55,8 @@ namespace MikuReader
             {
                 homeFolder = (string)Properties.Settings.Default["homeDirectory"];
             }
+
+            Logger.logFile = homeFolder + "\\log.txt";
 
             if (Directory.Exists(homeFolder))
             {
@@ -83,14 +71,29 @@ namespace MikuReader
                 Directory.CreateDirectory(homeFolder);
             }
 
+            Logger.Log("Starting Up...");
+            Logger.Log("Home folder is '" + homeFolder + "'");
+
             // updater
             if ((bool)Properties.Settings.Default["checkForUpdates"] == true)
             {
+                Logger.Log("Checking for updates...");
                 AutoUpdater.Start("https://www.dropbox.com/s/8pf1shiotl68fqv/updateinfo.xml?raw=1");
                 AutoUpdater.RunUpdateAsAdmin = true;
                 AutoUpdater.DownloadPath = homeFolder + "\\update";
             }
 
+        }
+
+        /// <summary>
+        /// Display the Settings dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            new FrmSettings(this).ShowDialog();
+            //new FrmAbout().ShowDialog();
         }
 
         /// <summary>
@@ -161,12 +164,14 @@ namespace MikuReader
             {
                 if ((bool)Properties.Settings.Default["doublePageReader"] == false)
                 {
+                    Logger.Log("Opening Reader to " + m.name);
                     FrmReader reader = new FrmReader();
                     reader.Show();
                     reader.StartUp(m, this);
                 }
                 else
                 {
+                    Logger.Log("Opening DPReader to " + m.name);
                     FrmDoublePageReader reader = new FrmDoublePageReader();
                     reader.Show();
                     reader.StartUp(m, this);
@@ -205,6 +210,7 @@ namespace MikuReader
 
             if (!Directory.Exists(mangaDirectory))
             {
+                Logger.Log("Creating directory '" + mangaDirectory + "' and related files");
                 Directory.CreateDirectory(mangaDirectory);
                 File.WriteAllText(mangaDirectory + "\\manga.json", json); // Write the JSON to a file
                 File.WriteAllText(mangaDirectory + "\\tracker", "1|1"); // Write initial tracking info to a file
@@ -213,10 +219,12 @@ namespace MikuReader
 
             Manga m = new Manga(mangaName, new DirectoryInfo(mangaDirectory), "1", "1");
 
-            DialogResult result = new FrmMangaSettings(m).ShowDialog();
-
-            MessageBox.Show("Downloading data...\nYou may close the Browser as you desire.");
-
+            if (!isUpdate)
+            {
+                DialogResult result = new FrmMangaSettings(m).ShowDialog();
+                MessageBox.Show("Downloading data...\nYou may close the Browser as you desire.");
+            }
+            m.LoadSettings();
             downloadManager.AddMDToQueue(m, contents.chapter, isUpdate);
             RefreshContents();
         }
@@ -231,6 +239,7 @@ namespace MikuReader
 
             if (!Directory.Exists(hentaiDirectory))
             {
+                Logger.Log("Creating directory '" + hentaiDirectory + "' and related files");
                 Directory.CreateDirectory(hentaiDirectory);
                 File.WriteAllText(hentaiDirectory + "\\tracker", "1|1"); // Write initial tracking info to a file
                 File.WriteAllText(hentaiDirectory + "\\title", title); // Write the title to a file
@@ -251,6 +260,7 @@ namespace MikuReader
         /// </summary>
         private void UpdateAllManga()
         {
+            Logger.Log("Updating all manga...");
             DirectoryInfo root = new DirectoryInfo(homeFolder);
             DirectoryInfo[] mangoDirectories = root.GetDirectories("*", SearchOption.TopDirectoryOnly);
 
@@ -293,6 +303,7 @@ namespace MikuReader
         /// </summary>
         public void RefreshContents()
         {
+            Logger.Log("Refreshing");
             lstManga.Items.Clear();
             lstHentai.Items.Clear();
             mangas.Clear();
@@ -301,6 +312,7 @@ namespace MikuReader
 
             foreach (DirectoryInfo dir in dirs)
             {
+                // Logger.Log("Refreshing data for directory '" + dir.Name + "'");
                 if (dir.Name == "update")
                     continue;
                 else if (!dir.Name.StartsWith("h"))

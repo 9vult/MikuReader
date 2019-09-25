@@ -99,5 +99,13 @@ namespace MikuReader
             m.LoadSettings();
             DialogResult = DialogResult.OK;
         }
+
+        private void FrmMangaSettings_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Close();
+            }
+        }
     }
 }

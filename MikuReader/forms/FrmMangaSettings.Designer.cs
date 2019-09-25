@@ -159,6 +159,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manga Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMangaSettings_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMangaSettings_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

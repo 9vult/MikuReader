@@ -140,9 +140,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Chapter.cs" />
     <Compile Include="classes\Download.cs" />
     <Compile Include="classes\DownloadManager.cs" />
     <Compile Include="classes\DownloadType.cs" />
+    <Compile Include="classes\Logger.cs" />
+    <Compile Include="classes\Manga.cs" />
+    <Compile Include="classes\MangaSettingsContainer.cs" />
+    <Compile Include="classes\Page.cs" />
     <Compile Include="forms\FrmDoublePageReader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,9 +172,6 @@
     <Compile Include="forms\FrmMangaSettings.Designer.cs">
       <DependentUpon>FrmMangaSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes\Manga.cs" />
-    <Compile Include="classes\MangaSettingsContainer.cs" />
-    <Compile Include="classes\Page.cs" />
     <Compile Include="forms\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,7 +196,6 @@
     <Compile Include="forms\FrmStartPage.Designer.cs">
       <DependentUpon>FrmStartPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="classes\Chapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="forms\FrmSettings.cs">

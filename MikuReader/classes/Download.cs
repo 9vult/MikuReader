@@ -1,6 +1,4 @@
-﻿using Gecko;
-using Gecko.Events;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -46,6 +44,7 @@ namespace MikuReader
         /// <returns>True if successful</returns>
         public bool StartDownloading()
         {
+            Logger.Log("[DL] Starting Download for '" + manga.mangaDirectory.FullName + "\\" + chapterNumber + "'");
             string chapterDirectory = manga.mangaDirectory.FullName + "\\" + chapterNumber;
             Directory.CreateDirectory(chapterDirectory); // Create a directory for this chapter
 
@@ -62,6 +61,10 @@ namespace MikuReader
                     string hash = contents.hash;
                     foreach (string file in contents.page_array)
                     {
+                        if (server == "/data/")
+                        {
+                            server = "https://mangadex.org/data/";
+                        }
                         string imgUrl = server + hash + "/" + file;
                         string imgFile = chapterDirectory + "\\" + file;
 
@@ -71,11 +74,15 @@ namespace MikuReader
                             if (length <= 0)
                             {
                                 File.Delete(imgFile);
-                                DownloadAsync(new Uri(imgUrl), imgFile);
                             }
                         }
-                        else
+                        try
+                        {
                             DownloadAsync(new Uri(imgUrl), imgFile);
+                        } catch (Exception ex)
+                        {
+                            Logger.Error("[DL] Failed to download '" + imgUrl + "' because '" + ex.Message + "'");
+                        }
                     }
                     CheckStartNext();
                     return true;
@@ -126,6 +133,7 @@ namespace MikuReader
         {
             using (WebClient wc = new WebClient())
             {
+                Logger.Log("[DL] Downloading '" + imgUrl + "' to '" + imgFile + "'");
                 clients.Add(wc);
                 wc.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadCompletedCallback);
                 wc.DownloadFileAsync(imgUrl, imgFile);

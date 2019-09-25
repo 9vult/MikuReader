@@ -74,6 +74,7 @@
             this.Text = "Hentai Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHentaiSettings_FormClosing);
             this.Load += new System.EventHandler(this.FrmHentaiSettings_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmHentaiSettings_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

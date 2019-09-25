@@ -25,6 +25,7 @@ namespace MikuReader
 
         private void CreateSettings()
         {
+            Logger.Log("Creating settings for manga '" + name + "'");
             File.WriteAllText(mangaDirectory.FullName + "\\settings",
                 Properties.Settings.Default["languageCode"].ToString() + "|{Any}");
             LoadSettings();
@@ -32,8 +33,10 @@ namespace MikuReader
 
         public bool LoadSettings()
         {
+            Logger.Log("Loading settings for manga '" + name + "'");
             if (!File.Exists(mangaDirectory.FullName + "\\settings"))
             {
+                Logger.Warn("Settings file did not exist");
                 //File.Create(mangaDirectory.FullName + "\\settings");
                 CreateSettings();
                 return false;
@@ -48,6 +51,7 @@ namespace MikuReader
 
             if (units.Length < 3)
             {
+                Logger.Warn("Settings length < 3, creating blank name");
                 string[] temp = new string[3];
                 temp[0] = units[0];
                 temp[1] = units[1];
@@ -66,6 +70,7 @@ namespace MikuReader
 
         public void SaveSettings(string lang, string group, string overrideName)
         {
+            Logger.Log("Saving settings for manga '" + name + "'");
             if (File.Exists(mangaDirectory.FullName + "\\settings"))
             {
                 File.WriteAllText(mangaDirectory.FullName + "\\settings", String.Empty);

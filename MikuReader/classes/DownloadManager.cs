@@ -74,6 +74,7 @@ namespace MikuReader
                             string dlUrl = "https://mangadex.org/chapter/" + chapterID.Name + "/1";
                             Download dl = CreateMDDownload((string)chapterNum.chapter, chapterID.Name, m, dlUrl);
 
+                            Logger.Log("Adding MD to queue '" + m.name  + " chapter " + dl.chapterNumber + "'");
                             downloadQueue.Push(dl);
                             downloads.Add(dl);
                             downloadCount++;
@@ -93,6 +94,7 @@ namespace MikuReader
         {
             string dlUrl = "https://nhentai.net/g/" + chapterID + "/1";
             Download dl = CreateNHDownload(chapterID, m, dlUrl);
+            Logger.Log("Adding NH to queue '" + m.name + " chapter " + dl.chapterNumber + "'");
             downloadQueue.Push(dl);
             downloads.Add(dl);
             downloadCount++;
@@ -125,7 +127,7 @@ namespace MikuReader
             if (downloadQueue.Count > 0)
             {
                 Download next = (Download)downloadQueue.Pop();
-                next.StartDownloading();
+                Logger.Log("Downloading next item from queue '" + next.manga.name + " chapter " + next.chapterNumber + "'");                next.StartDownloading();
                 startPage.StartDownloadGUI();
                 return false;
             }
@@ -133,6 +135,7 @@ namespace MikuReader
             {
                 foreach (Download d in downloads)
                 {
+                    Logger.Log("Deleting '" + d.manga.MangaDirectory + "\\downloading" + "'");
                     if (File.Exists(d.manga.MangaDirectory + "\\downloading"))
                         File.Delete(d.manga.MangaDirectory + "\\downloading");
                 }

@@ -47,5 +47,13 @@ namespace MikuReader
             }
             DialogResult = DialogResult.OK;
         }
+
+        private void FrmHentaiSettings_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Close();
+            }
+        }
     }
 }
