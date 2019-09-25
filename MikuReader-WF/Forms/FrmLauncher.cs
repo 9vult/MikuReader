@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace MikuReader.wf.Forms
         {
             if (Properties.Settings.Default["approot"].ToString() == String.Empty)
             {
-                Properties.Settings.Default["approot"] = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\MikuReader2";
+                Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
 

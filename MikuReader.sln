@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rewrite", "rewrite", "{0187
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader-Core", "MikuReader-Core\MikuReader-Core.csproj", "{C9B7377C-1714-4667-A8FF-7D1CC8D74EB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader-IOS", "MikuReader-IOS\MikuReader-IOS.csproj", "{6125367E-0465-4915-907A-47860404577D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -193,6 +195,40 @@ Global
 		{C9B7377C-1714-4667-A8FF-7D1CC8D74EB5}.Release|x64.Build.0 = Release|Any CPU
 		{C9B7377C-1714-4667-A8FF-7D1CC8D74EB5}.Release|x86.ActiveCfg = Release|Any CPU
 		{C9B7377C-1714-4667-A8FF-7D1CC8D74EB5}.Release|x86.Build.0 = Release|Any CPU
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|Any CPU.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|Any CPU.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|x64.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|x64.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|x86.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Ad-Hoc|x86.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|Any CPU.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|Any CPU.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|iPhone.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|x64.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|x64.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|x86.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.AppStore|x86.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Debug|x64.ActiveCfg = Debug|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Debug|x86.ActiveCfg = Debug|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Release|iPhone.Build.0 = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6125367E-0465-4915-907A-47860404577D}.Release|x64.ActiveCfg = Release|iPhone
+		{6125367E-0465-4915-907A-47860404577D}.Release|x86.ActiveCfg = Release|iPhone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -202,6 +238,7 @@ Global
 		{5A2F2342-2067-4594-BA11-2AE38DD1090F} = {D163CAFA-8F4A-459A-9C51-CF0DCE189594}
 		{26B416C9-0C3A-48F5-AB77-1A5552B4275D} = {018779D8-8CF7-4A99-BF28-CF823523A944}
 		{C9B7377C-1714-4667-A8FF-7D1CC8D74EB5} = {018779D8-8CF7-4A99-BF28-CF823523A944}
+		{6125367E-0465-4915-907A-47860404577D} = {018779D8-8CF7-4A99-BF28-CF823523A944}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C13382D8-DB17-4226-A8D1-32DA423E5488}

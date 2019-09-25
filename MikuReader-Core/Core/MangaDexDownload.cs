@@ -42,7 +42,7 @@ namespace MikuReader.Core
                     server = "https://mangadex.org/data/";
 
                 string imgUrl = server + hash + "/" + file;
-                FileInfo imgFile = new FileInfo(chapter.GetChapterRoot().FullName + "\\" + file);
+                FileInfo imgFile = new FileInfo(Path.Combine(chapter.GetChapterRoot().FullName, file));
 
                 if (File.Exists(imgFile.FullName))
                     if (imgFile.Length <= 0)

@@ -17,8 +17,7 @@ namespace MikuReader.wf.Forms
             this.Text = String.Format("About {0}", "MikuReader");
             this.labelProductName.Text = "MikuReader";
             this.labelVersion.Text = String.Format("Version {0} on Core {1}", WFClient.CLIENT_VERSION, Core.Core.CORE_VERSION);
-            this.labelCopyright.Text = "(c) 2019";
-            this.labelCompanyName.Text = "9volt";
+            this.labelCompanyName.Text = "(c) 2019";
         }
 
         #region Assembly Attribute Accessors
@@ -100,5 +99,15 @@ namespace MikuReader.wf.Forms
             }
         }
         #endregion
+
+        private void LabelGithubUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ninevult/MikuReader");
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
