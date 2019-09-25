@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader", "legacy\MikuReader\MikuReader.csproj", "{EAC3C344-71E1-4074-8010-F09D0DAECC0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader", "MikuReader\MikuReader.csproj", "{EAC3C344-71E1-4074-8010-F09D0DAECC0C}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MikuReaderSetup", "legacy\MikuReaderSetup\MikuReaderSetup.vdproj", "{5A2F2342-2067-4594-BA11-2AE38DD1090F}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MikuReaderSetup", "MikuReaderSetup\MikuReaderSetup.vdproj", "{5A2F2342-2067-4594-BA11-2AE38DD1090F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader-WF", "MikuReader-WF\MikuReader-WF.csproj", "{26B416C9-0C3A-48F5-AB77-1A5552B4275D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MikuReader-WF", "MikuReader2\MikuReader-WF.csproj", "{26B416C9-0C3A-48F5-AB77-1A5552B4275D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "legacy", "legacy", "{D163CAFA-8F4A-459A-9C51-CF0DCE189594}"
 EndProject
