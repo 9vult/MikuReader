@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,12 +32,19 @@ namespace MikuReader.Core
             {
                 jsonString = wc.DownloadString(jsonUrl);
             }
-            dynamic jsonContents = JsonConvert.DeserializeObject(jsonString);
+            // dynamic jsonContents = JsonConvert.DeserializeObject(jsonString);
 
-            string server = jsonContents.server;
-            string hash = jsonContents.hash;
+            // string server = jsonContents.server;
+            // string hash = jsonContents.hash;
 
-            foreach (string file in jsonContents.page_array)
+            JObject jobj = JObject.Parse(jsonString);
+
+            string server = (string)jobj["server"];
+            string hash = (string)jobj["hash"];
+
+            string[] page_array = ((string)jobj["page_array"]).Split(',');
+
+            foreach (string file in page_array)
             {
                 if (server == "/data/")
                     server = "https://mangadex.org/data/";

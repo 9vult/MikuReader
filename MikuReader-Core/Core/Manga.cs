@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MikuReader.Core
 {
@@ -55,14 +57,17 @@ namespace MikuReader.Core
         private void Create(string mangaUrl)
         {
             string jsonText = MangaDex.GetMangaJSON(mangaUrl);
-            dynamic jsonContents = JsonConvert.DeserializeObject(jsonText);
+            // dynamic jsonContents = JsonConvert.DeserializeObject(jsonText);
+            JObject jobj = JObject.Parse(jsonText);
+            string title = (string)jobj["manga"]["title"];
+
             FileHelper.CreateFolder(FileHelper.APP_ROOT, MangaDex.GetMangaID(mangaUrl));
             File.WriteAllLines(mangaRoot.FullName + "manga.txt", new string[] {
                 "manga",
-                jsonContents.manga.title,
+                title,
                 "gb", // TODO: Custom user languages
                 "^any-group", // TODO: Custom user groups
-                jsonContents.manga.title, // TODO: Custom user title
+                title, // TODO: Custom user title
                 "1", "1", // Chapter 1, page 1
                 "1" // TODO: Get latest chapter for language and group
             });

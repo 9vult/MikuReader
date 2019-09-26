@@ -130,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MikuReader-Core\MikuReader-Core.csproj">
-      <Project>{c9b7377c-1714-4667-a8ff-7d1cc8d74eb5}</Project>
+      <Project>{394e1632-7cd7-4817-9b92-04237ab9dd38}</Project>
       <Name>MikuReader-Core</Name>
     </ProjectReference>
   </ItemGroup>
