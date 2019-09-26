@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Represents a Type of a Title
+    /// </summary>
     public enum TitleType
     {
         MANGA,

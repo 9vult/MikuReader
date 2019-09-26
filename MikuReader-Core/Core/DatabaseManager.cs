@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Provides methods for managing Databases
+    /// </summary>
     public class DatabaseManager
     {
         private MangaDB mangaDB;
@@ -16,6 +19,9 @@ namespace MikuReader.Core
             this.mangaDB = new MangaDB();
         }
 
+        /// <summary>
+        /// Populate the databases
+        /// </summary>
         public void Populate()
         {
             foreach (DirectoryInfo dir in FileHelper.GetDirs(FileHelper.APP_ROOT))
@@ -34,6 +40,9 @@ namespace MikuReader.Core
             }
         }
 
+        /// <summary>
+        /// Refresh the databases
+        /// </summary>
         public void Refresh()
         {
             mangaDB.Clear();
@@ -41,6 +50,10 @@ namespace MikuReader.Core
             Populate();
         }
 
+        /// <summary>
+        /// Gets all Manga from the Manga database
+        /// </summary>
+        /// <returns></returns>
         public List<Title> GetMangaPopulation()
         {
             return mangaDB.Get();

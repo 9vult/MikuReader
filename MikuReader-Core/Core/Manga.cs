@@ -11,6 +11,9 @@ using System.Xml;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Representation of a Manga
+    /// </summary>
     public class Manga : Title
     {
         private string name;
@@ -25,18 +28,30 @@ namespace MikuReader.Core
 
         private DirectoryInfo mangaRoot;
 
+        /// <summary>
+        /// Create a new Manga when the files exist
+        /// </summary>
+        /// <param name="location">Root directory for this Manga</param>
         public Manga(DirectoryInfo location)
         {
             this.mangaRoot = location;
             Load();
         }
 
+        /// <summary>
+        /// Create a new manga and its files
+        /// </summary>
+        /// <param name="location">Root directory for this Manga</param>
+        /// <param name="mangaUrl">MangaDex URL</param>
         public Manga(DirectoryInfo location, string mangaUrl)
         {
             this.mangaRoot = location;
             Create(mangaUrl);
         }
 
+        /// <summary>
+        /// Loads Manga info from manga.txt
+        /// </summary>
         private void Load()
         {
             chapters = new ArrayList();
@@ -54,10 +69,14 @@ namespace MikuReader.Core
             PopulateChapters();
         }
 
+        /// <summary>
+        /// Creates manga.txt, then calls Load()
+        /// </summary>
+        /// <param name="mangaUrl"></param>
         private void Create(string mangaUrl)
         {
             string jsonText = MangaDex.GetMangaJSON(mangaUrl);
-            // dynamic jsonContents = JsonConvert.DeserializeObject(jsonText);
+
             JObject jobj = JObject.Parse(jsonText);
             string title = (string)jobj["manga"]["title"];
 
@@ -74,6 +93,9 @@ namespace MikuReader.Core
             Load();
         }
 
+        /// <summary>
+        /// Create a Chapter for each chapter and add it to the chapter list
+        /// </summary>
         private void PopulateChapters()
         {
             foreach (DirectoryInfo di in FileHelper.GetDirs(mangaRoot))

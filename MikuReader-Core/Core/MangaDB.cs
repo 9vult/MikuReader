@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Implementation of a Database for Manga
+    /// </summary>
     public class MangaDB : Database
     {
         private ArrayList mangas;

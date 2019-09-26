@@ -8,28 +8,43 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Representation of a Chapter (of a Title)
+    /// </summary>
     public class Chapter
     {
         private readonly DirectoryInfo chapterRoot;
         private readonly ArrayList pages;
-        private readonly string chapterNumber;
+        private readonly string chapterID;
 
+        /// <summary>
+        /// Create a new Chapter
+        /// </summary>
+        /// <param name="chapterRoot">Root directory for this chapter</param>
         public Chapter(DirectoryInfo chapterRoot)
         {
             this.pages = new ArrayList();
             this.chapterRoot = chapterRoot;
-            this.chapterNumber = chapterRoot.Name;
+            this.chapterID = chapterRoot.Name;
             foreach (FileInfo fi in FileHelper.GetFiles(chapterRoot))
             {
                 pages.Add(new Page(fi.FullName));
             }
         }
 
-        public string GetNumber()
+        /// <summary>
+        /// Get the ID of the chapter
+        /// </summary>
+        /// <returns>The chapter ID</returns>
+        public string GetID()
         {
-            return chapterNumber;
+            return chapterID;
         }
 
+        /// <summary>
+        /// Get the root directory for this chapter
+        /// </summary>
+        /// <returns>DirectoryInfo object for the chapter root</returns>
         public DirectoryInfo GetChapterRoot()
         {
             return chapterRoot;

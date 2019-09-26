@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
+    /// <summary>
+    /// Provides methods for dealing with files and directories
+    /// </summary>
     public class FileHelper
     {
         /// <summary>

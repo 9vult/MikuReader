@@ -12,11 +12,18 @@ using System.Threading.Tasks;
 
 namespace MikuReader.Core
 {
-    class MangaDexDownload : IDownload
+    /// <summary>
+    /// Implementation of a Download for Mangadex
+    /// </summary>
+    public class MangaDexDownload : IDownload
     {
         private Chapter chapter;
         private ArrayList clients;
 
+        /// <summary>
+        /// Create a new Download
+        /// </summary>
+        /// <param name="chapter">Chapter to download</param>
         public MangaDexDownload(Chapter chapter)
         {
             this.chapter = chapter;
@@ -25,17 +32,13 @@ namespace MikuReader.Core
 
         public void StartDownloading()
         {
-            string jsonUrl = "https://mangadex.org/api/chapter/" + chapter.GetNumber();
+            string jsonUrl = "https://mangadex.org/api/chapter/" + chapter.GetID();
             string jsonString;
 
             using (var wc = new WebClient())
             {
                 jsonString = wc.DownloadString(jsonUrl);
             }
-            // dynamic jsonContents = JsonConvert.DeserializeObject(jsonString);
-
-            // string server = jsonContents.server;
-            // string hash = jsonContents.hash;
 
             JObject jobj = JObject.Parse(jsonString);
 
