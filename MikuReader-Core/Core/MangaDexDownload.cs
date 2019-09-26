@@ -19,6 +19,7 @@ namespace MikuReader.Core
     {
         private Chapter chapter;
         private ArrayList clients;
+        private float total;
 
         /// <summary>
         /// Create a new Download
@@ -28,6 +29,7 @@ namespace MikuReader.Core
         {
             this.chapter = chapter;
             clients = new ArrayList();
+            total = 0;
         }
 
         public void StartDownloading()
@@ -67,6 +69,7 @@ namespace MikuReader.Core
         {
             using (WebClient wc = new WebClient())
             {
+                total++;
                 clients.Add(wc);
                 wc.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadCompletedCallback);
                 wc.DownloadFileAsync(imgUrl, imgFile);
@@ -88,7 +91,7 @@ namespace MikuReader.Core
 
         public int GetProgress()
         {
-            throw new NotImplementedException();
+            return total != 0 ? (int)(((total - clients.Count) / total) * 100) : 0;
         }
     }
 }
