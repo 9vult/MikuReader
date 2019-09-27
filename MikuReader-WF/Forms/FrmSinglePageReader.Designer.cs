@@ -37,9 +37,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbPageDisplay = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPageDisplay)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -70,6 +70,7 @@
             // 
             this.cmboChapter.Name = "cmboChapter";
             this.cmboChapter.Size = new System.Drawing.Size(200, 33);
+            this.cmboChapter.SelectedIndexChanged += new System.EventHandler(this.CmboChapter_SelectedIndexChanged);
             // 
             // toolStripLabel2
             // 
@@ -81,6 +82,7 @@
             // 
             this.cmboPage.Name = "cmboPage";
             this.cmboPage.Size = new System.Drawing.Size(200, 33);
+            this.cmboPage.SelectedIndexChanged += new System.EventHandler(this.CmboPage_SelectedIndexChanged);
             // 
             // toolStripSeparator1
             // 
@@ -102,31 +104,35 @@
             this.toolStripLabel3.Size = new System.Drawing.Size(81, 30);
             this.toolStripLabel3.Text = "Progress";
             // 
-            // pictureBox1
+            // pbPageDisplay
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 33);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(841, 957);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pbPageDisplay.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pbPageDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbPageDisplay.Location = new System.Drawing.Point(0, 33);
+            this.pbPageDisplay.Name = "pbPageDisplay";
+            this.pbPageDisplay.Size = new System.Drawing.Size(841, 957);
+            this.pbPageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPageDisplay.TabIndex = 1;
+            this.pbPageDisplay.TabStop = false;
+            this.pbPageDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PbPageDisplay_MouseDown);
             // 
             // FrmSinglePageReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 990);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbPageDisplay);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "FrmSinglePageReader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MikuReader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSinglePageReader_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmSinglePageReader_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPageDisplay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,6 +148,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbPageDisplay;
     }
 }

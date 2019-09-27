@@ -58,5 +58,10 @@ namespace MikuReader.Core
         {
             return pages;
         }
+
+        public Page GetPage(int index)
+        {
+            return (Page)pages[index];
+        }
     }
 }

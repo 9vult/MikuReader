@@ -110,6 +110,22 @@ namespace MikuReader.Core
             this.currentpage = page;
         }
 
+        public override void Save(string chapter, string page)
+        {
+            this.currentchapter = chapter;
+            this.currentpage = page;
+
+            File.WriteAllLines(mangaRoot.FullName + "manga.txt", new string[] {
+                "manga",
+                name,
+                "gb", // TODO: Custom user languages
+                "^any-group", // TODO: Custom user groups
+                usertitle, // TODO: Custom user title
+                chapter, page, // Chapter 1, page 1
+                "1" // TODO: Get latest chapter for language and group
+            });
+        }
+
         public override string GetTitle()
         {
             return this.name;

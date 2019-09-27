@@ -21,6 +21,13 @@ namespace MikuReader.Core
         public abstract void UpdateLocation(string chapter, string page);
 
         /// <summary>
+        /// Update the user's location in the Title and save the properties file
+        /// </summary>
+        /// <param name="chapter">User's current Chapter</param>
+        /// <param name="page">User's current Page</param>
+        public abstract void Save(string chapter, string page);
+
+        /// <summary>
         /// Get the name of the title
         /// </summary>
         /// <returns>The name of this Title</returns>
