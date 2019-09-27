@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,15 @@ namespace MikuReader.Core
         public string GetPath()
         {
             return filepath;
+        }
+
+        /// <summary>
+        /// Get the ID (page number) of this Page
+        /// </summary>
+        /// <returns>The ID (page number)</returns>
+        public string GetID()
+        {
+            return Path.GetFileNameWithoutExtension(filepath);
         }
     }
 }

@@ -120,5 +120,20 @@ namespace MikuReader.Core
             return this.usertitle;
         }
 
+        public override ArrayList GetChapters()
+        {
+            return chapters;
+        }
+
+        public override string GetCurrentChapter()
+        {
+            return currentchapter;
+        }
+
+        public override string GetCurrentPage()
+        {
+            return currentpage;
+        }
+
     }
 }

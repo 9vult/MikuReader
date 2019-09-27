@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,24 @@ namespace MikuReader.Core
         /// </summary>
         /// <returns>The User-specified override title</returns>
         public abstract string GetUserTitle();
+
+        /// <summary>
+        /// Return the list of chapters
+        /// </summary>
+        /// <returns>The ArrayList of Chapter objects</returns>
+        public abstract ArrayList GetChapters();
+
+        /// <summary>
+        /// Get the user's current chapter
+        /// </summary>
+        /// <returns>The user's current chapter</returns>
+        public abstract string GetCurrentChapter();
+
+        /// <summary>
+        /// Get the user's current page
+        /// </summary>
+        /// <returns>The user's current page</returns>
+        public abstract string GetCurrentPage();
 
         /// <summary>
         /// Get the Type of a Title

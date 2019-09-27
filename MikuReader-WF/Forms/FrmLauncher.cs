@@ -52,5 +52,10 @@ namespace MikuReader.wf.Forms
         {
             new FrmAbout().ShowDialog();
         }
+
+        private void BtnRead_Click(object sender, EventArgs e)
+        {
+            // TODO: new FrmSinglePageReader().Show();
+        }
     }
 }

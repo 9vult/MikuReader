@@ -32,10 +32,10 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnRead = new System.Windows.Forms.Button();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.BtnUpdate = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lstManga = new System.Windows.Forms.ListBox();
@@ -74,41 +74,42 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "9volt";
             // 
-            // button2
+            // btnRead
             // 
-            this.button2.Location = new System.Drawing.Point(626, 427);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 88);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Read";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRead.Location = new System.Drawing.Point(626, 427);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(136, 88);
+            this.btnRead.TabIndex = 1;
+            this.btnRead.Text = "Read";
+            this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.BtnRead_Click);
             // 
-            // button3
+            // btnBrowse
             // 
-            this.button3.Location = new System.Drawing.Point(281, 427);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(339, 38);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Browse";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBrowse.Location = new System.Drawing.Point(281, 427);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(339, 38);
+            this.btnBrowse.TabIndex = 4;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnRefresh
             // 
-            this.button4.Location = new System.Drawing.Point(328, 474);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(143, 38);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Refresh";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnRefresh.Location = new System.Drawing.Point(328, 474);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(143, 38);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // BtnUpdate
             // 
-            this.button5.Location = new System.Drawing.Point(477, 474);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(143, 38);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Force Update";
-            this.button5.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Location = new System.Drawing.Point(477, 474);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(143, 38);
+            this.BtnUpdate.TabIndex = 3;
+            this.BtnUpdate.Text = "Force Update";
+            this.BtnUpdate.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -179,10 +180,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 558);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BtnUpdate);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -208,10 +209,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnRead;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

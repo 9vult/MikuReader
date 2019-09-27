@@ -49,5 +49,14 @@ namespace MikuReader.Core
         {
             return chapterRoot;
         }
+
+        /// <summary>
+        /// Get the list of pages in this chapter
+        /// </summary>
+        /// <returns>ArrayList of Page objects for this chapter</returns>
+        public ArrayList GetPages()
+        {
+            return pages;
+        }
     }
 }
