@@ -41,7 +41,16 @@ namespace MikuReader.wf.Forms
             dbm.Refresh();
             foreach (Manga m in dbm.GetMangaPopulation())
             {
-                lstManga.Items.Add(m.GetUserTitle());
+                string shortName = m.GetUserTitle();
+                if (shortName.Length > 30)
+                {
+                    shortName = shortName.Substring(0, 30);
+                }
+                else
+                {
+                    shortName = shortName.PadRight(30);
+                }
+                lstManga.Items.Add(shortName + " » c" + m.GetCurrentChapter() + ",p" + m.GetCurrentPage());
             }
 
             if (lstManga.Items.Count > 0)
@@ -55,7 +64,23 @@ namespace MikuReader.wf.Forms
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-            // TODO: new FrmSinglePageReader().Show();
+            string selectedText = lstManga.SelectedItem.ToString();
+            string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+            Manga selected = null;
+            foreach (Manga m in dbm.GetMangaPopulation())
+            {
+                if (m.GetUserTitle().Equals(name))
+                {
+                    selected = m;
+                    break;
+                }
+            }
+
+            if (selected != null)
+                new FrmSinglePageReader(selected).Show();
+            else
+                MessageBox.Show("Could not find the specified manga");
         }
     }
 }

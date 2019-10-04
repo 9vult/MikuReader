@@ -14,7 +14,7 @@ namespace MikuReader.Core
     public class Chapter
     {
         private readonly DirectoryInfo chapterRoot;
-        private readonly ArrayList pages;
+        private readonly List<Page> pages;
         private readonly string chapterID;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace MikuReader.Core
         /// <param name="chapterRoot">Root directory for this chapter</param>
         public Chapter(DirectoryInfo chapterRoot)
         {
-            this.pages = new ArrayList();
+            this.pages = new List<Page>();
             this.chapterRoot = chapterRoot;
             this.chapterID = chapterRoot.Name;
             foreach (FileInfo fi in FileHelper.GetFiles(chapterRoot))
@@ -54,14 +54,14 @@ namespace MikuReader.Core
         /// Get the list of pages in this chapter
         /// </summary>
         /// <returns>ArrayList of Page objects for this chapter</returns>
-        public ArrayList GetPages()
+        public List<Page> GetPages()
         {
             return pages;
         }
 
         public Page GetPage(int index)
         {
-            return (Page)pages[index];
+            return pages[index];
         }
     }
 }

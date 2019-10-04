@@ -43,7 +43,7 @@ namespace MikuReader.Core
         /// Return the list of chapters
         /// </summary>
         /// <returns>The ArrayList of Chapter objects</returns>
-        public abstract ArrayList GetChapters();
+        public abstract List<Chapter> GetChapters();
 
         /// <summary>
         /// Get the user's current chapter

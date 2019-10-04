@@ -17,12 +17,23 @@ namespace MikuReader.wf.Forms
     {
         private Manga manga;
         private Chapter currentChapter;
+        private Page currentPage;
 
         public FrmSinglePageReader(Manga manga)
         {
             InitializeComponent();
             this.manga = manga;
             this.currentChapter = null;
+            this.currentPage = null;
+            try
+            {
+                PopulateChapters();
+                cmboPage.SelectedIndex = cmboPage.Items.IndexOf(manga.GetCurrentPage());
+                LoadImage();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while preparing the Reader:\n" + ex.Message);
+            }
         }
 
         private void PopulateChapters()
@@ -31,11 +42,13 @@ namespace MikuReader.wf.Forms
             foreach (Chapter chapter in SortChapters(manga.GetChapters()))
             {
                 cmboChapter.Items.Add(chapter.GetID());
+                if (chapter.GetID().Equals(manga.GetCurrentChapter()))
+                    currentChapter = chapter;
             }
 
             try
             {
-                cmboChapter.SelectedItem = cmboChapter.Items.IndexOf(manga.GetCurrentChapter());
+                cmboChapter.SelectedIndex = cmboChapter.Items.IndexOf(currentChapter.GetID());
             } catch (Exception)
             {
                 MessageBox.Show("An error occured while selecting the current chapter");
@@ -46,24 +59,18 @@ namespace MikuReader.wf.Forms
         private void PopulatePages()
         {
             cmboPage.Items.Clear();
-            foreach (Page page in SortPages(currentChapter.GetPages()))
+            Page[] pages = SortPages(currentChapter.GetPages());
+            foreach (Page page in pages)
             {
                 cmboPage.Items.Add(page.GetID());
             }
 
-            try
-            {
-                cmboPage.SelectedItem = cmboPage.Items.IndexOf(manga.GetCurrentPage());
-            } catch (Exception)
-            {
-                MessageBox.Show("An error occured while selecting the current page");
-                cmboPage.SelectedIndex = 0;
-            }
+            cmboPage.SelectedIndex = 0;
         }
 
         private void NextPage()
         {
-            if (cmboPage.SelectedIndex < cmboPage.Items.Count)
+            if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
                 cmboPage.SelectedIndex += 1;
         }
 
@@ -80,7 +87,7 @@ namespace MikuReader.wf.Forms
 
             try
             {
-                Page currentPage = currentChapter.GetPage(cmboPage.SelectedIndex);
+                Page currentPage = SortPages(currentChapter.GetPages())[cmboPage.SelectedIndex];
                 pbPageDisplay.Image = new Bitmap(currentPage.GetPath());
             } catch (Exception e)
             {
@@ -151,7 +158,14 @@ namespace MikuReader.wf.Forms
 
         private void FrmSinglePageReader_FormClosing(object sender, FormClosingEventArgs e)
         {
-            manga.Save(cmboChapter.SelectedItem.ToString(), cmboPage.SelectedItem.ToString());
+            try
+            {
+                manga.Save(cmboChapter.SelectedItem.ToString(), cmboPage.SelectedItem.ToString());
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Failed to initialize tracking save procedure:\n" + ex.Message);
+            }
+            // TODO: Notify Launcher to refresh page numbers
         }
 
         #endregion
@@ -162,9 +176,9 @@ namespace MikuReader.wf.Forms
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        private Chapter[] SortChapters(ArrayList aList)
+        private Chapter[] SortChapters(List<Chapter> aList)
         {
-            Chapter[] items = (Chapter[])aList.ToArray();
+            Chapter[] items = aList.ToArray();
             // Get the numeric values of the items.
             int num_items = items.Length;
             const string float_pattern = @"-?\d+\.?\d*";
@@ -187,9 +201,9 @@ namespace MikuReader.wf.Forms
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        private Page[] SortPages(ArrayList aList)
+        private Page[] SortPages(List<Page> aList)
         {
-            Page[] items = (Page[])aList.ToArray();
+            Page[] items = aList.ToArray();
 
             // Get the numeric values of the items.
             int num_items = items.Length;

@@ -24,7 +24,7 @@ namespace MikuReader.Core
         private string currentpage;
         private string lastchapter;
 
-        private ArrayList chapters;
+        private List<Chapter> chapters;
 
         private DirectoryInfo mangaRoot;
 
@@ -54,7 +54,7 @@ namespace MikuReader.Core
         /// </summary>
         private void Load()
         {
-            chapters = new ArrayList();
+            chapters = new List<Chapter>();
             string[] info = File.ReadAllLines(FileHelper.GetFilePath(mangaRoot, "manga.txt"));
             if (info.Length < 8) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
             // info[0] is the type identifier
@@ -115,14 +115,14 @@ namespace MikuReader.Core
             this.currentchapter = chapter;
             this.currentpage = page;
 
-            File.WriteAllLines(mangaRoot.FullName + "manga.txt", new string[] {
+            File.WriteAllLines(Path.Combine(mangaRoot.FullName, "manga.txt"), new string[] {
                 "manga",
                 name,
                 "gb", // TODO: Custom user languages
                 "^any-group", // TODO: Custom user groups
                 usertitle, // TODO: Custom user title
-                chapter, page, // Chapter 1, page 1
-                "1" // TODO: Get latest chapter for language and group
+                chapter, page,
+                lastchapter // TODO: Get latest chapter for language and group
             });
         }
 
@@ -136,7 +136,7 @@ namespace MikuReader.Core
             return this.usertitle;
         }
 
-        public override ArrayList GetChapters()
+        public override List<Chapter> GetChapters()
         {
             return chapters;
         }
