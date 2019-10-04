@@ -16,6 +16,7 @@ namespace MikuReader.Core
         private readonly DirectoryInfo chapterRoot;
         private readonly List<Page> pages;
         private readonly string chapterID;
+        private readonly string chapterNum;
 
         /// <summary>
         /// Create a new Chapter
@@ -25,7 +26,8 @@ namespace MikuReader.Core
         {
             this.pages = new List<Page>();
             this.chapterRoot = chapterRoot;
-            this.chapterID = chapterRoot.Name;
+            this.chapterID = chapterRoot.Name.Split('`').Last();
+            this.chapterNum = chapterRoot.Name.Split('`').First();
             foreach (FileInfo fi in FileHelper.GetFiles(chapterRoot))
             {
                 pages.Add(new Page(fi.FullName));
@@ -39,6 +41,15 @@ namespace MikuReader.Core
         public string GetID()
         {
             return chapterID;
+        }
+
+        /// <summary>
+        /// Get the number of the chapter
+        /// </summary>
+        /// <returns>The chapter number</returns>
+        public string GetNum()
+        {
+            return chapterNum;
         }
 
         /// <summary>

@@ -8,10 +8,21 @@ using System.Threading.Tasks;
 namespace MikuReader.Core
 {
     /// <summary>
+    /// EventHandler for notifying subscribers of the completion of this Download
+    /// </summary>
+    /// <param name="sender"></param>
+    public delegate void DownloadCompletedEventHandler(object sender);
+
+    /// <summary>
     /// Generic Download interface
     /// </summary>
-    interface IDownload
+    public interface IDownload
     {
+        /// <summary>
+        /// Event for the completion of the Download
+        /// </summary>
+        event DownloadCompletedEventHandler DownloadCompleted;
+
         /// <summary>
         /// Start the download procedure
         /// </summary>
@@ -42,5 +53,7 @@ namespace MikuReader.Core
         /// </summary>
         /// <returns>The progress of the current download</returns>
         int GetProgress();
+
+
     }
 }

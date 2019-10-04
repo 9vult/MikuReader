@@ -22,7 +22,7 @@ namespace MikuReader.Core
         /// <summary>
         /// Populate the databases
         /// </summary>
-        public void Populate()
+        private void Populate()
         {
             foreach (DirectoryInfo dir in FileHelper.GetDirs(FileHelper.APP_ROOT))
             {
@@ -57,6 +57,15 @@ namespace MikuReader.Core
         public List<Title> GetMangaPopulation()
         {
             return mangaDB.Get();
+        }
+
+        /// <summary>
+        /// Get the current Manga Database
+        /// </summary>
+        /// <returns>The current Manga Database</returns>
+        public MangaDB GetMangaDB()
+        {
+            return this.mangaDB;
         }
     }
 }

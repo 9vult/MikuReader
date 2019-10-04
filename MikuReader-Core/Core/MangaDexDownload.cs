@@ -22,6 +22,8 @@ namespace MikuReader.Core
         private ArrayList clients;
         private float total;
 
+        public event DownloadCompletedEventHandler DownloadCompleted;
+
         /// <summary>
         /// Create a new Download
         /// </summary>
@@ -48,7 +50,13 @@ namespace MikuReader.Core
             string server = (string)jobj["server"];
             string hash = (string)jobj["hash"];
 
-            string[] page_array = ((string)jobj["page_array"]).Split(',');
+            // string[] page_array = /* ((string) */ jobj["page_array"]. /* ).Split(',') */;
+            List<string> page_array = new List<string>();
+            IJEnumerable<JToken> jtokens = jobj["page_array"].Values();
+            foreach(JToken t in jtokens)
+            {
+                page_array.Add((string)t);
+            }
 
             foreach (string file in page_array)
             {
@@ -85,7 +93,10 @@ namespace MikuReader.Core
         public bool CheckStartNext()
         {
             if (clients.Count == 0)
+            {
+                DownloadCompleted.Invoke(this);
                 return true;
+            }
             return false;
         }
 

@@ -41,14 +41,14 @@ namespace MikuReader.wf.Forms
             cmboChapter.Items.Clear();
             foreach (Chapter chapter in SortChapters(manga.GetChapters()))
             {
-                cmboChapter.Items.Add(chapter.GetID());
-                if (chapter.GetID().Equals(manga.GetCurrentChapter()))
+                cmboChapter.Items.Add(chapter.GetNum());
+                if (chapter.GetNum().Equals(manga.GetCurrentChapter()))
                     currentChapter = chapter;
             }
 
             try
             {
-                cmboChapter.SelectedIndex = cmboChapter.Items.IndexOf(currentChapter.GetID());
+                cmboChapter.SelectedIndex = cmboChapter.Items.IndexOf(currentChapter.GetNum());
             } catch (Exception)
             {
                 MessageBox.Show("An error occured while selecting the current chapter");
@@ -185,7 +185,7 @@ namespace MikuReader.wf.Forms
             double[] values = new double[num_items];
             for (int i = 0; i < num_items; i++)
             {
-                string match = Regex.Match(items[i].GetID(), float_pattern).Value;
+                string match = Regex.Match(items[i].GetNum(), float_pattern).Value;
                 if (!double.TryParse(match, out double value))
                     value = double.MinValue;
                 values[i] = value;

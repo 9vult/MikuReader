@@ -50,7 +50,7 @@ namespace MikuReader.Core
         /// <returns>Manga ID</returns>
         public static string GetMangaID(string mangaUrl)
         {
-            return mangaUrl.Split('/')[4];
+            return mangaUrl.Split('/')[5];
         }
     }
 }

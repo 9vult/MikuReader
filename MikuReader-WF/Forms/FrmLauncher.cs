@@ -14,12 +14,12 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmLauncher : Form
     {
+        private FrmBrowser browser;
+
         public FrmLauncher()
         {
             InitializeComponent();
         }
-
-        private DatabaseManager dbm;
 
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
@@ -29,17 +29,18 @@ namespace MikuReader.wf.Forms
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
 
-            this.dbm = new DatabaseManager();
+            this.browser = new FrmBrowser();
+
+            WFClient.dlm.ProgressUpdated += new ProgressUpdatedEventHandler(ProgressUpdatedCallback);
 
             RepopulateItems();
         }
 
-
         private void RepopulateItems()
         {
             lstManga.Items.Clear();
-            dbm.Refresh();
-            foreach (Manga m in dbm.GetMangaPopulation())
+            WFClient.dbm.Refresh();
+            foreach (Manga m in WFClient.dbm.GetMangaPopulation())
             {
                 string shortName = m.GetUserTitle();
                 if (shortName.Length > 30)
@@ -57,6 +58,15 @@ namespace MikuReader.wf.Forms
                 lstManga.SelectedIndex = 0;
         }
 
+        private void ProgressUpdatedCallback(object sender)
+        {
+            double percent = WFClient.dlm.GetCompletionPercentage();
+            Console.WriteLine(percent + " | " + (int)percent);
+
+            progressBar1.Value = (int)percent;
+            if (percent == 100) progressBar1.Value = 0;
+        }
+
         private void BtnSettings_Click(object sender, EventArgs e)
         {
             new FrmAbout().ShowDialog();
@@ -68,9 +78,9 @@ namespace MikuReader.wf.Forms
             string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
 
             Manga selected = null;
-            foreach (Manga m in dbm.GetMangaPopulation())
+            foreach (Manga m in WFClient.dbm.GetMangaPopulation())
             {
-                if (m.GetUserTitle().Equals(name))
+                if (m.GetUserTitle().StartsWith(name))
                 {
                     selected = m;
                     break;
@@ -81,6 +91,16 @@ namespace MikuReader.wf.Forms
                 new FrmSinglePageReader(selected).Show();
             else
                 MessageBox.Show("Could not find the specified manga");
+        }
+
+        private void BtnBrowse_Click(object sender, EventArgs e)
+        {
+            browser.Show();
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            RepopulateItems();
         }
     }
 }

@@ -35,6 +35,7 @@ namespace MikuReader.Core
         public Manga(DirectoryInfo location)
         {
             this.mangaRoot = location;
+            chapters = new List<Chapter>();
             Load();
         }
 
@@ -46,6 +47,7 @@ namespace MikuReader.Core
         public Manga(DirectoryInfo location, string mangaUrl)
         {
             this.mangaRoot = location;
+            chapters = new List<Chapter>();
             Create(mangaUrl);
         }
 
@@ -54,7 +56,6 @@ namespace MikuReader.Core
         /// </summary>
         private void Load()
         {
-            chapters = new List<Chapter>();
             string[] info = File.ReadAllLines(FileHelper.GetFilePath(mangaRoot, "manga.txt"));
             if (info.Length < 8) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
             // info[0] is the type identifier
@@ -80,16 +81,36 @@ namespace MikuReader.Core
             JObject jobj = JObject.Parse(jsonText);
             string title = (string)jobj["manga"]["title"];
 
+            string lang_code = "gb";
+
             FileHelper.CreateFolder(FileHelper.APP_ROOT, MangaDex.GetMangaID(mangaUrl));
-            File.WriteAllLines(mangaRoot.FullName + "manga.txt", new string[] {
+            File.WriteAllLines(Path.Combine(mangaRoot.FullName,"manga.txt"), new string[] {
                 "manga",
                 title,
-                "gb", // TODO: Custom user languages
+                lang_code, // TODO: Custom user languages
                 "^any-group", // TODO: Custom user groups
                 title, // TODO: Custom user title
                 "1", "1", // Chapter 1, page 1
                 "1" // TODO: Get latest chapter for language and group
             });
+
+            foreach (JProperty p in jobj["chapter"])
+            {
+                JToken value = p.Value;
+                if (value.Type == JTokenType.Object)
+                {
+                    JObject o = (JObject)value;
+                    string chapNum = (String)o["chapter"];
+                    if (((string)o["lang_code"]).Equals(lang_code))
+                    {
+                        // Console.WriteLine(chapNum);
+                        DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapNum + "`" + ((JProperty)value.Parent).Name);
+                        chapters.Add(new Chapter(chapDir));
+                    }
+                }
+
+            }
+
             Load();
         }
 

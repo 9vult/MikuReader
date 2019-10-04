@@ -17,6 +17,10 @@ namespace MikuReader.wf
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Initialize the Client
+            WFClient.Initialize();
+
             Application.Run(new FrmLauncher());
         }
     }
