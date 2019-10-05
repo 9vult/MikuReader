@@ -93,7 +93,7 @@ namespace MikuReader.wf.Forms
                 // Start downloading the first one
                 WFClient.dlm.DownloadNext();
             }
-            MessageBox.Show("Download started! You may close the browser at any time,\nbut please keep MikuReader open until the download has completed.");
+            MessageBox.Show("Download started! You may close the browser at any time, but please keep MikuReader open until the download has completed.");
         }
     }
 }

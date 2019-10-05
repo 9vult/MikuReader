@@ -15,8 +15,8 @@ namespace MikuReader.Core
     {
         private readonly DirectoryInfo chapterRoot;
         private readonly List<Page> pages;
-        private readonly string chapterID;
-        private readonly string chapterNum;
+        private string chapterID;
+        private string chapterNum;
 
         /// <summary>
         /// Create a new Chapter
@@ -26,11 +26,53 @@ namespace MikuReader.Core
         {
             this.pages = new List<Page>();
             this.chapterRoot = chapterRoot;
-            this.chapterID = chapterRoot.Name.Split('`').Last();
-            this.chapterNum = chapterRoot.Name.Split('`').First();
+
+            Load();
+        }
+
+        /// <summary>
+        /// Create a new Chapter
+        /// </summary>
+        /// <param name="chapterRoot">Root directory for this chapter</param>
+        /// <param name="id">Chapter ID</param>
+        /// <param name="num">Chapter number</param>
+        public Chapter(DirectoryInfo chapterRoot, string id, string num)
+        {
+            this.pages = new List<Page>();
+            this.chapterRoot = chapterRoot;
+
+            Create(id, num);
+        }
+
+
+        private void Load()
+        {
+            string[] info = File.ReadAllLines(FileHelper.GetFilePath(chapterRoot, "chapter.txt"));
+            if (info.Length < 3) { throw new FileLoadException("'chapter.txt' did not contain all required fields!"); }
+            // info[0] is the type identifier
+            chapterID = info[1];
+            chapterNum = info[2];
+
+            PopulatePages();
+        }
+
+        private void Create(string id, string num)
+        {
+            File.WriteAllLines(Path.Combine(chapterRoot.FullName, "chapter.txt"), new string[] {
+                "chapter",
+                id,
+                num,
+            });
+
+            Load();
+        }
+
+        private void PopulatePages()
+        {
             foreach (FileInfo fi in FileHelper.GetFiles(chapterRoot))
             {
-                pages.Add(new Page(fi.FullName));
+                if (fi.Extension != ".txt")
+                    pages.Add(new Page(fi.FullName));
             }
         }
 

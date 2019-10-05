@@ -25,9 +25,8 @@ namespace MikuReader.Core
         private string lastchapter;
 
         private List<Chapter> chapters;
-
         private DirectoryInfo mangaRoot;
-
+        
         /// <summary>
         /// Create a new Manga when the files exist
         /// </summary>
@@ -104,8 +103,9 @@ namespace MikuReader.Core
                     if (((string)o["lang_code"]).Equals(lang_code))
                     {
                         // Console.WriteLine(chapNum);
-                        DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapNum + "`" + ((JProperty)value.Parent).Name);
-                        chapters.Add(new Chapter(chapDir));
+                        string chapID = ((JProperty)value.Parent).Name;
+                        DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                        chapters.Add(new Chapter(chapDir, chapID, chapNum));
                     }
                 }
 

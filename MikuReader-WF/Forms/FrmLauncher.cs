@@ -14,8 +14,6 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmLauncher : Form
     {
-        private FrmBrowser browser;
-
         public FrmLauncher()
         {
             InitializeComponent();
@@ -28,8 +26,6 @@ namespace MikuReader.wf.Forms
                 Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
-
-            this.browser = new FrmBrowser();
 
             WFClient.dlm.ProgressUpdated += new ProgressUpdatedEventHandler(ProgressUpdatedCallback);
 
@@ -95,7 +91,7 @@ namespace MikuReader.wf.Forms
 
         private void BtnBrowse_Click(object sender, EventArgs e)
         {
-            browser.Show();
+            new FrmBrowser().Show();
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
