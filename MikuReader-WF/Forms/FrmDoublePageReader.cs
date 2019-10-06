@@ -1,6 +1,5 @@
 ﻿using MikuReader.Core;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +11,12 @@ using System.Windows.Forms;
 
 namespace MikuReader.wf.Forms
 {
-    public partial class FrmSinglePageReader : Form
+    public partial class FrmDoublePageReader : Form
     {
         private Manga manga;
         private Chapter currentChapter;
 
-        public FrmSinglePageReader(Manga manga)
+        public FrmDoublePageReader(Manga manga)
         {
             InitializeComponent();
             this.manga = manga;
@@ -27,7 +26,8 @@ namespace MikuReader.wf.Forms
                 PopulateChapters();
                 cmboPage.SelectedIndex = cmboPage.Items.IndexOf(manga.GetCurrentPage());
                 LoadImage();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("An error occured while preparing the Reader:\n" + ex.Message);
             }
@@ -46,7 +46,8 @@ namespace MikuReader.wf.Forms
             try
             {
                 cmboChapter.SelectedIndex = cmboChapter.Items.IndexOf(currentChapter.GetNum());
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("An error occured while selecting the current chapter");
                 cmboChapter.SelectedIndex = 0;
@@ -67,36 +68,57 @@ namespace MikuReader.wf.Forms
 
         private void NextPage()
         {
-            if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
+            if (cmboPage.SelectedIndex < cmboPage.Items.Count - 2)
+                cmboPage.SelectedIndex += 2;
+            else if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
                 cmboPage.SelectedIndex += 1;
         }
 
         private void PreviousPage()
         {
-            if (cmboPage.SelectedIndex > 0)
+            if (cmboPage.SelectedIndex > 1)
+                cmboPage.SelectedIndex -= 2;
+            else if (cmboPage.SelectedIndex > 0)
                 cmboPage.SelectedIndex -= 1;
         }
 
         private void LoadImage()
         {
-            if (pbPageDisplay.Image != null)
-                pbPageDisplay.Image.Dispose();
+            if (pbLeft.Image != null)
+            {
+                pbLeft.Image.Dispose();
+                pbLeft.Image = null;
+            }
+            if (pbRight.Image != null)
+            {
+                pbRight.Image.Dispose();
+                pbRight.Image = null;
+            }
 
             try
             {
-                Page currentPage = ReaderHelper.SortPages(currentChapter.GetPages())[cmboPage.SelectedIndex];
-                pbPageDisplay.Image = new Bitmap(currentPage.GetPath());
-            } catch (Exception e)
+                Page currentRight;
+                Page currentLeft;
+
+                currentRight = ReaderHelper.SortPages(currentChapter.GetPages())[cmboPage.SelectedIndex];
+                if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
+                    currentLeft = ReaderHelper.SortPages(currentChapter.GetPages())[cmboPage.SelectedIndex + 1];
+                else currentLeft = null;
+
+                pbRight.Image = new Bitmap(currentRight.GetPath());
+                if (currentLeft != null) pbLeft.Image = new Bitmap(currentLeft.GetPath());
+            }
+            catch (Exception e)
             {
                 MessageBox.Show("An error occured while loading the image file. The file may be corrupted and/or null.\n" +
                                 "Message: " + e.Message);
             }
-            
+
         }
 
         #region Events
 
-        private void PbPageDisplay_MouseDown(object sender, MouseEventArgs e)
+        private void Pb_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -127,14 +149,14 @@ namespace MikuReader.wf.Forms
             {
                 object sender = Control.FromHandle(msg.HWnd);
                 KeyEventArgs e = new KeyEventArgs(keyData);
-                FrmSinglePageReader_KeyDown(sender, e);
+                FrmDoublePageReader_KeyDown(sender, e);
                 return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void FrmSinglePageReader_KeyDown(object sender, KeyEventArgs e)
+        private void FrmDoublePageReader_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -153,12 +175,25 @@ namespace MikuReader.wf.Forms
             }
         }
 
-        private void FrmSinglePageReader_FormClosing(object sender, FormClosingEventArgs e)
+        private void BtnIncrementOne_Click(object sender, EventArgs e)
+        {
+            if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
+                cmboPage.SelectedIndex += 1;
+        }
+
+        private void BtnDecrementOne_Click(object sender, EventArgs e)
+        {
+            if (cmboPage.SelectedIndex > 0)
+                cmboPage.SelectedIndex -= 1;
+        }
+
+        private void FrmDoublePageReader_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
                 manga.Save(cmboChapter.SelectedItem.ToString(), cmboPage.SelectedItem.ToString());
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Failed to initialize tracking save procedure:\n" + ex.Message);
             }

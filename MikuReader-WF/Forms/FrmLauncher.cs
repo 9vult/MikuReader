@@ -1,4 +1,5 @@
 ﻿using MikuReader.Core;
+using MikuReader.wf.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,18 @@ namespace MikuReader.wf.Forms
             if (Properties.Settings.Default["approot"].ToString() == String.Empty)
             {
                 Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
+                Properties.Settings.Default.Save();
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
+
+            if (File.Exists(Path.Combine(FileHelper.APP_ROOT.FullName, "mikureader.txt")))
+            {
+                SettingsHelper.Initialize();
+            } else
+            {
+                SettingsHelper.Create();
+                SettingsHelper.Initialize();
+            }
 
             WFClient.dlm.ProgressUpdated += new ProgressUpdatedEventHandler(ProgressUpdatedCallback);
 
@@ -65,7 +76,7 @@ namespace MikuReader.wf.Forms
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            new FrmAbout().ShowDialog();
+            new FrmSettings().ShowDialog();
         }
 
         private void BtnRead_Click(object sender, EventArgs e)
@@ -84,7 +95,12 @@ namespace MikuReader.wf.Forms
             }
 
             if (selected != null)
-                new FrmSinglePageReader(selected).Show();
+            {
+                if (SettingsHelper.UseDoubleReader)
+                    new FrmDoublePageReader(selected).Show();
+                else
+                    new FrmSinglePageReader(selected).Show();
+            }
             else
                 MessageBox.Show("Could not find the specified manga");
         }

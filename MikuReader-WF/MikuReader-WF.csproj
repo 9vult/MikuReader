@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\SettingsHelper.cs" />
     <Compile Include="Forms\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,11 +76,23 @@
     <Compile Include="Forms\FrmBrowser.Designer.cs">
       <DependentUpon>FrmBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmDoublePageReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDoublePageReader.Designer.cs">
+      <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmLauncher.Designer.cs">
       <DependentUpon>FrmLauncher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmSinglePageReader.cs">
       <SubType>Form</SubType>
@@ -96,8 +109,14 @@
     <EmbeddedResource Include="Forms\FrmBrowser.resx">
       <DependentUpon>FrmBrowser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDoublePageReader.resx">
+      <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLauncher.resx">
       <DependentUpon>FrmLauncher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSinglePageReader.resx">
       <DependentUpon>FrmSinglePageReader.cs</DependentUpon>
@@ -128,6 +147,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="example-mikureader.txt" />
     <Content Include="example-chapter.txt" />
     <Content Include="example-manga.txt" />
     <Content Include="Firefox\AccessibleMarshal.dll" />
