@@ -65,6 +65,29 @@ namespace MikuReader.wf.Forms
                 lstManga.SelectedIndex = 0;
         }
 
+        private void UpdateMangas()
+        {
+            List<Chapter> updates = new List<Chapter>();
+            foreach (Manga m in WFClient.dbm.GetMangaPopulation())
+            {
+                Chapter[] u = m.GetUpdates();
+                updates.AddRange(u);
+            }
+
+            foreach (Chapter c in updates)
+            {
+                WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+            }
+            if (updates.Count > 0)
+            {
+                MessageBox.Show("Downloading " + updates.Count + " new chapters...");
+                WFClient.dlm.DownloadNext();
+            } else
+            {
+                MessageBox.Show("All up to date!");
+            }
+        }
+
         private void ProgressUpdatedCallback(object sender)
         {
             double percent = WFClient.dlm.GetCompletionPercentage();
@@ -113,6 +136,11 @@ namespace MikuReader.wf.Forms
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             RepopulateItems();
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateMangas();
         }
     }
 }

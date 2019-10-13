@@ -58,6 +58,12 @@ namespace MikuReader.Core
         public abstract string GetCurrentPage();
 
         /// <summary>
+        /// Get this title's ID
+        /// </summary>
+        /// <returns>The ID of the title</returns>
+        public abstract string GetID();
+
+        /// <summary>
         /// Get the Type of a Title
         /// </summary>
         /// <param name="dir">Title's directory</param>

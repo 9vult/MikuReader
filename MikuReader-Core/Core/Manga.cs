@@ -16,6 +16,7 @@ namespace MikuReader.Core
     /// </summary>
     public class Manga : Title
     {
+        private string id;
         private string name;
         private string userlang;
         private string usergroup;
@@ -56,15 +57,16 @@ namespace MikuReader.Core
         private void Load()
         {
             string[] info = File.ReadAllLines(FileHelper.GetFilePath(mangaRoot, "manga.txt"));
-            if (info.Length < 8) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
+            if (info.Length < 9) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
             // info[0] is the type identifier
-            name = info[1];
-            userlang = info[2];
-            usergroup = info[3];
-            usertitle = info[4];
-            currentchapter = info[5];
-            currentpage = info[6];
-            lastchapter = info[7];
+            id = info[1];
+            name = info[2];
+            userlang = info[3];
+            usergroup = info[4];
+            usertitle = info[5];
+            currentchapter = info[6];
+            currentpage = info[7];
+            lastchapter = info[8];
 
             PopulateChapters();
         }
@@ -85,6 +87,7 @@ namespace MikuReader.Core
             FileHelper.CreateFolder(FileHelper.APP_ROOT, MangaDex.GetMangaID(mangaUrl));
             File.WriteAllLines(Path.Combine(mangaRoot.FullName,"manga.txt"), new string[] {
                 "manga",
+                MangaDex.GetMangaID(mangaUrl),
                 title,
                 lang_code, // TODO: Custom user languages
                 "^any-group", // TODO: Custom user groups
@@ -114,6 +117,36 @@ namespace MikuReader.Core
             Load();
         }
 
+       public Chapter[] GetUpdates()
+       {
+            List<Chapter> result = new List<Chapter>();
+            string jsonText = MangaDex.GetMangaJSON(MangaDex.GetMangaUrl(GetID()));
+            JObject jobj = JObject.Parse(jsonText);
+
+            foreach (JProperty p in jobj["chapter"])
+            {
+                JToken value = p.Value;
+                if (value.Type == JTokenType.Object)
+                {
+                    JObject o = (JObject)value;
+                    string chapNum = (String)o["chapter"];
+                    if (((string)o["lang_code"]).Equals(userlang))
+                    {
+                        // Console.WriteLine(chapNum);
+                        string chapID = ((JProperty)value.Parent).Name;
+                        if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                        {
+                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
+                            chapters.Add(newchapter);
+                            result.Add(newchapter);
+                        }
+                    }
+                }
+            }
+            return result.ToArray();
+        }
+
         /// <summary>
         /// Create a Chapter for each chapter and add it to the chapter list
         /// </summary>
@@ -138,6 +171,7 @@ namespace MikuReader.Core
 
             File.WriteAllLines(Path.Combine(mangaRoot.FullName, "manga.txt"), new string[] {
                 "manga",
+                mangaRoot.Name,
                 name,
                 "gb", // TODO: Custom user languages
                 "^any-group", // TODO: Custom user groups
@@ -170,6 +204,11 @@ namespace MikuReader.Core
         public override string GetCurrentPage()
         {
             return currentpage;
+        }
+
+        public override string GetID()
+        {
+            return id;
         }
 
     }

@@ -106,13 +106,13 @@
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.Enabled = false;
             this.BtnUpdate.Location = new System.Drawing.Point(477, 474);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(143, 38);
             this.BtnUpdate.TabIndex = 3;
-            this.BtnUpdate.Text = "Force Update";
+            this.BtnUpdate.Text = "Update";
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // tabControl1
             // 
