@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -27,7 +27,7 @@ namespace MikuReader.Core
 
         private List<Chapter> chapters;
         private DirectoryInfo mangaRoot;
-        
+
         /// <summary>
         /// Create a new Manga when the files exist
         /// </summary>
@@ -85,7 +85,7 @@ namespace MikuReader.Core
             string lang_code = "gb";
 
             FileHelper.CreateFolder(FileHelper.APP_ROOT, MangaDex.GetMangaID(mangaUrl));
-            File.WriteAllLines(Path.Combine(mangaRoot.FullName,"manga.txt"), new string[] {
+            File.WriteAllLines(Path.Combine(mangaRoot.FullName, "manga.txt"), new string[] {
                 "manga",
                 MangaDex.GetMangaID(mangaUrl),
                 title,
@@ -117,8 +117,8 @@ namespace MikuReader.Core
             Load();
         }
 
-       public Chapter[] GetUpdates()
-       {
+        public Chapter[] GetUpdates()
+        {
             List<Chapter> result = new List<Chapter>();
             string jsonText = MangaDex.GetMangaJSON(MangaDex.GetMangaUrl(GetID()));
             JObject jobj = JObject.Parse(jsonText);

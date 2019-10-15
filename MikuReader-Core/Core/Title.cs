@@ -74,6 +74,8 @@ namespace MikuReader.Core
             {
                 case "manga":
                     return TitleType.MANGA;
+                case "hentai":
+                    return TitleType.HENTAI;
                 default:
                     return TitleType.NULL;
             }

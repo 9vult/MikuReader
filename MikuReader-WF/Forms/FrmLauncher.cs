@@ -46,6 +46,8 @@ namespace MikuReader.wf.Forms
         private void RepopulateItems()
         {
             lstManga.Items.Clear();
+            lstHentai.Items.Clear();
+
             WFClient.dbm.Refresh();
             foreach (Manga m in WFClient.dbm.GetMangaPopulation())
             {
@@ -61,8 +63,24 @@ namespace MikuReader.wf.Forms
                 lstManga.Items.Add(shortName + " » c" + m.GetCurrentChapter() + ",p" + m.GetCurrentPage());
             }
 
+            foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
+            {
+                string shortName = h.GetUserTitle();
+                if (shortName.Length > 30)
+                {
+                    shortName = shortName.Substring(0, 30);
+                }
+                else
+                {
+                    shortName = shortName.PadRight(30);
+                }
+                lstHentai.Items.Add(shortName + " » p" + h.GetCurrentPage());
+            }
+
             if (lstManga.Items.Count > 0)
                 lstManga.SelectedIndex = 0;
+            if (lstHentai.Items.Count > 0)
+                lstHentai.SelectedIndex = 0;
         }
 
         private void UpdateMangas()
@@ -104,28 +122,57 @@ namespace MikuReader.wf.Forms
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-            string selectedText = lstManga.SelectedItem.ToString();
-            string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
-
-            Manga selected = null;
-            foreach (Manga m in WFClient.dbm.GetMangaPopulation())
+            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
             {
-                if (m.GetUserTitle().StartsWith(name))
+                string selectedText = lstManga.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                Manga selected = null;
+                foreach (Manga m in WFClient.dbm.GetMangaPopulation())
                 {
-                    selected = m;
-                    break;
+                    if (m.GetUserTitle().StartsWith(name))
+                    {
+                        selected = m;
+                        break;
+                    }
                 }
-            }
 
-            if (selected != null)
-            {
-                if (SettingsHelper.UseDoubleReader)
-                    new FrmDoublePageReader(selected).Show();
+                if (selected != null)
+                {
+                    if (SettingsHelper.UseDoubleReader)
+                        new FrmDoublePageReader(selected).Show();
+                    else
+                        new FrmSinglePageReader(selected).Show();
+                }
                 else
-                    new FrmSinglePageReader(selected).Show();
+                    MessageBox.Show("Could not find the specified manga");
             }
-            else
-                MessageBox.Show("Could not find the specified manga");
+            else // Hentai
+            {
+                string selectedText = lstHentai.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                Hentai selected = null;
+                foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
+                {
+                    if (h.GetUserTitle().StartsWith(name))
+                    {
+                        selected = h;
+                        break;
+                    }
+                }
+
+                if (selected != null)
+                {
+                    if (SettingsHelper.UseDoubleReader)
+                        new FrmDoublePageReader(selected).Show();
+                    else
+                        new FrmSinglePageReader(selected).Show();
+                }
+                else
+                    MessageBox.Show("Could not find the specified manga");
+            }
+            
         }
 
         private void BtnBrowse_Click(object sender, EventArgs e)

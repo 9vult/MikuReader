@@ -12,6 +12,7 @@ namespace MikuReader.Core
     public enum TitleType
     {
         MANGA,
-        NULL
+        NULL,
+        HENTAI
     }
 }

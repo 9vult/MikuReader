@@ -14,18 +14,18 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmSinglePageReader : Form
     {
-        private Manga manga;
+        private Title title;
         private Chapter currentChapter;
 
-        public FrmSinglePageReader(Manga manga)
+        public FrmSinglePageReader(Title title)
         {
             InitializeComponent();
-            this.manga = manga;
+            this.title = title;
             this.currentChapter = null;
             try
             {
                 PopulateChapters();
-                cmboPage.SelectedIndex = cmboPage.Items.IndexOf(manga.GetCurrentPage());
+                cmboPage.SelectedIndex = cmboPage.Items.IndexOf(title.GetCurrentPage());
                 LoadImage();
             } catch (Exception ex)
             {
@@ -36,12 +36,15 @@ namespace MikuReader.wf.Forms
         private void PopulateChapters()
         {
             cmboChapter.Items.Clear();
-            foreach (Chapter chapter in ReaderHelper.SortChapters(manga.GetChapters()))
+            foreach (Chapter chapter in ReaderHelper.SortChapters(title.GetChapters()))
             {
                 cmboChapter.Items.Add(chapter.GetNum());
-                if (chapter.GetNum().Equals(manga.GetCurrentChapter()))
+                if (chapter.GetNum().Equals(title.GetCurrentChapter()))
                     currentChapter = chapter;
             }
+
+            if (currentChapter == null)
+                currentChapter = ReaderHelper.SortChapters(title.GetChapters())[0];
 
             try
             {
@@ -110,7 +113,7 @@ namespace MikuReader.wf.Forms
 
         private void CmboChapter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentChapter = ReaderHelper.SortChapters(manga.GetChapters())[cmboChapter.SelectedIndex];
+            currentChapter = ReaderHelper.SortChapters(title.GetChapters())[cmboChapter.SelectedIndex];
             PopulatePages();
         }
 
@@ -157,7 +160,7 @@ namespace MikuReader.wf.Forms
         {
             try
             {
-                manga.Save(cmboChapter.SelectedItem.ToString(), cmboPage.SelectedItem.ToString());
+                title.Save(cmboChapter.SelectedItem.ToString(), cmboPage.SelectedItem.ToString());
             } catch (Exception ex)
             {
                 MessageBox.Show("Failed to initialize tracking save procedure:\n" + ex.Message);

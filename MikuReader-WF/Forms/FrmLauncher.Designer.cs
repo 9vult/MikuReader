@@ -42,8 +42,10 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lstHentai = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,6 +150,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lstHentai);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -177,6 +180,17 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // lstHentai
+            // 
+            this.lstHentai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstHentai.Font = new System.Drawing.Font("Menlo", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstHentai.FormattingEnabled = true;
+            this.lstHentai.ItemHeight = 19;
+            this.lstHentai.Location = new System.Drawing.Point(3, 3);
+            this.lstHentai.Name = "lstHentai";
+            this.lstHentai.Size = new System.Drawing.Size(467, 272);
+            this.lstHentai.TabIndex = 0;
+            // 
             // FrmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -202,6 +216,7 @@
             this.Load += new System.EventHandler(this.FrmLauncher_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,6 +238,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox lstManga;
+        private System.Windows.Forms.ListBox lstHentai;
     }
 }
 
