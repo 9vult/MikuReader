@@ -40,9 +40,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lstManga = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lstHentai = new System.Windows.Forms.ListBox();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lstHentai = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -159,6 +159,17 @@
             this.tabPage2.Text = "nHentai";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lstHentai
+            // 
+            this.lstHentai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstHentai.Font = new System.Drawing.Font("Menlo", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstHentai.FormattingEnabled = true;
+            this.lstHentai.ItemHeight = 19;
+            this.lstHentai.Location = new System.Drawing.Point(3, 3);
+            this.lstHentai.Name = "lstHentai";
+            this.lstHentai.Size = new System.Drawing.Size(467, 272);
+            this.lstHentai.TabIndex = 0;
+            // 
             // btnSettings
             // 
             this.btnSettings.BackgroundImage = global::MikuReader.wf.Properties.Resources.settings;
@@ -179,17 +190,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // lstHentai
-            // 
-            this.lstHentai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstHentai.Font = new System.Drawing.Font("Menlo", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstHentai.FormattingEnabled = true;
-            this.lstHentai.ItemHeight = 19;
-            this.lstHentai.Location = new System.Drawing.Point(3, 3);
-            this.lstHentai.Name = "lstHentai";
-            this.lstHentai.Size = new System.Drawing.Size(467, 272);
-            this.lstHentai.TabIndex = 0;
             // 
             // FrmLauncher
             // 
