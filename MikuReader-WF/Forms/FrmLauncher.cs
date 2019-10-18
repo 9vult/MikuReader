@@ -112,7 +112,11 @@ namespace MikuReader.wf.Forms
             Console.WriteLine(percent + " | " + (int)percent);
 
             progressBar1.Value = (int)percent;
-            if (percent == 100) progressBar1.Value = 0;
+            if (percent == 100)
+            {
+                progressBar1.Value = 0;
+                RepopulateItems();
+            }
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
@@ -122,12 +126,12 @@ namespace MikuReader.wf.Forms
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
+            Title selected = null;
             if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
             {
                 string selectedText = lstManga.SelectedItem.ToString();
                 string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
 
-                Manga selected = null;
                 foreach (Manga m in WFClient.dbm.GetMangaPopulation())
                 {
                     if (m.GetUserTitle().StartsWith(name))
@@ -136,23 +140,12 @@ namespace MikuReader.wf.Forms
                         break;
                     }
                 }
-
-                if (selected != null)
-                {
-                    if (SettingsHelper.UseDoubleReader)
-                        new FrmDoublePageReader(selected).Show();
-                    else
-                        new FrmSinglePageReader(selected).Show();
-                }
-                else
-                    MessageBox.Show("Could not find the specified manga");
             }
             else // Hentai
             {
                 string selectedText = lstHentai.SelectedItem.ToString();
                 string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
 
-                Hentai selected = null;
                 foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
                 {
                     if (h.GetUserTitle().StartsWith(name))
@@ -161,18 +154,25 @@ namespace MikuReader.wf.Forms
                         break;
                     }
                 }
-
-                if (selected != null)
-                {
-                    if (SettingsHelper.UseDoubleReader)
-                        new FrmDoublePageReader(selected).Show();
-                    else
-                        new FrmSinglePageReader(selected).Show();
-                }
-                else
-                    MessageBox.Show("Could not find the specified manga");
             }
-            
+
+
+            if (selected != null)
+            {
+                if (selected.IsDownloading())
+                {
+                    MessageBox.Show("Please wait for this title to finish downloading.");
+                    return;
+                }
+
+                if (SettingsHelper.UseDoubleReader)
+                    new FrmDoublePageReader(selected).Show();
+                else
+                    new FrmSinglePageReader(selected).Show();
+            }
+            else
+                MessageBox.Show("Could not find the specified title");
+
         }
 
         private void BtnBrowse_Click(object sender, EventArgs e)

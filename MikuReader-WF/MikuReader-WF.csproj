@@ -150,9 +150,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="example-mikureader.txt" />
-    <Content Include="example-chapter.txt" />
-    <Content Include="example-manga.txt" />
     <Content Include="Firefox\AccessibleMarshal.dll" />
     <Content Include="Firefox\breakpadinjector.dll" />
     <Content Include="Firefox\d3dcompiler_47.dll" />
@@ -173,6 +170,10 @@
     <Content Include="Firefox\softokn3.dll" />
     <Content Include="Firefox\xul.dll" />
     <Content Include="mikureader.ico" />
+    <Content Include="updater\wfchangelog.txt" />
+    <Content Include="updater\wfupdate.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="media\images\settings.png" />
     <None Include="media\images\mikureader.png" />
     <None Include="media\images\miku.png" />

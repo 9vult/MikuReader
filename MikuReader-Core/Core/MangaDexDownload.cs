@@ -37,6 +37,7 @@ namespace MikuReader.Core
 
         public void StartDownloading()
         {
+            File.Create(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID())).Close();
             string jsonUrl = "https://mangadex.org/api/chapter/" + chapter.GetID();
             string jsonString;
 
@@ -95,6 +96,7 @@ namespace MikuReader.Core
             if (clients.Count == 0)
             {
                 DownloadCompleted.Invoke(this);
+                File.Delete(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID()));
                 return true;
             }
             return false;

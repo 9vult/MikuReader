@@ -211,5 +211,14 @@ namespace MikuReader.Core
             return id;
         }
 
+        public override bool IsDownloading()
+        {
+            FileInfo[] files = FileHelper.GetFiles(mangaRoot);
+            foreach (FileInfo f in files)
+                if (f.Name.StartsWith("dl"))
+                    return true;
+            return false;
+        }
+
     }
 }

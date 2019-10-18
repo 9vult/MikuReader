@@ -26,7 +26,6 @@ namespace MikuReader.Core
         {
             this.pages = new List<Page>();
             this.chapterRoot = chapterRoot;
-
             Load();
         }
 

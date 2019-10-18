@@ -27,6 +27,7 @@ namespace MikuReader.Core
 
         public void StartDownloading()
         {
+            File.Create(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID())).Close();
             List<HtmlDocument> docs = new List<HtmlDocument>();
             int pageCount = Nhentai.GetPageCount("https://nhentai.net/g/" + chapter.GetID());
 
@@ -59,6 +60,7 @@ namespace MikuReader.Core
             if (clients.Count == 0)
             {
                 DownloadCompleted.Invoke(this);
+                File.Delete(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID()));
                 return true;
             }
             return false;

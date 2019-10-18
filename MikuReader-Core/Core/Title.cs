@@ -64,6 +64,12 @@ namespace MikuReader.Core
         public abstract string GetID();
 
         /// <summary>
+        /// Are any chapters in this title downloading?
+        /// </summary>
+        /// <returns>True if any chapters are downloading</returns>
+        public abstract bool IsDownloading();
+
+        /// <summary>
         /// Get the Type of a Title
         /// </summary>
         /// <param name="dir">Title's directory</param>
