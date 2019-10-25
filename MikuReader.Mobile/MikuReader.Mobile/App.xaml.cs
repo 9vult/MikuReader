@@ -12,9 +12,8 @@ namespace MikuReader.Mobile
         public App()
         {
             InitializeComponent();
-
-
-            MainPage = new MainPage();
+            MClient.Initialize();
+            MainPage = new StartTabbedPage();
         }
 
         protected override void OnStart()
