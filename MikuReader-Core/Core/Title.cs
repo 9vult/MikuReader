@@ -27,6 +27,13 @@ namespace MikuReader.Core
         /// <param name="page">User's current Page</param>
         public abstract void Save(string chapter, string page);
 
+        // TODO: more properties
+        /// <summary>
+        /// Update the properties for the Title
+        /// </summary>
+        /// <param name="title"></param>
+        public abstract void UpdateProperties(string title);
+
         /// <summary>
         /// Get the name of the title
         /// </summary>

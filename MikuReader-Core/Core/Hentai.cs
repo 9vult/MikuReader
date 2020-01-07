@@ -121,6 +121,12 @@ namespace MikuReader.Core
             });
         }
 
+        public override void UpdateProperties(string title)
+        {
+            this.usertitle = title;
+            Save(currentchapter, currentpage);
+        }
+
         public override string GetTitle()
         {
             return this.name;
@@ -159,6 +165,5 @@ namespace MikuReader.Core
                     return true;
             return false;
         }
-
     }
 }

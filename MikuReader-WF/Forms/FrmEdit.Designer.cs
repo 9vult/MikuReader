@@ -33,15 +33,16 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtLang = new System.Windows.Forms.TextBox();
+            this.txtGroup = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.ForeColor = System.Drawing.Color.Red;
             this.btnDelete.Location = new System.Drawing.Point(12, 147);
             this.btnDelete.Name = "btnDelete";
@@ -58,6 +59,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnCancel
             // 
@@ -67,6 +69,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // label1
             // 
@@ -77,12 +80,12 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Title";
             // 
-            // textBox1
+            // txtTitle
             // 
-            this.textBox1.Location = new System.Drawing.Point(99, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(460, 26);
-            this.textBox1.TabIndex = 4;
+            this.txtTitle.Location = new System.Drawing.Point(99, 31);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(460, 26);
+            this.txtTitle.TabIndex = 4;
             // 
             // label2
             // 
@@ -102,30 +105,32 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Group";
             // 
-            // textBox2
+            // txtLang
             // 
-            this.textBox2.Location = new System.Drawing.Point(99, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(460, 26);
-            this.textBox2.TabIndex = 7;
+            this.txtLang.Enabled = false;
+            this.txtLang.Location = new System.Drawing.Point(99, 71);
+            this.txtLang.Name = "txtLang";
+            this.txtLang.Size = new System.Drawing.Size(460, 26);
+            this.txtLang.TabIndex = 7;
             // 
-            // textBox3
+            // txtGroup
             // 
-            this.textBox3.Location = new System.Drawing.Point(99, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(460, 26);
-            this.textBox3.TabIndex = 8;
+            this.txtGroup.Enabled = false;
+            this.txtGroup.Location = new System.Drawing.Point(99, 115);
+            this.txtGroup.Name = "txtGroup";
+            this.txtGroup.Size = new System.Drawing.Size(460, 26);
+            this.txtGroup.TabIndex = 8;
             // 
             // FrmEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 242);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(581, 217);
+            this.Controls.Add(this.txtGroup);
+            this.Controls.Add(this.txtLang);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -134,6 +139,7 @@
             this.Name = "FrmEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit";
+            this.Load += new System.EventHandler(this.FrmEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,10 +151,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtLang;
+        private System.Windows.Forms.TextBox txtGroup;
     }
 }

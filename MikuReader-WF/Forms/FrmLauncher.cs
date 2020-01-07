@@ -126,35 +126,7 @@ namespace MikuReader.wf.Forms
 
         private void BtnRead_Click(object sender, EventArgs e)
         {
-            Title selected = null;
-            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
-            {
-                string selectedText = lstManga.SelectedItem.ToString();
-                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
-
-                foreach (Manga m in WFClient.dbm.GetMangaPopulation())
-                {
-                    if (m.GetUserTitle().StartsWith(name))
-                    {
-                        selected = m;
-                        break;
-                    }
-                }
-            }
-            else // Hentai
-            {
-                string selectedText = lstHentai.SelectedItem.ToString();
-                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
-
-                foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
-                {
-                    if (h.GetUserTitle().StartsWith(name))
-                    {
-                        selected = h;
-                        break;
-                    }
-                }
-            }
+            Title selected = GetSelected();
 
 
             if (selected != null)
@@ -192,7 +164,54 @@ namespace MikuReader.wf.Forms
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            new FrmEdit().Show();
+            new FrmEdit(GetSelected()).Show();
+        }
+
+        /// <summary>
+        /// Get the currently selected Title
+        /// </summary>
+        /// <returns>The currently selected Title</returns>
+        private Title GetSelected()
+        {
+            Title selected = null;
+            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
+            {
+                string selectedText = lstManga.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                foreach (Manga m in WFClient.dbm.GetMangaPopulation())
+                {
+                    if (m.GetUserTitle().StartsWith(name))
+                    {
+                        selected = m;
+                        break;
+                    }
+                }
+            }
+            else // Hentai
+            {
+                string selectedText = lstHentai.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
+                {
+                    if (h.GetUserTitle().StartsWith(name))
+                    {
+                        selected = h;
+                        break;
+                    }
+                }
+            }
+
+
+            if (selected != null)
+            {
+                return selected;
+            }
+            else
+                MessageBox.Show("Could not find the specified title");
+
+            return null;
         }
     }
 }
