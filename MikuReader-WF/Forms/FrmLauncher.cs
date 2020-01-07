@@ -189,5 +189,10 @@ namespace MikuReader.wf.Forms
         {
             UpdateMangas();
         }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            new FrmEdit().Show();
+        }
     }
 }

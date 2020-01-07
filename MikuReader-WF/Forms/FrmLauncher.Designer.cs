@@ -43,6 +43,7 @@
             this.lstHentai = new System.Windows.Forms.ListBox();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -88,9 +89,9 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(281, 427);
+            this.btnBrowse.Location = new System.Drawing.Point(477, 471);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(339, 38);
+            this.btnBrowse.Size = new System.Drawing.Size(143, 38);
             this.btnBrowse.TabIndex = 4;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(328, 474);
+            this.btnRefresh.Location = new System.Drawing.Point(328, 427);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(143, 38);
             this.btnRefresh.TabIndex = 2;
@@ -108,7 +109,7 @@
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.Location = new System.Drawing.Point(477, 474);
+            this.BtnUpdate.Location = new System.Drawing.Point(328, 471);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(143, 38);
             this.BtnUpdate.TabIndex = 3;
@@ -191,11 +192,22 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(477, 427);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(143, 38);
+            this.btnEdit.TabIndex = 7;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
             // FrmLauncher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 558);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.BtnUpdate);
             this.Controls.Add(this.btnRefresh);
@@ -239,6 +251,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox lstManga;
         private System.Windows.Forms.ListBox lstHentai;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
 

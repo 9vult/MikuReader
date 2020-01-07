@@ -85,6 +85,12 @@
     <Compile Include="Forms\FrmDoublePageReader.Designer.cs">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmEdit.Designer.cs">
+      <DependentUpon>FrmEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmLauncher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDoublePageReader.resx">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmEdit.resx">
+      <DependentUpon>FrmEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLauncher.resx">
       <DependentUpon>FrmLauncher.cs</DependentUpon>
