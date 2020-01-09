@@ -121,7 +121,7 @@ namespace MikuReader.Core
             });
         }
 
-        public override void UpdateProperties(string title)
+        public override void UpdateProperties(string title, string lang, string group)
         {
             this.usertitle = title;
             Save(currentchapter, currentpage);

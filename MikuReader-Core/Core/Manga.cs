@@ -148,6 +148,68 @@ namespace MikuReader.Core
         }
 
         /// <summary>
+        /// Get the groups associated with this manga
+        /// </summary>
+        /// <param name="langCode">Language to select group from</param>
+        /// <returns>List of groups associated with the language</returns>
+        public string[] GetGroups(string langCode)
+        {
+            List<string> result = new List<string>();
+            string jsonText = MangaDex.GetMangaJSON(MangaDex.GetMangaUrl(GetID()));
+            JObject jobj = JObject.Parse(jsonText);
+
+            foreach (JProperty p in jobj["chapter"])
+            {
+                JToken value = p.Value;
+                if (value.Type == JTokenType.Object)
+                {
+                    JObject o = (JObject)value;
+                    if (((string)o["lang_code"]).Equals(langCode))
+                    {
+                        string groupName = (String)o["group_name"];
+                        if (!result.Contains(groupName))
+                        {
+                            result.Add(groupName);
+                        }
+                    }
+                }
+            }
+            return result.ToArray();
+        }
+
+        public string[] GetLangs()
+        {
+            List<string> result = new List<string>();
+            string jsonText = MangaDex.GetMangaJSON(MangaDex.GetMangaUrl(GetID()));
+            JObject jobj = JObject.Parse(jsonText);
+
+            foreach (JProperty p in jobj["chapter"])
+            {
+                JToken value = p.Value;
+                if (value.Type == JTokenType.Object)
+                {
+                    JObject o = (JObject)value;
+                    string langCode = (string)o["lang_code"];
+                    if (!result.Contains(langCode))
+                    {
+                        result.Add(langCode);
+                    }
+                }
+            }
+            return result.ToArray();
+        }
+
+        /// <summary>
+        /// Get the user's specified language
+        /// </summary>
+        public string GetUserLang => userlang;
+
+        /// <summary>
+        /// Get the user's specified Group
+        /// </summary>
+        public string GetUserGroup => usergroup;
+
+        /// <summary>
         /// Create a Chapter for each chapter and add it to the chapter list
         /// </summary>
         private void PopulateChapters()
@@ -181,9 +243,12 @@ namespace MikuReader.Core
             });
         }
 
-        public override void UpdateProperties(string title)
+        public override void UpdateProperties(string title, string lang, string group)
         {
             this.usertitle = title;
+            this.userlang = lang;
+            if (group == "{Any}") this.usergroup = "^any-group"; else this.usergroup = group;
+
             Save(currentchapter, currentpage);
         }
 

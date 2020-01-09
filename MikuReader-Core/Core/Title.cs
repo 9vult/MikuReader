@@ -32,7 +32,7 @@ namespace MikuReader.Core
         /// Update the properties for the Title
         /// </summary>
         /// <param name="title"></param>
-        public abstract void UpdateProperties(string title);
+        public abstract void UpdateProperties(string title, string lang, string group);
 
         /// <summary>
         /// Get the name of the title

@@ -36,15 +36,20 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtLang = new System.Windows.Forms.TextBox();
-            this.txtGroup = new System.Windows.Forms.TextBox();
+            this.cmboLang = new System.Windows.Forms.ComboBox();
+            this.cmboGroup = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnEnable = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.ForeColor = System.Drawing.Color.Red;
-            this.btnDelete.Location = new System.Drawing.Point(12, 147);
+            this.btnDelete.Location = new System.Drawing.Point(12, 250);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(129, 50);
             this.btnDelete.TabIndex = 0;
@@ -53,7 +58,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(430, 147);
+            this.btnSave.Location = new System.Drawing.Point(518, 250);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(129, 50);
             this.btnSave.TabIndex = 1;
@@ -63,7 +68,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(295, 147);
+            this.btnCancel.Location = new System.Drawing.Point(383, 250);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(129, 50);
             this.btnCancel.TabIndex = 2;
@@ -74,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 20);
             this.label1.TabIndex = 3;
@@ -82,15 +87,15 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(99, 31);
+            this.txtTitle.Location = new System.Drawing.Point(50, 19);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(460, 26);
+            this.txtTitle.Size = new System.Drawing.Size(579, 26);
             this.txtTitle.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 74);
+            this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 20);
             this.label2.TabIndex = 5;
@@ -99,49 +104,88 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 118);
+            this.label3.Location = new System.Drawing.Point(6, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Group";
             // 
-            // txtLang
+            // cmboLang
             // 
-            this.txtLang.Enabled = false;
-            this.txtLang.Location = new System.Drawing.Point(99, 71);
-            this.txtLang.Name = "txtLang";
-            this.txtLang.Size = new System.Drawing.Size(460, 26);
-            this.txtLang.TabIndex = 7;
+            this.cmboLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboLang.Enabled = false;
+            this.cmboLang.FormattingEnabled = true;
+            this.cmboLang.Location = new System.Drawing.Point(93, 19);
+            this.cmboLang.Name = "cmboLang";
+            this.cmboLang.Size = new System.Drawing.Size(536, 28);
+            this.cmboLang.TabIndex = 7;
+            this.cmboLang.SelectedIndexChanged += new System.EventHandler(this.CmboLang_SelectedIndexChanged);
             // 
-            // txtGroup
+            // cmboGroup
             // 
-            this.txtGroup.Enabled = false;
-            this.txtGroup.Location = new System.Drawing.Point(99, 115);
-            this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(460, 26);
-            this.txtGroup.TabIndex = 8;
+            this.cmboGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboGroup.Enabled = false;
+            this.cmboGroup.FormattingEnabled = true;
+            this.cmboGroup.Location = new System.Drawing.Point(93, 63);
+            this.cmboGroup.Name = "cmboGroup";
+            this.cmboGroup.Size = new System.Drawing.Size(536, 28);
+            this.cmboGroup.TabIndex = 8;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtTitle);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(635, 76);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Cosmetics";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnEnable);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.cmboGroup);
+            this.groupBox2.Controls.Add(this.cmboLang);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 97);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(635, 147);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Downloads";
+            // 
+            // btnEnable
+            // 
+            this.btnEnable.Location = new System.Drawing.Point(6, 97);
+            this.btnEnable.Name = "btnEnable";
+            this.btnEnable.Size = new System.Drawing.Size(116, 41);
+            this.btnEnable.TabIndex = 9;
+            this.btnEnable.Text = "Enable";
+            this.btnEnable.UseVisualStyleBackColor = true;
+            this.btnEnable.Click += new System.EventHandler(this.BtnEnable_Click);
             // 
             // FrmEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 217);
-            this.Controls.Add(this.txtGroup);
-            this.Controls.Add(this.txtLang);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtTitle);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
+            this.ClientSize = new System.Drawing.Size(665, 318);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit";
             this.Load += new System.EventHandler(this.FrmEdit_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -154,7 +198,10 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtLang;
-        private System.Windows.Forms.TextBox txtGroup;
+        private System.Windows.Forms.ComboBox cmboLang;
+        private System.Windows.Forms.ComboBox cmboGroup;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnEnable;
     }
 }

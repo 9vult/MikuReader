@@ -18,7 +18,7 @@ namespace MikuReader.Core
         /// <returns>JSON string</returns>
         public static string GetMangaJSON(string mangaUrl)
         {
-            string apiUrl = "https://mangadex.org/api/manga/" + GetMangaID(mangaUrl);
+            string apiUrl = "https://mangadex.cc/api/manga/" + GetMangaID(mangaUrl);
             string json;
             using (var wc = new System.Net.WebClient())
             {
@@ -34,7 +34,7 @@ namespace MikuReader.Core
         /// <returns>JSON string</returns>
         public static string GetChapterJSON(string chapterID)
         {
-            string apiUrl = "https://mangadex.org/api/chapter/" + chapterID;
+            string apiUrl = "https://mangadex.cc/api/chapter/" + chapterID;
             string json;
             using (var wc = new System.Net.WebClient())
             {
@@ -61,7 +61,7 @@ namespace MikuReader.Core
 
         public static string GetMangaUrl(string mangaID)
         {
-            return "https://mangadex.org/title/" + mangaID;
+            return "https://mangadex.cc/title/" + mangaID;
         }
 
 
