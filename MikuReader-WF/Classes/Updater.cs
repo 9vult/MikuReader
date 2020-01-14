@@ -15,7 +15,7 @@ namespace MikuReader.wf.Classes
         {
             AutoUpdater.Start("https://raw.githubusercontent.com/ninevult/MikuReader/master/MikuReader-WF/updater/wfupdate.xml");
             AutoUpdater.RunUpdateAsAdmin = true;
-            AutoUpdater.DownloadPath = Path.Combine(FileHelper.APP_ROOT.ToString(), "update");
+            AutoUpdater.OpenDownloadPage = true;
         }
     }
 }
