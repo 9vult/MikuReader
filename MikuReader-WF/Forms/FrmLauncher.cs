@@ -213,5 +213,10 @@ namespace MikuReader.wf.Forms
 
             return null;
         }
+
+        private void ShowAboutBox(object sender, EventArgs e)
+        {
+            new FrmAbout().ShowDialog();
+        }
     }
 }

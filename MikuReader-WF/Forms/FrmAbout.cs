@@ -14,10 +14,10 @@ namespace MikuReader.wf.Forms
         public FrmAbout()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", "MikuReader");
-            this.labelProductName.Text = "MikuReader";
-            this.labelVersion.Text = String.Format("Version {0} on Core {1}", WFClient.CLIENT_VERSION, Core.Core.CORE_VERSION);
-            this.labelCompanyName.Text = "(c) 2019";
+            this.Text = String.Format("About MikuReader");
+            this.labelProductName.Text = "MikuReader WF";
+            this.labelVersion.Text = String.Format("Version {0}, on Core {1}", WFClient.CLIENT_VERSION, Core.Core.CORE_VERSION);
+            this.labelCompanyName.Text = "(c) 2020 ninevult";
         }
 
         #region Assembly Attribute Accessors

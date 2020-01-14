@@ -9,7 +9,7 @@ namespace MikuReader.wf
 {
     public class WFClient
     {
-        public static readonly string CLIENT_VERSION = "2.0";
+        public static readonly string CLIENT_VERSION = "2.0 Beta 1";
 
         public static DatabaseManager dbm;
         public static DownloadManager dlm;
