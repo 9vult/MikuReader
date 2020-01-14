@@ -41,6 +41,8 @@ namespace MikuReader.wf.Forms
             WFClient.dlm.ProgressUpdated += new ProgressUpdatedEventHandler(ProgressUpdatedCallback);
 
             RepopulateItems();
+
+            Updater.Start();
         }
 
         private void RepopulateItems()
