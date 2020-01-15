@@ -42,7 +42,8 @@ namespace MikuReader.wf.Forms
 
             RepopulateItems();
 
-            Updater.Start();
+            if (SettingsHelper.CheckForUpdates)
+                Updater.Start();
         }
 
         private void RepopulateItems()

@@ -34,7 +34,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkUpdates = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbSingle
@@ -72,7 +75,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(330, 459);
+            this.btnSave.Location = new System.Drawing.Point(364, 459);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(121, 44);
             this.btnSave.TabIndex = 3;
@@ -90,11 +93,32 @@
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chkUpdates);
+            this.groupBox2.Location = new System.Drawing.Point(186, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(291, 100);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Application";
+            // 
+            // chkUpdates
+            // 
+            this.chkUpdates.AutoSize = true;
+            this.chkUpdates.Location = new System.Drawing.Point(6, 26);
+            this.chkUpdates.Name = "chkUpdates";
+            this.chkUpdates.Size = new System.Drawing.Size(241, 24);
+            this.chkUpdates.TabIndex = 0;
+            this.chkUpdates.Text = "Check for updates on startup";
+            this.chkUpdates.UseVisualStyleBackColor = true;
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 515);
+            this.ClientSize = new System.Drawing.Size(497, 515);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox1);
@@ -106,6 +130,8 @@
             this.Load += new System.EventHandler(this.FrmSettings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -117,5 +143,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox chkUpdates;
     }
 }

@@ -22,19 +22,23 @@ namespace MikuReader.wf.Forms
 
         private void FrmSettings_Load(object sender, EventArgs e)
         {
+            SettingsHelper.Initialize();
+
             if (SettingsHelper.UseDoubleReader)
                 rbDouble.Checked = true;
             else
                 rbSingle.Checked = true;
 
+            chkUpdates.Checked = SettingsHelper.CheckForUpdates;
+
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (rbDouble.Checked)
-                SettingsHelper.UseDoubleReader = true;
-            else
-                SettingsHelper.UseDoubleReader = false;
+
+            SettingsHelper.UseDoubleReader = rbDouble.Checked;
+            SettingsHelper.CheckForUpdates = chkUpdates.Checked;
+
 
             SettingsHelper.Save();
             MessageBox.Show("All settings saved.");

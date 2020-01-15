@@ -11,6 +11,7 @@ namespace MikuReader.wf.Classes
     public class SettingsHelper
     {
         public static bool UseDoubleReader { get; set; }
+        public static bool CheckForUpdates { get; set; }
 
         /// <summary>
         /// Initialize the SettingsHelper
@@ -18,10 +19,11 @@ namespace MikuReader.wf.Classes
         public static void Initialize()
         {
             string[] info = File.ReadAllLines(FileHelper.GetFile(FileHelper.APP_ROOT, "mikureader.txt").FullName);
-            if (info.Length < 1) { throw new FileLoadException("'mikureader.txt' did not contain all required fields!"); }
+            if (info.Length < 2) { throw new FileLoadException("'mikureader.txt' did not contain all required fields!"); }
 
 
             UseDoubleReader = bool.Parse(info[0].Split('/')[0].Trim());
+            CheckForUpdates = bool.Parse(info[1].Split('/')[0].Trim());
         }
 
         /// <summary>
@@ -32,7 +34,8 @@ namespace MikuReader.wf.Classes
             File.WriteAllLines(FileHelper.GetFile(
                 FileHelper.APP_ROOT, "mikureader.txt").FullName,
                 new string[] {
-                    UseDoubleReader.ToString() + " // Use Double-Page Reader"
+                    UseDoubleReader.ToString() + " // Use Double-Page Reader",
+                    CheckForUpdates.ToString() + " // Check for updates on startup"
                 }
             );
         }
@@ -45,7 +48,8 @@ namespace MikuReader.wf.Classes
             File.WriteAllLines(Path.Combine(
                 FileHelper.APP_ROOT.FullName, "mikureader.txt"),
                 new string[] {
-                    "false // Use Double-Page Reader"
+                    "False // Use Double-Page Reader",
+                    "True // Check for updates on startup"
                 }
             );
         }
