@@ -35,6 +35,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDir = new System.Windows.Forms.TextBox();
             this.chkUpdates = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -68,14 +71,14 @@
             this.groupBox1.Controls.Add(this.rbDouble);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 99);
+            this.groupBox1.Size = new System.Drawing.Size(168, 134);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reader";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(364, 459);
+            this.btnSave.Location = new System.Drawing.Point(364, 152);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(121, 44);
             this.btnSave.TabIndex = 3;
@@ -85,7 +88,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(12, 459);
+            this.btnAbout.Location = new System.Drawing.Point(12, 152);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(121, 44);
             this.btnAbout.TabIndex = 4;
@@ -95,13 +98,43 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnBrowse);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.txtDir);
             this.groupBox2.Controls.Add(this.chkUpdates);
             this.groupBox2.Location = new System.Drawing.Point(186, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(291, 100);
+            this.groupBox2.Size = new System.Drawing.Size(291, 134);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Application";
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.Location = new System.Drawing.Point(244, 75);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(41, 36);
+            this.btnBrowse.TabIndex = 8;
+            this.btnBrowse.Text = "...";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 20);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "App Directory";
+            // 
+            // txtDir
+            // 
+            this.txtDir.Location = new System.Drawing.Point(6, 82);
+            this.txtDir.Name = "txtDir";
+            this.txtDir.Size = new System.Drawing.Size(232, 26);
+            this.txtDir.TabIndex = 6;
             // 
             // chkUpdates
             // 
@@ -117,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 515);
+            this.ClientSize = new System.Drawing.Size(497, 252);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnSave);
@@ -145,5 +178,8 @@
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox chkUpdates;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDir;
     }
 }

@@ -31,13 +31,36 @@ namespace MikuReader.wf.Forms
 
             chkUpdates.Checked = SettingsHelper.CheckForUpdates;
 
+            txtDir.Text = (string)Properties.Settings.Default["approot"];
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-
             SettingsHelper.UseDoubleReader = rbDouble.Checked;
             SettingsHelper.CheckForUpdates = chkUpdates.Checked;
+
+            if (!txtDir.Text.Equals((string)Properties.Settings.Default["approot"]))
+            {
+                DialogResult dr = MessageBox.Show("Changing the default save location may have undesirable side effects." +
+                    "\n\nAre you sure?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    if (!txtDir.Text.Equals(""))
+                    {
+                        Properties.Settings.Default["approot"] = txtDir.Text;
+                        Properties.Settings.Default.Save();
+                    } else
+                    {
+                        Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
+                        Properties.Settings.Default.Save();
+                    }                    
+                } else
+                {
+                    txtDir.Text = (string)Properties.Settings.Default["approot"];
+                }
+            }
 
 
             SettingsHelper.Save();
@@ -47,6 +70,16 @@ namespace MikuReader.wf.Forms
         private void BtnAbout_Click(object sender, EventArgs e)
         {
             new FrmAbout().ShowDialog();
+        }
+
+        private void BtnBrowse_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult dr = fbd.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                txtDir.Text = fbd.SelectedPath;
+            }
         }
     }
 }

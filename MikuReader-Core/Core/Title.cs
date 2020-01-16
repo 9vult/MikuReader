@@ -83,14 +83,20 @@ namespace MikuReader.Core
         /// <returns></returns>
         public static TitleType GetType(DirectoryInfo dir)
         {
-            switch (File.ReadAllLines(FileHelper.GetFilePath(dir, "manga.txt"))[0])
+            try
             {
-                case "manga":
-                    return TitleType.MANGA;
-                case "hentai":
-                    return TitleType.HENTAI;
-                default:
-                    return TitleType.NULL;
+                switch (File.ReadAllLines(FileHelper.GetFilePath(dir, "manga.txt"))[0])
+                {
+                    case "manga":
+                        return TitleType.MANGA;
+                    case "hentai":
+                        return TitleType.HENTAI;
+                    default:
+                        return TitleType.NULL;
+                }
+            } catch (Exception)
+            {
+                return TitleType.NULL;
             }
         }
     }
