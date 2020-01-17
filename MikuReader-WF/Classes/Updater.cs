@@ -13,6 +13,7 @@ namespace MikuReader.wf.Classes
     {
         public static void Start()
         {
+            WFClient.logger.Log("Checking for updates");
             AutoUpdater.Start("https://raw.githubusercontent.com/ninevult/MikuReader/master/MikuReader-WF/updater/wfupdate.xml");
             AutoUpdater.RunUpdateAsAdmin = true;
             AutoUpdater.OpenDownloadPage = true;

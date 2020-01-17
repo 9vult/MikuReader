@@ -64,6 +64,7 @@ namespace MikuReader.wf.Forms
 
 
             SettingsHelper.Save();
+            WFClient.logger.Log("Settings saved.");
             MessageBox.Show("All settings saved.");
         }
 

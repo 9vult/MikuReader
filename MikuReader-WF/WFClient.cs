@@ -1,4 +1,5 @@
 ﻿using MikuReader.Core;
+using MikuReader.Core.Etc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,14 @@ namespace MikuReader.wf
         public static DatabaseManager dbm;
         public static DownloadManager dlm;
 
+        public static Logger logger;
+
         public static void Initialize()
         {
             dbm = new DatabaseManager();
             dlm = new DownloadManager();
+
+            logger = new Logger();
         }
     }
 }

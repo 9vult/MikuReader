@@ -19,7 +19,11 @@ namespace MikuReader.wf.Classes
         public static void Initialize()
         {
             string[] info = File.ReadAllLines(FileHelper.GetFile(FileHelper.APP_ROOT, "mikureader.txt").FullName);
-            if (info.Length < 2) { throw new FileLoadException("'mikureader.txt' did not contain all required fields!"); }
+            if (info.Length < 2)
+            {
+                WFClient.logger.Error("'mikureader.txt' did not contain all required fields!");
+                throw new FileLoadException("'mikureader.txt' did not contain all required fields!");
+            }
 
 
             UseDoubleReader = bool.Parse(info[0].Split('/')[0].Trim());

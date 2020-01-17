@@ -22,12 +22,15 @@ namespace MikuReader.wf.Forms
 
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
+            WFClient.logger.Log("Starting");
             if (Properties.Settings.Default["approot"].ToString() == String.Empty)
             {
                 Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
                 Properties.Settings.Default.Save();
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
+
+            WFClient.logger.Log("Loading from " + FileHelper.APP_ROOT);
 
             if (File.Exists(Path.Combine(FileHelper.APP_ROOT.FullName, "mikureader.txt")))
             {
