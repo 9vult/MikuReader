@@ -14,20 +14,49 @@ namespace MikuReader.wf.Forms
     public partial class FrmEdit : Form
     {
         private Title title;
+        private bool notFirstTime = true;
+
+        public string usertitle;
+        public string userlang;
+        public string usergroup;
 
         public FrmEdit(Title title)
         {
             InitializeComponent();
             this.title = title;
+
+            btnSave.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+        }
+
+        public FrmEdit(Title title, bool notFirstTime)
+        {
+            InitializeComponent();
+            this.title = title;
+
+            btnSave.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
+            this.notFirstTime = notFirstTime;
+            btnCancel.Enabled = notFirstTime;
+        }
+
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
         }
 
         private void FrmEdit_Load(object sender, EventArgs e)
         {
             txtTitle.Text = title.GetUserTitle();
 
-            if (title is Manga)
+            if (title is Manga m)
             {
-                Manga m = (Manga)title;
                 if (m.GetUserGroup == "^any-group")
                 {
                     cmboGroup.Items.Add("{Any}");
@@ -52,7 +81,11 @@ namespace MikuReader.wf.Forms
         private void BtnSave_Click(object sender, EventArgs e)
         {
             title.UpdateProperties(txtTitle.Text, cmboLang.SelectedItem.ToString(), cmboGroup.SelectedItem.ToString());
-            MessageBox.Show("Changes saved! Refresh to view.");
+            usertitle = txtTitle.Text;
+            userlang = cmboLang.SelectedItem.ToString();
+            usergroup = cmboGroup.SelectedItem.ToString();
+            if (notFirstTime)
+                MessageBox.Show("Changes saved! Refresh to view.");
             this.Close();
         }
 
@@ -72,9 +105,8 @@ namespace MikuReader.wf.Forms
             {
                 btnEnable.Enabled = false;
 
-                if (title is Manga)
+                if (title is Manga m)
                 {
-                    Manga m = (Manga)title;
                     cmboLang.Items.Clear();
 
                     foreach (string lc in m.GetLangs())
@@ -98,10 +130,8 @@ namespace MikuReader.wf.Forms
 
         private void CmboLang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (title is Manga)
+            if (title is Manga m)
             {
-                Manga m = (Manga)title;
-
                 cmboGroup.Items.Clear();
                 cmboGroup.Items.Add("{Any}");
 

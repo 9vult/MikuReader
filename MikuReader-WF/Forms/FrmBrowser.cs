@@ -34,7 +34,7 @@ namespace MikuReader.wf.Forms
             switch (cmboSource.SelectedItem.ToString().ToLower())
             {
                 case "mangadex":
-                    gfxBrowser.Navigate("https://mangadex.org");
+                    gfxBrowser.Navigate(MangaDex.MANGADEX_URL);
                     break;
                 case "nhentai":
                     gfxBrowser.Navigate("https://nhentai.net");
@@ -61,7 +61,7 @@ namespace MikuReader.wf.Forms
             switch (cmboSource.SelectedItem.ToString().ToLower())
             {
                 case "mangadex":
-                    if (gfxBrowser.Url.ToString().StartsWith("https://mangadex.org/title/"))
+                    if (gfxBrowser.Url.ToString().StartsWith(MangaDex.MANGADEX_URL + "/title/"))
                         btnAdd.Enabled = true;
                     else
                         btnAdd.Enabled = false;
@@ -87,18 +87,34 @@ namespace MikuReader.wf.Forms
                 case "mangadex":
                     name = url.Split('/')[5];
                     num = url.Split('/')[4];
-                    url = "https://mangadex.org/api/manga/" + num;
+                    url = MangaDex.MANGADEX_URL + "/api/manga/" + num;
 
                     Manga m = new Manga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url);
 
-                    WFClient.dbm.GetMangaDB().Add(m);
-                
-                    foreach (Chapter c in m.GetChapters())
+                    FrmEdit editor = new FrmEdit(m, false);
+                    DialogResult result = editor.ShowDialog();
+
+                    if (result == DialogResult.OK)
                     {
-                        WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                        // cleanup
+                        foreach (Chapter ch in m.GetChapters())
+                        {
+                            string s = ch.GetChapterRoot().ToString();
+                            Directory.Delete(ch.GetChapterRoot().ToString());
+                        }
+
+                        WFClient.dbm.GetMangaDB().Add(m);
+
+                        foreach (Chapter c in m.GetSetPrunedChapters())
+                        {
+                            WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                        }
+                        // Start downloading the first one
+                        WFClient.dlm.DownloadNext();
+                    } else
+                    {
+
                     }
-                    // Start downloading the first one
-                    WFClient.dlm.DownloadNext();
                     break;
                 case "nhentai": 
                     num = url.Split('/')[4];
@@ -114,12 +130,19 @@ namespace MikuReader.wf.Forms
                     DirectoryInfo hDir = FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, "h" + num));
 
                     Hentai h = new Hentai(hDir, hJson.ToString());
-                    WFClient.dbm.GetMangaDB().Add(h);
 
-                    Chapter ch = h.GetChapters()[0];
-                    WFClient.dlm.AddToQueue(new NhentaiDownload(ch));
-                    // Start downloading the first one
-                    WFClient.dlm.DownloadNext();
+                    FrmEdit edit = new FrmEdit(h, false);
+                    DialogResult rezult = edit.ShowDialog();
+
+                    if (rezult == DialogResult.OK)
+                    {
+                        WFClient.dbm.GetMangaDB().Add(h);
+
+                        Chapter ch = h.GetChapters()[0];
+                        WFClient.dlm.AddToQueue(new NhentaiDownload(ch));
+                        // Start downloading the first one
+                        WFClient.dlm.DownloadNext();
+                    } 
                     break;
             }
             MessageBox.Show("Download started! You may close the browser at any time, but please keep MikuReader open until the download has completed.");

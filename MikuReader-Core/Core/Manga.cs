@@ -77,6 +77,7 @@ namespace MikuReader.Core
         /// <param name="mangaUrl"></param>
         private void Create(string mangaUrl)
         {
+            id = mangaUrl;
             string jsonText = MangaDex.GetMangaJSON(mangaUrl);
 
             JObject jobj = JObject.Parse(jsonText);
@@ -96,7 +97,7 @@ namespace MikuReader.Core
                 "1" // TODO: Get latest chapter for language and group
             });
 
-            foreach (JProperty p in jobj["chapter"])
+            /*foreach (JProperty p in jobj["chapter"])
             {
                 JToken value = p.Value;
                 if (value.Type == JTokenType.Object)
@@ -112,9 +113,52 @@ namespace MikuReader.Core
                     }
                 }
 
-            }
+            }*/
 
+            GetSetPrunedChapters();
             Load();
+        }
+
+        public Chapter[] GetSetPrunedChapters()
+        {
+            List<Chapter> result = new List<Chapter>();
+            string jsonText = MangaDex.GetMangaJSON(id);
+            JObject jobj = JObject.Parse(jsonText);
+
+            foreach (JProperty p in jobj["chapter"])
+            {
+                JToken value = p.Value;
+                if (value.Type == JTokenType.Object)
+                {
+                    JObject o = (JObject)value;
+                    string chapNum = (String)o["chapter"];
+                    if (usergroup == "^any-group")
+                    {
+                        if (((string)o["lang_code"]).Equals(userlang))
+                        {
+                            string chapID = ((JProperty)value.Parent).Name;
+                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
+                            chapters.Add(newchapter);
+                            result.Add(newchapter);
+                        }
+                    }
+                    else
+                    {
+                        if (((string)o["lang_code"]).Equals(userlang) && ((string)o["group_name"]).Equals(usergroup))
+                        {
+                            string chapID = ((JProperty)value.Parent).Name;
+                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
+                            chapters.Add(newchapter);
+                            result.Add(newchapter);
+                        }
+                    }
+
+                }
+            }
+            chapters = result;
+            return result.ToArray();
         }
 
         public Chapter[] GetUpdates()
@@ -130,7 +174,7 @@ namespace MikuReader.Core
                 {
                     JObject o = (JObject)value;
                     string chapNum = (String)o["chapter"];
-                    if (((string)o["lang_code"]).Equals(userlang))
+                    if (((string)o["lang_code"]).Equals(userlang) && ((string)o["group_name"]).Equals(usergroup))
                     {
                         // Console.WriteLine(chapNum);
                         string chapID = ((JProperty)value.Parent).Name;
@@ -235,9 +279,9 @@ namespace MikuReader.Core
                 "manga",
                 mangaRoot.Name,
                 name,
-                "gb", // TODO: Custom user languages
-                "^any-group", // TODO: Custom user groups
-                usertitle, // TODO: Custom user title
+                userlang,
+                usergroup,
+                usertitle,
                 chapter, page,
                 lastchapter // TODO: Get latest chapter for language and group
             });
@@ -248,7 +292,6 @@ namespace MikuReader.Core
             this.usertitle = title;
             this.userlang = lang;
             if (group == "{Any}") this.usergroup = "^any-group"; else this.usergroup = group;
-
             Save(currentchapter, currentpage);
         }
 

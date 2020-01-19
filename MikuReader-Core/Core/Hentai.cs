@@ -81,7 +81,7 @@ namespace MikuReader.Core
                 "hentai",
                 id,
                 name,
-                name, // TODO: Custom user title
+                usertitle,
                 "1", "1" // Chapter 1, page 1
             });
             DirectoryInfo chapDir = FileHelper.CreateFolder(hentaiRoot, "1");
@@ -116,7 +116,7 @@ namespace MikuReader.Core
                 "hentai",
                 hentaiRoot.Name,
                 name,
-                usertitle, // TODO: Custom user title
+                usertitle,
                 chapter, page
             });
         }

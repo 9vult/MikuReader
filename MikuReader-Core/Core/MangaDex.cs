@@ -11,6 +11,8 @@ namespace MikuReader.Core
     /// </summary>
     public class MangaDex
     {
+        public static readonly string MANGADEX_URL = "https://mangadex.org";
+
         /// <summary>
         /// Get the JSON string for a Manga
         /// </summary>
@@ -18,7 +20,7 @@ namespace MikuReader.Core
         /// <returns>JSON string</returns>
         public static string GetMangaJSON(string mangaUrl)
         {
-            string apiUrl = "https://mangadex.cc/api/manga/" + GetMangaID(mangaUrl);
+            string apiUrl = MANGADEX_URL + "/api/manga/" + GetMangaID(mangaUrl);
             string json;
             using (var wc = new System.Net.WebClient())
             {
@@ -34,7 +36,7 @@ namespace MikuReader.Core
         /// <returns>JSON string</returns>
         public static string GetChapterJSON(string chapterID)
         {
-            string apiUrl = "https://mangadex.cc/api/chapter/" + chapterID;
+            string apiUrl = MANGADEX_URL + "/api/chapter/" + chapterID;
             string json;
             using (var wc = new System.Net.WebClient())
             {
@@ -50,6 +52,10 @@ namespace MikuReader.Core
         /// <returns>Manga ID</returns>
         public static string GetMangaID(string mangaUrl)
         {
+            if (!mangaUrl.Contains("/"))
+            {
+                return mangaUrl;
+            }
             try
             {
                 return mangaUrl.Split('/')[5];
@@ -61,7 +67,7 @@ namespace MikuReader.Core
 
         public static string GetMangaUrl(string mangaID)
         {
-            return "https://mangadex.cc/title/" + mangaID;
+            return MANGADEX_URL + "/title/" + mangaID;
         }
 
 

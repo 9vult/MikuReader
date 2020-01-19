@@ -38,7 +38,7 @@ namespace MikuReader.Core
         public void StartDownloading()
         {
             File.Create(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID())).Close();
-            string jsonUrl = "https://mangadex.org/api/chapter/" + chapter.GetID();
+            string jsonUrl = MangaDex.MANGADEX_URL + "/api/chapter/" + chapter.GetID();
             string jsonString;
 
             using (var wc = new WebClient())
@@ -62,7 +62,7 @@ namespace MikuReader.Core
             foreach (string file in page_array)
             {
                 if (server == "/data/")
-                    server = "https://mangadex.org/data/";
+                    server = MangaDex.MANGADEX_URL + "/data/";
 
                 string imgUrl = server + hash + "/" + file;
 
