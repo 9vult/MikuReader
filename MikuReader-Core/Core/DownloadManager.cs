@@ -19,6 +19,8 @@ namespace MikuReader.Core
         private double completionPercentage = 0.0;
         private int totalDownloads = 0;
 
+        private string currentDownloadName = "";
+
         public event ProgressUpdatedEventHandler ProgressUpdated;
 
         public DownloadManager()
@@ -52,6 +54,8 @@ namespace MikuReader.Core
             IDownload d = dlQueue.Pop();
             d.DownloadCompleted += new DownloadCompletedEventHandler(DLCompletedCallback);
             d.StartDownloading();
+
+            currentDownloadName = d.GetChapterName();
         }
 
         private void DLCompletedCallback(object sender)
@@ -72,6 +76,15 @@ namespace MikuReader.Core
         public double GetCompletionPercentage()
         {
             return completionPercentage;
+        }
+
+        /// <summary>
+        /// Get the name of the current download
+        /// </summary>
+        /// <returns>The name of the current download</returns>
+        public string GetDownloadName()
+        {
+            return currentDownloadName;
         }
     }
 }

@@ -77,5 +77,9 @@ namespace MikuReader.Core
             return total != 0 ? (int)(((total - clients.Count) / total) * 100) : 0;
         }
 
+        public string GetChapterName()
+        {
+            return chapter.GetChapterRoot().ToString();
+        }
     }
 }

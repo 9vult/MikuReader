@@ -118,9 +118,12 @@ namespace MikuReader.wf.Forms
             Console.WriteLine(percent + " | " + (int)percent);
 
             progressBar1.Value = (int)percent;
+            lblStatus.Text = "Downloading to " + WFClient.dlm.GetDownloadName() + "...";
+
             if (percent == 100)
             {
                 progressBar1.Value = 0;
+                lblStatus.Text = "Ready";
                 RepopulateItems();
             }
         }

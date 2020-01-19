@@ -174,18 +174,37 @@ namespace MikuReader.Core
                 {
                     JObject o = (JObject)value;
                     string chapNum = (String)o["chapter"];
-                    if (((string)o["lang_code"]).Equals(userlang) && ((string)o["group_name"]).Equals(usergroup))
+                    if (usergroup == "^any-group")
                     {
-                        // Console.WriteLine(chapNum);
-                        string chapID = ((JProperty)value.Parent).Name;
-                        if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                        if (((string)o["lang_code"]).Equals(userlang))
                         {
-                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
-                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
-                            chapters.Add(newchapter);
-                            result.Add(newchapter);
+                            // Console.WriteLine(chapNum);
+                            string chapID = ((JProperty)value.Parent).Name;
+                            if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                            {
+                                DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
+                                chapters.Add(newchapter);
+                                result.Add(newchapter);
+                            }
                         }
                     }
+                    else
+                    {
+                        if (((string)o["lang_code"]).Equals(userlang) && ((string)o["group_name"]).Equals(usergroup))
+                        {
+                            // Console.WriteLine(chapNum);
+                            string chapID = ((JProperty)value.Parent).Name;
+                            if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                            {
+                                DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
+                                chapters.Add(newchapter);
+                                result.Add(newchapter);
+                            }
+                        }
+                    }
+                    
                 }
             }
             return result.ToArray();

@@ -54,6 +54,10 @@ namespace MikuReader.Core
         /// <returns>The progress of the current download</returns>
         int GetProgress();
 
-
+        /// <summary>
+        /// Get the name of the chapter being downloaded
+        /// </summary>
+        /// <returns>The name of the chapter</returns>
+        string GetChapterName();
     }
 }
