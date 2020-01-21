@@ -1,27 +1,20 @@
 # MikuReader
 
-MikuReader is an open-source manga downloader, reader, and tracker for MangaDex and nHentai.
+MikuReader is an open-source manga reader, downloader, and tracker for MangaDex and nHentai.
 
 -----
 
-## The Rewrite
+## MikuReader-WF (beta)
+MikuReader for the Windows desktop (WinForms).
 
-MikuReader is currently undergoing a complete rewrite to enhance functionality and bring cross-platform mobile support.  This project is still in the early development phase.  Please submit any bugs or suggestions you have to the Issue tracker!
+## MikuReader-Mobile
+Xamarin mobile frontend.  Still in the beginning stages of development.
 
-#### MikuReader-Core
-
-A backend framework library that provides the basic data structures and API references that the frontend implementations use.
-
-#### MikuReader-WF
-
-MikuReader for the Windows Desktop.
-
-#### MikuReader-Mobile
-
-MikuReader for iOS and Android
+## MikuReader-Core
+Core is the .NET Core backend library used by all frontend implementations of MikuReader.
 
 -----
 
 ## Legacy
 
-The `Legacy` folder is home to the original version of MikuReader.  This version is very unstable and should be avoided. 
+`Legacy` is the original version of MikuReader.  This version is no longer ahead of WF in terms of features, and is highly unstable.
