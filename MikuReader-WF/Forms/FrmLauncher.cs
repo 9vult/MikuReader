@@ -35,7 +35,8 @@ namespace MikuReader.wf.Forms
             if (File.Exists(Path.Combine(FileHelper.APP_ROOT.FullName, "mikureader.txt")))
             {
                 SettingsHelper.Initialize();
-            } else
+            }
+            else
             {
                 SettingsHelper.Create();
                 SettingsHelper.Initialize();
@@ -49,6 +50,106 @@ namespace MikuReader.wf.Forms
                 Updater.Start();
         }
 
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            new FrmSettings().ShowDialog();
+        }
+
+        private void BtnRead_Click(object sender, EventArgs e)
+        {
+            Title selected = GetSelected();
+            if (selected != null)
+            {
+                if (selected.IsDownloading())
+                {
+                    MessageBox.Show("Please wait for this title to finish downloading.");
+                    return;
+                }
+
+                if (SettingsHelper.UseDoubleReader)
+                    new FrmDoublePageReader(selected).Show();
+                else
+                    new FrmSinglePageReader(selected).Show();
+            }
+            else
+                MessageBox.Show("Could not find the specified title");
+
+        }
+
+        private void BtnBrowse_Click(object sender, EventArgs e)
+        {
+            new FrmBrowser().Show();
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            RepopulateItems();
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateMangas();
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            new FrmEdit(GetSelected()).Show();
+        }
+
+        private void ShowAboutBox(object sender, EventArgs e)
+        {
+            new FrmAbout().ShowDialog();
+        }
+
+        /// <summary>
+        /// Get the currently selected Title
+        /// </summary>
+        /// <returns>The currently selected Title</returns>
+        private Title GetSelected()
+        {
+            Title selected = null;
+            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
+            {
+                string selectedText = lstManga.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                foreach (Manga m in WFClient.dbm.GetMangaPopulation())
+                {
+                    if (m.GetUserTitle().StartsWith(name))
+                    {
+                        selected = m;
+                        break;
+                    }
+                }
+            }
+            else // Hentai
+            {
+                string selectedText = lstHentai.SelectedItem.ToString();
+                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
+
+                foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
+                {
+                    if (h.GetUserTitle().StartsWith(name))
+                    {
+                        selected = h;
+                        break;
+                    }
+                }
+            }
+
+            if (selected != null)
+            {
+                return selected;
+            }
+            else
+                MessageBox.Show("Could not find the specified title");
+
+            return null;
+        }
+
+        /// <summary>
+        /// Populate the two listboxes with the Titles from the databases
+        /// </summary>
         private void RepopulateItems()
         {
             lstManga.Items.Clear();
@@ -89,6 +190,9 @@ namespace MikuReader.wf.Forms
                 lstHentai.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Check for and start downloading new chapters (MangaDex only)
+        /// </summary>
         private void UpdateMangas()
         {
             List<Chapter> updates = new List<Chapter>();
@@ -106,12 +210,17 @@ namespace MikuReader.wf.Forms
             {
                 MessageBox.Show("Downloading " + updates.Count + " new chapters...");
                 WFClient.dlm.DownloadNext();
-            } else
+            }
+            else
             {
                 MessageBox.Show("All up to date!");
             }
         }
 
+        /// <summary>
+        /// Updates the progressbar and status label with download information
+        /// </summary>
+        /// <param name="sender"></param>
         private void ProgressUpdatedCallback(object sender)
         {
             double percent = WFClient.dlm.GetCompletionPercentage();
@@ -126,106 +235,6 @@ namespace MikuReader.wf.Forms
                 lblStatus.Text = "Ready";
                 RepopulateItems();
             }
-        }
-
-        private void BtnSettings_Click(object sender, EventArgs e)
-        {
-            new FrmSettings().ShowDialog();
-        }
-
-        private void BtnRead_Click(object sender, EventArgs e)
-        {
-            Title selected = GetSelected();
-
-
-            if (selected != null)
-            {
-                if (selected.IsDownloading())
-                {
-                    MessageBox.Show("Please wait for this title to finish downloading.");
-                    return;
-                }
-
-                if (SettingsHelper.UseDoubleReader)
-                    new FrmDoublePageReader(selected).Show();
-                else
-                    new FrmSinglePageReader(selected).Show();
-            }
-            else
-                MessageBox.Show("Could not find the specified title");
-
-        }
-
-        private void BtnBrowse_Click(object sender, EventArgs e)
-        {
-            new FrmBrowser().Show();
-        }
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
-        {
-            RepopulateItems();
-        }
-
-        private void BtnUpdate_Click(object sender, EventArgs e)
-        {
-            UpdateMangas();
-        }
-
-        private void BtnEdit_Click(object sender, EventArgs e)
-        {
-            new FrmEdit(GetSelected()).Show();
-        }
-
-        /// <summary>
-        /// Get the currently selected Title
-        /// </summary>
-        /// <returns>The currently selected Title</returns>
-        private Title GetSelected()
-        {
-            Title selected = null;
-            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
-            {
-                string selectedText = lstManga.SelectedItem.ToString();
-                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
-
-                foreach (Manga m in WFClient.dbm.GetMangaPopulation())
-                {
-                    if (m.GetUserTitle().StartsWith(name))
-                    {
-                        selected = m;
-                        break;
-                    }
-                }
-            }
-            else // Hentai
-            {
-                string selectedText = lstHentai.SelectedItem.ToString();
-                string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();
-
-                foreach (Hentai h in WFClient.dbm.GetHentaiPopulation())
-                {
-                    if (h.GetUserTitle().StartsWith(name))
-                    {
-                        selected = h;
-                        break;
-                    }
-                }
-            }
-
-
-            if (selected != null)
-            {
-                return selected;
-            }
-            else
-                MessageBox.Show("Could not find the specified title");
-
-            return null;
-        }
-
-        private void ShowAboutBox(object sender, EventArgs e)
-        {
-            new FrmAbout().ShowDialog();
         }
     }
 }

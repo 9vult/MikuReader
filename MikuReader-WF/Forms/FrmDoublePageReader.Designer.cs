@@ -38,10 +38,10 @@
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.btnIncrementOne = new System.Windows.Forms.ToolStripButton();
+            this.btnDecrementOne = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pbLeft = new System.Windows.Forms.PictureBox();
             this.pbRight = new System.Windows.Forms.PictureBox();
-            this.btnDecrementOne = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -126,6 +126,17 @@
             this.btnIncrementOne.ToolTipText = "Go up 1 page to offset the pages by 1";
             this.btnIncrementOne.Click += new System.EventHandler(this.BtnIncrementOne_Click);
             // 
+            // btnDecrementOne
+            // 
+            this.btnDecrementOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDecrementOne.Image = ((System.Drawing.Image)(resources.GetObject("btnDecrementOne.Image")));
+            this.btnDecrementOne.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDecrementOne.Name = "btnDecrementOne";
+            this.btnDecrementOne.Size = new System.Drawing.Size(33, 30);
+            this.btnDecrementOne.Text = "-1";
+            this.btnDecrementOne.ToolTipText = "Go down 1 page to offset the pages by 1";
+            this.btnDecrementOne.Click += new System.EventHandler(this.BtnDecrementOne_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,17 +179,6 @@
             this.pbRight.TabIndex = 0;
             this.pbRight.TabStop = false;
             this.pbRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pb_MouseDown);
-            // 
-            // btnDecrementOne
-            // 
-            this.btnDecrementOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDecrementOne.Image = ((System.Drawing.Image)(resources.GetObject("btnDecrementOne.Image")));
-            this.btnDecrementOne.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDecrementOne.Name = "btnDecrementOne";
-            this.btnDecrementOne.Size = new System.Drawing.Size(33, 30);
-            this.btnDecrementOne.Text = "-1";
-            this.btnDecrementOne.ToolTipText = "Go down 1 page to offset the pages by 1";
-            this.btnDecrementOne.Click += new System.EventHandler(this.BtnDecrementOne_Click);
             // 
             // FrmDoublePageReader
             // 
