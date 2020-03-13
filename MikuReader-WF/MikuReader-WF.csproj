@@ -95,6 +95,12 @@
     <Compile Include="Forms\FrmBrowser.Designer.cs">
       <DependentUpon>FrmBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmChapterSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmChapterSelect.Designer.cs">
+      <DependentUpon>FrmChapterSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmDoublePageReader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmBrowser.resx">
       <DependentUpon>FrmBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmChapterSelect.resx">
+      <DependentUpon>FrmChapterSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmDoublePageReader.resx">
       <DependentUpon>FrmDoublePageReader.cs</DependentUpon>

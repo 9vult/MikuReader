@@ -124,6 +124,7 @@ namespace MikuReader.wf.Forms
 
                     cmboGroup.Enabled = true;
                     cmboLang.Enabled = true;
+                    btnChapSelect.Enabled = true;
                 }
             }
         }
@@ -151,6 +152,20 @@ namespace MikuReader.wf.Forms
                 else
                 {
                     cmboGroup.SelectedItem = "{Any}";
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (title is Manga m)
+            {
+                Chapter[] chapters = m.GetChapters().ToArray();
+                FrmChapterSelect chapForm = new FrmChapterSelect(chapters);
+                var result = chapForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string[] selected = chapForm.ReturnValue;
                 }
             }
         }

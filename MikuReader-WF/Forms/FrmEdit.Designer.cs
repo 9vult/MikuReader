@@ -41,6 +41,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEnable = new System.Windows.Forms.Button();
+            this.btnChapSelect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -144,6 +145,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnChapSelect);
             this.groupBox2.Controls.Add(this.btnEnable);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.cmboGroup);
@@ -165,6 +167,17 @@
             this.btnEnable.Text = "Enable";
             this.btnEnable.UseVisualStyleBackColor = true;
             this.btnEnable.Click += new System.EventHandler(this.BtnEnable_Click);
+            // 
+            // btnChapSelect
+            // 
+            this.btnChapSelect.Enabled = false;
+            this.btnChapSelect.Location = new System.Drawing.Point(491, 97);
+            this.btnChapSelect.Name = "btnChapSelect";
+            this.btnChapSelect.Size = new System.Drawing.Size(131, 41);
+            this.btnChapSelect.TabIndex = 10;
+            this.btnChapSelect.Text = "Select Chapters";
+            this.btnChapSelect.UseVisualStyleBackColor = true;
+            this.btnChapSelect.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmEdit
             // 
@@ -206,5 +219,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnEnable;
+        private System.Windows.Forms.Button btnChapSelect;
     }
 }
