@@ -85,7 +85,7 @@ namespace MikuReader.Core
                 "1", "1" // Chapter 1, page 1
             });
             DirectoryInfo chapDir = FileHelper.CreateFolder(hentaiRoot, "1");
-            chapters.Add(new Chapter(chapDir, id, "1"));
+            chapters.Add(new Chapter(chapDir, id, "1", true));
 
             Load();
         }

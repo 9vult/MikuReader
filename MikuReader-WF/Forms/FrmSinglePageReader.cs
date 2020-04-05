@@ -36,6 +36,7 @@ namespace MikuReader.wf.Forms
         private void PopulateChapters()
         {
             cmboChapter.Items.Clear();
+
             foreach (Chapter chapter in ReaderHelper.SortChapters(title.GetChapters()))
             {
                 cmboChapter.Items.Add(chapter.GetNum());

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,17 @@ namespace MikuReader.wf.Forms
             usertitle = txtTitle.Text;
             userlang = cmboLang.SelectedItem.ToString();
             usergroup = cmboGroup.SelectedItem.ToString();
+
+            if (title is Manga m)
+            {
+                if (m.GetDLChapters() == null)
+                {
+                    m.UpdateDLChapters(new string[] { "-1" });
+                }
+            }
+                
+            else
+
             if (notFirstTime)
                 MessageBox.Show("Changes saved! Refresh to view.");
             this.Close();
@@ -156,16 +168,18 @@ namespace MikuReader.wf.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnChapSelect_Click(object sender, EventArgs e)
         {
             if (title is Manga m)
             {
                 Chapter[] chapters = m.GetChapters().ToArray();
-                FrmChapterSelect chapForm = new FrmChapterSelect(chapters);
+                FrmChapterSelect chapForm;
+                chapForm = new FrmChapterSelect(m.GetSetPrunedChapters(true).ToArray(), m.GetDLChapters());
                 var result = chapForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     string[] selected = chapForm.ReturnValue;
+                    m.UpdateDLChapters(selected);
                 }
             }
         }

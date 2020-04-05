@@ -35,12 +35,20 @@ namespace MikuReader.Core
         /// <param name="chapterRoot">Root directory for this chapter</param>
         /// <param name="id">Chapter ID</param>
         /// <param name="num">Chapter number</param>
-        public Chapter(DirectoryInfo chapterRoot, string id, string num)
+        /// <param name="doFullSetup">Should the chapter go through the entire initialization process</param>
+        public Chapter(DirectoryInfo chapterRoot, string id, string num, bool doFullSetup)
         {
             this.pages = new List<Page>();
             this.chapterRoot = chapterRoot;
 
-            Create(id, num);
+            if (doFullSetup)
+            {
+                Create(id, num);
+            } else
+            {
+                chapterID = id;
+                chapterNum = num;
+            }
         }
 
 

@@ -40,8 +40,8 @@
             this.cmboGroup = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnEnable = new System.Windows.Forms.Button();
             this.btnChapSelect = new System.Windows.Forms.Button();
+            this.btnEnable = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -158,6 +158,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Downloads";
             // 
+            // btnChapSelect
+            // 
+            this.btnChapSelect.Enabled = false;
+            this.btnChapSelect.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnChapSelect.Location = new System.Drawing.Point(452, 97);
+            this.btnChapSelect.Name = "btnChapSelect";
+            this.btnChapSelect.Size = new System.Drawing.Size(170, 41);
+            this.btnChapSelect.TabIndex = 10;
+            this.btnChapSelect.Text = "Select Chapters...";
+            this.btnChapSelect.UseVisualStyleBackColor = true;
+            this.btnChapSelect.Click += new System.EventHandler(this.BtnChapSelect_Click);
+            // 
             // btnEnable
             // 
             this.btnEnable.Location = new System.Drawing.Point(6, 97);
@@ -167,17 +179,6 @@
             this.btnEnable.Text = "Enable";
             this.btnEnable.UseVisualStyleBackColor = true;
             this.btnEnable.Click += new System.EventHandler(this.BtnEnable_Click);
-            // 
-            // btnChapSelect
-            // 
-            this.btnChapSelect.Enabled = false;
-            this.btnChapSelect.Location = new System.Drawing.Point(491, 97);
-            this.btnChapSelect.Name = "btnChapSelect";
-            this.btnChapSelect.Size = new System.Drawing.Size(131, 41);
-            this.btnChapSelect.TabIndex = 10;
-            this.btnChapSelect.Text = "Select Chapters";
-            this.btnChapSelect.UseVisualStyleBackColor = true;
-            this.btnChapSelect.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmEdit
             // 

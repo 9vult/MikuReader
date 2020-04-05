@@ -36,7 +36,7 @@ namespace MikuReader.Core
         {
             this.mangaRoot = location;
             chapters = new List<Chapter>();
-            Load();
+            Load(true);
         }
 
         /// <summary>
@@ -49,12 +49,13 @@ namespace MikuReader.Core
             this.mangaRoot = location;
             chapters = new List<Chapter>();
             Create(mangaUrl);
+            Load(true);
         }
 
         /// <summary>
         /// Loads Manga info from manga.txt
         /// </summary>
-        private void Load()
+        private void Load(bool doChapters)
         {
             string[] info = File.ReadAllLines(FileHelper.GetFilePath(mangaRoot, "manga.txt"));
             if (info.Length < 9) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
@@ -68,7 +69,8 @@ namespace MikuReader.Core
             currentpage = info[7];
             lastchapter = info[8];
 
-            PopulateChapters();
+            if (doChapters)
+                PopulateChapters();
         }
 
         /// <summary>
@@ -115,15 +117,29 @@ namespace MikuReader.Core
 
             }*/
 
-            GetSetPrunedChapters();
-            Load();
+            Load(false);
+            GetSetPrunedChapters(true);
         }
 
-        public Chapter[] GetSetPrunedChapters()
+        public Chapter[] GetSetPrunedChapters(bool overrideDlc)
         {
+            chapters.Clear();
+
             List<Chapter> result = new List<Chapter>();
             string jsonText = MangaDex.GetMangaJSON(id);
             JObject jobj = JObject.Parse(jsonText);
+            
+            String[] dlc = GetDLChapters();
+            bool doFullSetup;
+
+            if (!overrideDlc)
+            {
+                doFullSetup = true;
+            }
+            else // override
+            {
+                doFullSetup = false;
+            }
 
             foreach (JProperty p in jobj["chapter"])
             {
@@ -136,22 +152,30 @@ namespace MikuReader.Core
                     {
                         if (((string)o["lang_code"]).Equals(userlang))
                         {
-                            string chapID = ((JProperty)value.Parent).Name;
-                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
-                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
-                            chapters.Add(newchapter);
-                            result.Add(newchapter);
+                            if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
+                            {
+                                string chapID = ((JProperty)value.Parent).Name;
+                                DirectoryInfo chapDir = null; // Only create folder if doing full setup
+                                if (doFullSetup)
+                                     chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                                chapters.Add(newchapter);
+                                result.Add(newchapter);
+                            }
                         }
                     }
                     else
                     {
                         if (((string)o["lang_code"]).Equals(userlang) && ((string)o["group_name"]).Equals(usergroup))
                         {
-                            string chapID = ((JProperty)value.Parent).Name;
-                            DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
-                            Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
-                            chapters.Add(newchapter);
-                            result.Add(newchapter);
+                            if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
+                            {
+                                string chapID = ((JProperty)value.Parent).Name;
+                                DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                                chapters.Add(newchapter);
+                                result.Add(newchapter);
+                            }
                         }
                     }
 
@@ -167,6 +191,9 @@ namespace MikuReader.Core
             string jsonText = MangaDex.GetMangaJSON(MangaDex.GetMangaUrl(GetID()));
             JObject jobj = JObject.Parse(jsonText);
 
+            String[] dlc = GetDLChapters();
+            bool doFullSetup = true;
+
             foreach (JProperty p in jobj["chapter"])
             {
                 JToken value = p.Value;
@@ -178,14 +205,16 @@ namespace MikuReader.Core
                     {
                         if (((string)o["lang_code"]).Equals(userlang))
                         {
-                            // Console.WriteLine(chapNum);
-                            string chapID = ((JProperty)value.Parent).Name;
-                            if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                            if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
                             {
-                                DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
-                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
-                                chapters.Add(newchapter);
-                                result.Add(newchapter);
+                                string chapID = ((JProperty)value.Parent).Name;
+                                if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                                {
+                                    DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                    Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                                    chapters.Add(newchapter);
+                                    result.Add(newchapter);
+                                }
                             }
                         }
                     }
@@ -197,10 +226,13 @@ namespace MikuReader.Core
                             string chapID = ((JProperty)value.Parent).Name;
                             if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
                             {
-                                DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
-                                Chapter newchapter = new Chapter(chapDir, chapID, chapNum);
-                                chapters.Add(newchapter);
-                                result.Add(newchapter);
+                                if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
+                                {
+                                    DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                                    Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                                    chapters.Add(newchapter);
+                                    result.Add(newchapter);
+                                }
                             }
                         }
                     }
@@ -351,6 +383,25 @@ namespace MikuReader.Core
                 if (f.Name.StartsWith("dl"))
                     return true;
             return false;
+        }
+
+        public void UpdateDLChapters(String[] chapterNums)
+        {
+            using (StreamWriter file = new StreamWriter(Path.Combine(mangaRoot.FullName, "cdl.txt")))
+            {
+                foreach (String num in chapterNums)
+                {
+                    file.WriteLine(num);
+                }
+            }
+        }
+
+        public String[] GetDLChapters()
+        {
+            if (File.Exists(Path.Combine(mangaRoot.FullName, "cdl.txt")))
+                return File.ReadAllLines(Path.Combine(mangaRoot.FullName, "cdl.txt"));
+            else
+                return null;
         }
 
     }

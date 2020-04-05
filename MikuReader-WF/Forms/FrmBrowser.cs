@@ -99,15 +99,31 @@ namespace MikuReader.wf.Forms
                         // cleanup
                         foreach (Chapter ch in m.GetChapters())
                         {
-                            string s = ch.GetChapterRoot().ToString();
-                            Directory.Delete(ch.GetChapterRoot().ToString());
+                            try
+                            {
+                                string s = ch.GetChapterRoot().ToString();
+                                Directory.Delete(ch.GetChapterRoot().ToString());
+                            } catch (Exception) { }
                         }
 
                         WFClient.dbm.GetMangaDB().Add(m);
 
-                        foreach (Chapter c in m.GetSetPrunedChapters())
+                        String[] dls = m.GetDLChapters();
+                        if (dls == null || dls[0].Equals("-1"))
                         {
-                            WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                            foreach (Chapter c in m.GetSetPrunedChapters(false))
+                            {
+                                WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                            }
+                        } else
+                        {   // Only download selected chapters
+                            foreach (Chapter c in m.GetSetPrunedChapters(false))
+                            {
+                                if (dls.Contains(c.GetNum()))
+                                {
+                                    WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                                }
+                            }
                         }
                         // Start downloading the first one
                         WFClient.dlm.DownloadNext();

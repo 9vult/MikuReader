@@ -15,7 +15,7 @@ namespace MikuReader.wf.Forms
     {
         public string[] ReturnValue { get; set; }
 
-        public FrmChapterSelect(Chapter[] chapters)
+        public FrmChapterSelect(Chapter[] chapters, String[] currentDlcs)
         {
             InitializeComponent();
 
@@ -23,6 +23,25 @@ namespace MikuReader.wf.Forms
             {
                 lstChapters.Items.Add(c.GetNum());
             }
+
+            if (currentDlcs == null)    // Select all for download
+            {
+                for (int i = 0; i < lstChapters.Items.Count; i++)
+                {
+                    lstChapters.SetItemChecked(i, true);
+                }
+            }
+            else    // Select only speciified chapters for download
+            {
+                foreach (String num in currentDlcs)
+                {
+                    if (!num.Equals("-1"))
+                    {
+                        int index = lstChapters.Items.IndexOf(num);
+                        lstChapters.SetItemChecked(index, true);
+                    }
+                }
+            } 
         }
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -67,6 +86,12 @@ namespace MikuReader.wf.Forms
 
             ReturnValue = selected.ToArray();
             this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
