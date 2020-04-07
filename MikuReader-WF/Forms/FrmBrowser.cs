@@ -17,10 +17,33 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmBrowser : Form
     {
+        // TODO GeckoFX
+        // GeckoWebBrowser gfxBrowser;
+        WebBrowser gfxBrowser;
+
         public FrmBrowser()
         {
             InitializeComponent();
-            Xpcom.Initialize("Firefox");
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+
+            // TODO : GeckoFX
+            /*
+                gfxBrowser = new GeckoWebBrowser
+                {
+                    Dock = DockStyle.Fill
+                };
+                panel1.Controls.Add(gfxBrowser);
+
+                Xpcom.Initialize("Firefox");
+                gfxBrowser.DocumentCompleted += Browser_DocumentCompleted;
+            */
+            // TODO : Remove (replace with gfx)
+            gfxBrowser = new WebBrowser
+            {
+                Dock = DockStyle.Fill,
+                ScriptErrorsSuppressed = true
+            };
+            panel1.Controls.Add(gfxBrowser);
             gfxBrowser.DocumentCompleted += Browser_DocumentCompleted;
         }
 
@@ -54,7 +77,9 @@ namespace MikuReader.wf.Forms
             try { gfxBrowser.Refresh(); } catch (Exception) { }
         }
 
-        private void Browser_DocumentCompleted(object sender, GeckoDocumentCompletedEventArgs e)
+        // TODO : GeckoFx
+        // private void Browser_DocumentCompleted(object sender, GeckoDocumentCompletedEventArgs e)
+        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (gfxBrowser.Url == null) return;
             

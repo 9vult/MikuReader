@@ -35,7 +35,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmboSource = new System.Windows.Forms.ToolStripComboBox();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.gfxBrowser = new Gecko.GeckoWebBrowser();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,8 @@
             this.btnRefresh,
             this.toolStripSeparator1,
             this.cmboSource,
-            this.btnAdd});
+            this.btnAdd,
+            this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1627, 33);
@@ -105,22 +107,28 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // gfxBrowser
+            // panel1
             // 
-            this.gfxBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gfxBrowser.FrameEventsPropagateToMainWindow = false;
-            this.gfxBrowser.Location = new System.Drawing.Point(0, 33);
-            this.gfxBrowser.Name = "gfxBrowser";
-            this.gfxBrowser.Size = new System.Drawing.Size(1627, 908);
-            this.gfxBrowser.TabIndex = 1;
-            this.gfxBrowser.UseHttpActivityObserver = false;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1627, 908);
+            this.panel1.TabIndex = 1;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.Red;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(737, 30);
+            this.toolStripLabel1.Text = "NOTICE: Due to issues with GeckoFX, the WebBrowser control (IE) is being used tem" +
+    "porarily.";
             // 
             // FrmBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1627, 941);
-            this.Controls.Add(this.gfxBrowser);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(915, 635);
@@ -143,6 +151,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox cmboSource;
         private System.Windows.Forms.ToolStripButton btnAdd;
-        private Gecko.GeckoWebBrowser gfxBrowser;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

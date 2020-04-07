@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,20 +16,47 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmLauncher : Form
     {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+
+        private PrivateFontCollection fonts = new PrivateFontCollection();
+
+        Font bigFont;
+        Font smallFont;
+
         public FrmLauncher()
         {
             InitializeComponent();
+
+            byte[] fontData = Properties.Resources.Franchise_Bold_hinted;
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            uint dummy = 0;
+            fonts.AddMemoryFont(fontPtr, Properties.Resources.Franchise_Bold_hinted.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.Franchise_Bold_hinted.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
+
+            bigFont = new Font(fonts.Families[0], 36.0F);
+            smallFont = new Font(fonts.Families[0], 20.0F);
         }
 
         private void FrmLauncher_Load(object sender, EventArgs e)
         {
             WFClient.logger.Log("Starting");
+
+            // Set embedded fonts
+            label1.Font = bigFont;
+            label2.Font = smallFont;
+
+
             if (Properties.Settings.Default["approot"].ToString() == String.Empty)
             {
                 Properties.Settings.Default["approot"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MikuReader2");
                 Properties.Settings.Default.Save();
             }
             FileHelper.APP_ROOT = FileHelper.CreateDI(Properties.Settings.Default["approot"].ToString());
+            Directory.CreateDirectory(FileHelper.APP_ROOT.FullName);
 
             WFClient.logger.Log("Loading from " + FileHelper.APP_ROOT);
 
