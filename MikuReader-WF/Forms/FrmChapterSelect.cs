@@ -60,7 +60,7 @@ namespace MikuReader.wf.Forms
 
         }
 
-        private void btnAll_Click(object sender, EventArgs e)
+        private void BtnAll_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < lstChapters.Items.Count; i++)
             {
@@ -68,7 +68,7 @@ namespace MikuReader.wf.Forms
             }
         }
 
-        private void btnNone_Click(object sender, EventArgs e)
+        private void BtnNone_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < lstChapters.Items.Count; i++)
             {
@@ -76,22 +76,35 @@ namespace MikuReader.wf.Forms
             }
         }
 
-        private void btnDone_Click(object sender, EventArgs e)
+        private void BtnDone_Click(object sender, EventArgs e)
         {
-            List<string> selected = new List<string>();
-            foreach (object item in lstChapters.CheckedItems)
+            DialogResult result = MessageBox.Show("Altering chapter downloads will disable the Update Chapters feature for this title.\n" +
+                                                    "If you wish to revert this decision in the future, use the Default button.\n\n" +
+                                                    "Proceed?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
             {
-                selected.Add(item.ToString());
-            }
+                List<string> selected = new List<string>();
+                foreach (object item in lstChapters.CheckedItems)
+                {
+                    selected.Add(item.ToString());
+                }
 
-            ReturnValue = selected.ToArray();
-            this.DialogResult = DialogResult.OK;
+                ReturnValue = selected.ToArray();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }            
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnResetToDefault_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            ReturnValue = new string[] { "-1" };
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChapterSelect));
             this.lstChapters = new System.Windows.Forms.CheckedListBox();
             this.btnAll = new System.Windows.Forms.Button();
             this.btnNone = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnResetToDefault = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             this.btnAll.TabIndex = 1;
             this.btnAll.Text = "Select All";
             this.btnAll.UseVisualStyleBackColor = true;
-            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            this.btnAll.Click += new System.EventHandler(this.BtnAll_Click);
             // 
             // btnNone
             // 
@@ -62,7 +64,7 @@
             this.btnNone.TabIndex = 2;
             this.btnNone.Text = "Select None";
             this.btnNone.UseVisualStyleBackColor = true;
-            this.btnNone.Click += new System.EventHandler(this.btnNone_Click);
+            this.btnNone.Click += new System.EventHandler(this.BtnNone_Click);
             // 
             // btnDone
             // 
@@ -72,7 +74,7 @@
             this.btnDone.TabIndex = 3;
             this.btnDone.Text = "Save";
             this.btnDone.UseVisualStyleBackColor = true;
-            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            this.btnDone.Click += new System.EventHandler(this.BtnDone_Click);
             // 
             // btnCancel
             // 
@@ -82,16 +84,25 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // btnResetToDefault
+            // 
+            this.btnResetToDefault.Location = new System.Drawing.Point(348, 130);
+            this.btnResetToDefault.Name = "btnResetToDefault";
+            this.btnResetToDefault.Size = new System.Drawing.Size(129, 32);
+            this.btnResetToDefault.TabIndex = 5;
+            this.btnResetToDefault.Text = "Default";
+            this.btnResetToDefault.UseVisualStyleBackColor = true;
+            this.btnResetToDefault.Click += new System.EventHandler(this.BtnResetToDefault_Click);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(348, 127);
+            this.label1.Location = new System.Drawing.Point(348, 165);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 145);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "NOTE: Pressing \"SAVE\" on this dialog at any point will disable automatic updates " +
-    "for this title!";
+            this.label1.Size = new System.Drawing.Size(129, 107);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Resetting to default will re-enable chapter update for this title.";
             // 
             // FrmChapterSelect
             // 
@@ -99,11 +110,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 378);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnResetToDefault);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnNone);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.lstChapters);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(516, 434);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(516, 434);
             this.Name = "FrmChapterSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select chapters for download";
@@ -119,6 +136,7 @@
         private System.Windows.Forms.Button btnNone;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnResetToDefault;
         private System.Windows.Forms.Label label1;
     }
 }
