@@ -31,11 +31,11 @@ namespace MikuReader.Core
                 switch (Title.GetType(dir))
                 {
                     case TitleType.MANGA:
-                        mangaDB.Add(new Manga(dir));
+                        mangaDB.Add(new MangaDex(dir, MangaType.MANGADEX));
                         break;
 
                     case TitleType.HENTAI:
-                        hentaiDB.Add(new Hentai(dir));
+                        hentaiDB.Add(new Nhentai(dir, HentaiType.NHENTAI));
                         break;
                     case TitleType.NULL:
                     default:

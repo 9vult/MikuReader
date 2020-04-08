@@ -57,7 +57,10 @@ namespace MikuReader.wf.Forms
             switch (cmboSource.SelectedItem.ToString().ToLower())
             {
                 case "mangadex":
-                    gfxBrowser.Navigate(MangaDex.MANGADEX_URL);
+                    gfxBrowser.Navigate(MangaDexHelper.MANGADEX_URL);
+                    break;
+                case "kissmanga":
+                    gfxBrowser.Navigate(KissMangaHelper.KISS_URL);
                     break;
                 case "nhentai":
                     gfxBrowser.Navigate("https://nhentai.net");
@@ -86,7 +89,13 @@ namespace MikuReader.wf.Forms
             switch (cmboSource.SelectedItem.ToString().ToLower())
             {
                 case "mangadex":
-                    if (gfxBrowser.Url.ToString().StartsWith(MangaDex.MANGADEX_URL + "/title/"))
+                    if (gfxBrowser.Url.ToString().StartsWith(MangaDexHelper.MANGADEX_URL + "/title/"))
+                        btnAdd.Enabled = true;
+                    else
+                        btnAdd.Enabled = false;
+                    break;
+                case "kissmanga":
+                    if(gfxBrowser.Url.ToString().StartsWith(KissMangaHelper.KISS_URL + "/manga/"))
                         btnAdd.Enabled = true;
                     else
                         btnAdd.Enabled = false;
@@ -112,9 +121,9 @@ namespace MikuReader.wf.Forms
                 case "mangadex":
                     name = url.Split('/')[5];
                     num = url.Split('/')[4];
-                    url = MangaDex.MANGADEX_URL + "/api/manga/" + num;
+                    url = MangaDexHelper.MANGADEX_URL + "/api/manga/" + num;
 
-                    Manga m = new Manga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url);
+                    Manga m = new MangaDex(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url, MangaType.MANGADEX);
 
                     FrmEdit editor = new FrmEdit(m, false);
                     DialogResult result = editor.ShowDialog();
@@ -157,6 +166,58 @@ namespace MikuReader.wf.Forms
 
                     }
                     break;
+                case "kissmanga":
+                    string kName = KissMangaHelper.GetName(url);
+                    string kHash = KissMangaHelper.GetHash(url);
+
+                    // Manga km = new Manga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url);
+
+                    Manga km = new KissManga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, kHash)), url, MangaType.KISSMANGA);
+
+                    FrmEdit editor1 = new FrmEdit(km, false);
+                    DialogResult result1 = editor1.ShowDialog();
+
+                    if (result1 == DialogResult.OK)
+                    {
+                        // cleanup
+                        foreach (Chapter ch in km.GetChapters())
+                        {
+                            try
+                            {
+                                string s = ch.GetChapterRoot().ToString();
+                                Directory.Delete(ch.GetChapterRoot().ToString());
+                            }
+                            catch (Exception) { }
+                        }
+
+                        WFClient.dbm.GetMangaDB().Add(km);
+
+                        String[] dls = km.GetDLChapters();
+                        if (dls == null || dls[0].Equals("-1"))
+                        {
+                            foreach (Chapter c in km.GetSetPrunedChapters(false))
+                            {
+                                WFClient.dlm.AddToQueue(new KissMangaDownload(c));
+                            }
+                        }
+                        else
+                        {   // Only download selected chapters
+                            foreach (Chapter c in km.GetSetPrunedChapters(false))
+                            {
+                                if (dls.Contains(c.GetNum()))
+                                {
+                                    WFClient.dlm.AddToQueue(new KissMangaDownload(c));
+                                }
+                            }
+                        }
+                        // Start downloading the first one
+                        WFClient.dlm.DownloadNext();
+                    }
+                    else
+                    {
+
+                    }
+                    break;
                 case "nhentai": 
                     num = url.Split('/')[4];
                     name = gfxBrowser.DocumentTitle.Substring(0, gfxBrowser.DocumentTitle.IndexOf("nhentai:") - 3);
@@ -170,7 +231,7 @@ namespace MikuReader.wf.Forms
 
                     DirectoryInfo hDir = FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, "h" + num));
 
-                    Hentai h = new Hentai(hDir, hJson.ToString());
+                    Hentai h = new Nhentai(hDir, hJson.ToString(), HentaiType.NHENTAI);
 
                     FrmEdit edit = new FrmEdit(h, false);
                     DialogResult rezult = edit.ShowDialog();

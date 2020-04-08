@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace MikuReader.Core
 {
-    public class Nhentai
+    public class NhentaiHelper
     {
         /// <summary>
         /// Get the image URL

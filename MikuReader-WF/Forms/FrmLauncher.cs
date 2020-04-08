@@ -264,5 +264,19 @@ namespace MikuReader.wf.Forms
                 RepopulateItems();
             }
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            string mUrl = "https://kissmanga.org/manga/fruits_basket";
+
+            string name = KissMangaHelper.GetName(mUrl);
+            string[] chapters = KissMangaHelper.GetChapterUrls(mUrl);
+
+            string cUrl = chapters[0];
+
+            string[] pages = KissMangaHelper.GetPageUrls(KissMangaHelper.KISS_URL + cUrl);
+            string hash = KissMangaHelper.GetHash(mUrl);
+            bool x = false;
+        }
     }
 }

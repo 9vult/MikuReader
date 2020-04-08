@@ -58,16 +58,16 @@ namespace MikuReader.wf.Forms
 
             if (title is Manga m)
             {
-                if (m.GetUserGroup == "^any-group")
+                if (m.GetUserGroup() == "^any-group")
                 {
                     cmboGroup.Items.Add("{Any}");
                 }
                 else
                 {
-                    cmboGroup.Items.Add(m.GetUserGroup);
+                    cmboGroup.Items.Add(m.GetUserGroup());
                 }
 
-                cmboLang.Items.Add(m.GetUserLang);
+                cmboLang.Items.Add(m.GetUserLang());
             }
             else
             {
@@ -127,7 +127,7 @@ namespace MikuReader.wf.Forms
                     }
                     foreach (string localeOption in cmboLang.Items)
                     {
-                        if (localeOption.StartsWith(m.GetUserLang))
+                        if (localeOption.StartsWith(m.GetUserLang()))
                         {
                             cmboLang.SelectedItem = localeOption;
                             break;
@@ -153,11 +153,11 @@ namespace MikuReader.wf.Forms
                     cmboGroup.Items.Add(group);
                 }
 
-                if (cmboGroup.Items.Contains(m.GetUserGroup))
+                if (cmboGroup.Items.Contains(m.GetUserGroup()))
                 {
-                    cmboGroup.SelectedItem = m.GetUserGroup;
+                    cmboGroup.SelectedItem = m.GetUserGroup();
                 }
-                else if (m.GetUserGroup == "^any-group")
+                else if (m.GetUserGroup() == "^any-group")
                 {
                     cmboGroup.SelectedItem = "{Any}";
                 }

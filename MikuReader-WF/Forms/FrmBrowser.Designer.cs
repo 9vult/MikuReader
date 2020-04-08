@@ -35,8 +35,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmboSource = new System.Windows.Forms.ToolStripComboBox();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,7 @@
             this.cmboSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmboSource.Items.AddRange(new object[] {
             "MangaDex",
+            "KissManga",
             "nHentai"});
             this.cmboSource.Name = "cmboSource";
             this.cmboSource.Size = new System.Drawing.Size(242, 33);
@@ -107,14 +108,6 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 33);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1627, 908);
-            this.panel1.TabIndex = 1;
-            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Red;
@@ -122,6 +115,14 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(737, 30);
             this.toolStripLabel1.Text = "NOTICE: Due to issues with GeckoFX, the WebBrowser control (IE) is being used tem" +
     "porarily.";
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 33);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1627, 908);
+            this.panel1.TabIndex = 1;
             // 
             // FrmBrowser
             // 

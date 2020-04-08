@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace MikuReader.Core
 {
-    public class NhentaiDownload : IDownload
+    public class KissMangaDownload : IDownload
     {
         private Chapter chapter;
         private ArrayList clients;
@@ -18,7 +18,7 @@ namespace MikuReader.Core
 
         public event DownloadCompletedEventHandler DownloadCompleted;
 
-        public NhentaiDownload(Chapter chapter)
+        public KissMangaDownload(Chapter chapter)
         {
             this.chapter = chapter;
             clients = new ArrayList();
@@ -28,19 +28,15 @@ namespace MikuReader.Core
         public void StartDownloading()
         {
             File.Create(Path.Combine(chapter.GetChapterRoot().Parent.FullName, "dl" + chapter.GetID())).Close();
-            List<HtmlDocument> docs = new List<HtmlDocument>();
-            int pageCount = Nhentai.GetPageCount("https://nhentai.net/g/" + chapter.GetID());
 
-            string hUrl = "https://nhentai.net/g/" + chapter.GetID() + "/";
-
-            string baseUrl = Nhentai.GetImageUrl(hUrl + "1");
-            string hash = Nhentai.GetHash(baseUrl);
+            string mName = chapter.GetChapterRoot().Parent.Name;
+            string cUrl = "https://kissmanga.org/chapter/" + mName + "/" + chapter.GetID();
+            string[] pageUrls = KissMangaHelper.GetPageUrls(cUrl);        
             
-            for (int page = 1; page <= pageCount; page++)
+            foreach (string url in pageUrls)
             {
-                string imgUrl = Nhentai.ImgBase() + hash + "/" + page + "." + Nhentai.GetExt(baseUrl);
-                string imgFile = Path.Combine(chapter.GetChapterRoot().FullName, page + "." + Nhentai.GetExt(baseUrl));
-                DownloadAsync(new Uri(imgUrl), imgFile);
+                string imgFile = Path.Combine(chapter.GetChapterRoot().FullName, KissMangaHelper.GetPageFileName(url));
+                DownloadAsync(new Uri(url), imgFile);
             }
         }
 

@@ -9,7 +9,7 @@ namespace MikuReader.Core
     /// <summary>
     /// Helper class for working with MangaDex
     /// </summary>
-    public class MangaDex
+    public class MangaDexHelper
     {
         public static readonly string MANGADEX_URL = "https://mangadex.org";
 
