@@ -28,16 +28,13 @@ namespace MikuReader.Core
         private List<Chapter> chapters;
         private DirectoryInfo mangaRoot;
 
-        private readonly MangaType type;
-
         /// <summary>
         /// Create a new Manga when the files exist
         /// </summary>
         /// <param name="location">Root directory for this Manga</param>
-        public MangaDex(DirectoryInfo location, MangaType type)
+        public MangaDex(DirectoryInfo location)
         {
             this.mangaRoot = location;
-            this.type = type;
             chapters = new List<Chapter>();
             _Load(true);
         }
@@ -47,11 +44,10 @@ namespace MikuReader.Core
         /// </summary>
         /// <param name="location">Root directory for this Manga</param>
         /// <param name="mangaUrl">MangaDex URL</param>
-        public MangaDex(DirectoryInfo location, string mangaUrl, MangaType type)
+        public MangaDex(DirectoryInfo location, string mangaUrl)
         {
             this.mangaRoot = location;
             chapters = new List<Chapter>();
-            this.type = type;
             _Create(mangaUrl);
             _Load(true);
         }
@@ -61,17 +57,17 @@ namespace MikuReader.Core
         /// </summary>
         public override void _Load(bool doChapters)
         {
-            string[] info = File.ReadAllLines(FileHelper.GetFilePath(mangaRoot, "manga.txt"));
-            if (info.Length < 9) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
-            // info[0] is the type identifier
-            id = info[1];
-            name = info[2];
-            userlang = info[3];
-            usergroup = info[4];
-            usertitle = info[5];
-            currentchapter = info[6];
-            currentpage = info[7];
-            lastchapter = info[8];
+            string input = File.ReadAllText(FileHelper.GetFilePath(mangaRoot, "manga.json"));
+            MangaInfo info = JsonConvert.DeserializeObject<MangaInfo>(input);       
+
+            id = info.Id;
+            name = info.Name;
+            userlang = info.LangCode;
+            usergroup = info.Group;
+            usertitle = info.UserName;
+            currentchapter = info.Chapter;
+            currentpage = info.Page;
+            lastchapter = info.Latest;
 
             if (doChapters)
                 _PopulateChapters();
@@ -92,16 +88,23 @@ namespace MikuReader.Core
             string lang_code = "gb";
 
             FileHelper.CreateFolder(FileHelper.APP_ROOT, MangaDexHelper.GetMangaID(mangaUrl));
-            File.WriteAllLines(Path.Combine(mangaRoot.FullName, "manga.txt"), new string[] {
-                "manga",
-                MangaDexHelper.GetMangaID(mangaUrl),
-                title,
-                lang_code, // TODO: Custom user languages
-                "^any-group", // TODO: Custom user groups
-                title, // TODO: Custom user title
-                "1", "1", // Chapter 1, page 1
-                "1" // TODO: Get latest chapter for language and group
-            });            
+
+            MangaInfo info = new MangaInfo()
+            {
+                Type = "manga",
+                Source = "mangadex",
+                Id = MangaDexHelper.GetMangaID(mangaUrl),
+                Name = title,
+                LangCode = lang_code,
+                Group = "^any-group",
+                UserName = title,
+                Chapter = "1",
+                Page = "1",
+                Latest = "1"
+            };
+
+            string output = JsonConvert.SerializeObject(info);
+            File.WriteAllText(Path.Combine(mangaRoot.FullName, "manga.json"), output);            
 
             _Load(false);
             GetSetPrunedChapters(true);
@@ -311,16 +314,22 @@ namespace MikuReader.Core
             this.currentchapter = chapter;
             this.currentpage = page;
 
-            File.WriteAllLines(Path.Combine(mangaRoot.FullName, "manga.txt"), new string[] {
-                "manga",
-                mangaRoot.Name,
-                name,
-                userlang,
-                usergroup,
-                usertitle,
-                chapter, page,
-                lastchapter // TODO: Get latest chapter for language and group
-            });
+            MangaInfo info = new MangaInfo()
+            {
+                Type = "manga",
+                Source = "mangadex",
+                Id = mangaRoot.Name,
+                Name = name,
+                LangCode = userlang,
+                Group = usergroup,
+                UserName = usertitle,
+                Chapter = chapter,
+                Page = page,
+                Latest = lastchapter
+            };
+
+            string output = JsonConvert.SerializeObject(info);
+            File.WriteAllText(Path.Combine(mangaRoot.FullName, "manga.json"), output);
         }
 
         public override void UpdateProperties(string title, string lang, string group)

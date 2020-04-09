@@ -31,12 +31,32 @@ namespace MikuReader.Core
                 switch (Title.GetType(dir))
                 {
                     case TitleType.MANGA:
-                        mangaDB.Add(new MangaDex(dir, MangaType.MANGADEX));
+                        switch (Manga.GetSource(dir))
+                        {
+                            case MangaType.MANGADEX:
+                                mangaDB.Add(new MangaDex(dir));
+                                break;
+                            case MangaType.KISSMANGA:
+                                mangaDB.Add(new KissManga(dir));
+                                break;
+                            case MangaType.NULL:
+                            default:
+                                break;
+                        }
                         break;
 
                     case TitleType.HENTAI:
-                        hentaiDB.Add(new Nhentai(dir, HentaiType.NHENTAI));
+                        switch (Hentai.GetSource(dir))
+                        {
+                            case HentaiType.NHENTAI:
+                                hentaiDB.Add(new Nhentai(dir));
+                                break;
+                            case HentaiType.NULL:
+                            default:
+                                break;
+                        }
                         break;
+
                     case TitleType.NULL:
                     default:
                         break;

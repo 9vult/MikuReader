@@ -51,5 +51,25 @@ namespace MikuReader.Core
         public abstract override string GetID();
 
         public abstract override bool IsDownloading();
+
+        public static HentaiType GetSource(DirectoryInfo dir)
+        {
+            try
+            {
+                string input = File.ReadAllText(FileHelper.GetFilePath(dir, "manga.json"));
+                MangaInfo info = JsonConvert.DeserializeObject<MangaInfo>(input);
+                switch (info.Source)
+                {
+                    case "nhentai":
+                        return HentaiType.NHENTAI;
+                    default:
+                        return HentaiType.NULL;
+                }
+            }
+            catch (Exception)
+            {
+                return HentaiType.NULL;
+            }
+        }
     }
 }

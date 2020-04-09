@@ -80,5 +80,27 @@ namespace MikuReader.Core
 
         public abstract String[] GetDLChapters();
 
+        public static MangaType GetSource(DirectoryInfo dir)
+        {
+            try
+            {
+                string input = File.ReadAllText(FileHelper.GetFilePath(dir, "manga.json"));
+                MangaInfo info = JsonConvert.DeserializeObject<MangaInfo>(input);
+                switch (info.Source)
+                {
+                    case "mangadex":
+                        return MangaType.MANGADEX;
+                    case "kissmanga":
+                        return MangaType.KISSMANGA;
+                    default:
+                        return MangaType.NULL;
+                }
+            }
+            catch (Exception)
+            {
+                return MangaType.NULL;
+            }
+        }
+
     }
 }

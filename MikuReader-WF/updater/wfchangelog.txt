@@ -1,1 +1,2 @@
-﻿
+﻿Minor update.
+Manual uninstall of previous version required :/

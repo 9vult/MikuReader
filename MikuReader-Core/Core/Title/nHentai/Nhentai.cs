@@ -24,17 +24,14 @@ namespace MikuReader.Core
 
         private List<Chapter> chapters;
         private DirectoryInfo hentaiRoot;
-
-        private HentaiType type;
-
+        
         /// <summary>
         /// Create a new Hentai when the files exist
         /// </summary>
         /// <param name="location">Root directory for this Hentai</param>
-        public Nhentai(DirectoryInfo location, HentaiType type)
+        public Nhentai(DirectoryInfo location)
         {
             this.hentaiRoot = location;
-            this.type = type;
             chapters = new List<Chapter>();
             _Load();
         }
@@ -43,9 +40,8 @@ namespace MikuReader.Core
         /// Create a new manga and its files
         /// </summary>
         /// <param name="jsonText">JSON Text for this Hentai</param>
-        public Nhentai(DirectoryInfo location, string jsonText, HentaiType type)
+        public Nhentai(DirectoryInfo location, string jsonText)
         {
-            this.type = type;
             JObject jobj = JObject.Parse(jsonText);
 
             this.hentaiRoot = location;
@@ -62,14 +58,13 @@ namespace MikuReader.Core
         /// </summary>
         public override void _Load()
         {
-            string[] info = File.ReadAllLines(FileHelper.GetFilePath(hentaiRoot, "manga.txt"));
-            if (info.Length < 5) { throw new FileLoadException("'manga.txt' did not contain all required fields!"); }
-            // info[0] is the type identifier
-            id = info[1];
-            name = info[2];
-            usertitle = info[3];
-            // info[4] is the chapter (always 1)
-            currentpage = info[5];
+            string input = File.ReadAllText(FileHelper.GetFilePath(hentaiRoot, "manga.json"));
+            MangaInfo info = JsonConvert.DeserializeObject<MangaInfo>(input);
+
+            id = info.Id;
+            name = info.Name;
+            usertitle = info.UserName;
+            currentpage = info.Page;
 
             _PopulateChapters();
         }
@@ -81,13 +76,21 @@ namespace MikuReader.Core
         public override void _Create(string mangaUrl)
         {
             FileHelper.CreateFolder(FileHelper.APP_ROOT, "h" + id);
-            File.WriteAllLines(Path.Combine(hentaiRoot.FullName, "manga.txt"), new string[] {
-                "hentai",
-                id,
-                name,
-                usertitle,
-                "1", "1" // Chapter 1, page 1
-            });
+
+            MangaInfo info = new MangaInfo()
+            {
+                Type = "hentai",
+                Source = "nhentai",
+                Id = id,
+                Name = name,
+                UserName = usertitle,
+                Chapter = "1",
+                Page = "1"
+            };
+
+            string output = JsonConvert.SerializeObject(info);            
+            File.WriteAllText(Path.Combine(hentaiRoot.FullName, "manga.json"), output);
+
             DirectoryInfo chapDir = FileHelper.CreateFolder(hentaiRoot, "1");
             chapters.Add(new Chapter(chapDir, id, "1", true));
 
@@ -116,13 +119,19 @@ namespace MikuReader.Core
             this.currentchapter = chapter;
             this.currentpage = page;
 
-            File.WriteAllLines(Path.Combine(hentaiRoot.FullName, "manga.txt"), new string[] {
-                "hentai",
-                hentaiRoot.Name,
-                name,
-                usertitle,
-                chapter, page
-            });
+            MangaInfo info = new MangaInfo()
+            {
+                Type = "hentai",
+                Source = "nhentai",
+                Id = hentaiRoot.Name,
+                Name = name,
+                UserName = usertitle,
+                Chapter = chapter,
+                Page = page
+            };
+
+            string output = JsonConvert.SerializeObject(info);
+            File.WriteAllText(Path.Combine(hentaiRoot.FullName, "manga.json"), output);
         }
 
         public override void UpdateProperties(string title, string lang, string group)

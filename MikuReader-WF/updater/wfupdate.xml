@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <item>
-  <version>1.0.0.0</version>
-  <url>https://raw.githubusercontent.com/ninevult/MikuReader/master/MikuReader-WF/updater/wfupdate.xml</url>
+  <version>1.0.0.3</version>
+  <url>https://github.com/ninevult/MikuReader/releases/download/v2.0b3.0/MikuReaderWFInstaller.msi</url>
   <changelog>https://raw.githubusercontent.com/ninevult/MikuReader/master/MikuReader-WF/updater/wfchangelog.txt</changelog>
   <mandatory>false</mandatory>
 </item>

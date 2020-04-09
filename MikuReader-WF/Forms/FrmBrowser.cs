@@ -123,7 +123,7 @@ namespace MikuReader.wf.Forms
                     num = url.Split('/')[4];
                     url = MangaDexHelper.MANGADEX_URL + "/api/manga/" + num;
 
-                    Manga m = new MangaDex(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url, MangaType.MANGADEX);
+                    Manga m = new MangaDex(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url);
 
                     FrmEdit editor = new FrmEdit(m, false);
                     DialogResult result = editor.ShowDialog();
@@ -167,12 +167,17 @@ namespace MikuReader.wf.Forms
                     }
                     break;
                 case "kissmanga":
+
+                    MessageBox.Show("Sorry, can't do this yet! ;(\n\n(ignore the download started box)");
+                    break;
+                    // TODO
+
                     string kName = KissMangaHelper.GetName(url);
                     string kHash = KissMangaHelper.GetHash(url);
 
                     // Manga km = new Manga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, num)), url);
 
-                    Manga km = new KissManga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, kHash)), url, MangaType.KISSMANGA);
+                    Manga km = new KissManga(FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, kHash)), url);
 
                     FrmEdit editor1 = new FrmEdit(km, false);
                     DialogResult result1 = editor1.ShowDialog();
@@ -231,7 +236,7 @@ namespace MikuReader.wf.Forms
 
                     DirectoryInfo hDir = FileHelper.CreateDI(Path.Combine(FileHelper.APP_ROOT.FullName, "h" + num));
 
-                    Hentai h = new Nhentai(hDir, hJson.ToString(), HentaiType.NHENTAI);
+                    Hentai h = new Nhentai(hDir, hJson.ToString());
 
                     FrmEdit edit = new FrmEdit(h, false);
                     DialogResult rezult = edit.ShowDialog();

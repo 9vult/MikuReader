@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -85,7 +86,9 @@ namespace MikuReader.Core
         {
             try
             {
-                switch (File.ReadAllLines(FileHelper.GetFilePath(dir, "manga.txt"))[0])
+                string input = File.ReadAllText(FileHelper.GetFilePath(dir, "manga.json"));
+                MangaInfo info = JsonConvert.DeserializeObject<MangaInfo>(input);
+                switch (info.Type)
                 {
                     case "manga":
                         return TitleType.MANGA;

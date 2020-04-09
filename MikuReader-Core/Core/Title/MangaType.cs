@@ -6,6 +6,6 @@ namespace MikuReader.Core
 {
     public enum MangaType
     {
-        MANGADEX, KISSMANGA
+        MANGADEX, KISSMANGA, NULL
     }
 }

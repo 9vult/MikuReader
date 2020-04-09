@@ -6,6 +6,6 @@ namespace MikuReader.Core
 {
     public enum HentaiType
     {
-        NHENTAI
+        NHENTAI, NULL
     }
 }
