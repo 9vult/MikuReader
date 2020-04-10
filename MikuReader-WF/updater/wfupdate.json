@@ -1,0 +1,7 @@
+﻿{
+  "update_string": "2.0 Beta 4",
+  "update_major": "2.0",
+  "update_minor": "4.0",
+  "download_url": "https://github.com/ninevult/MikuReader/releases/download/v2.0b3.0/MikuReaderWFInstaller.msi",
+  "changelog": "Testing the new updater"
+}
