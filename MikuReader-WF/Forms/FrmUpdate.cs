@@ -47,7 +47,7 @@ namespace MikuReader.wf.Forms
             else // Download Update
             {
                 System.Diagnostics.Process.Start(info.Download_url);
-                this.Close();
+                Application.Exit();
             }
         }
     }

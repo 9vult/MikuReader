@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUpdate));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblCurVer = new System.Windows.Forms.Label();
             this.lblNewVer = new System.Windows.Forms.Label();
+            this.lblCurVer = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtChangelog = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rbUpdate = new System.Windows.Forms.RadioButton();
-            this.rbWait = new System.Windows.Forms.RadioButton();
             this.btnContinue = new System.Windows.Forms.Button();
+            this.rbWait = new System.Windows.Forms.RadioButton();
+            this.rbUpdate = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,16 +65,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
             // 
-            // lblCurVer
-            // 
-            this.lblCurVer.AutoSize = true;
-            this.lblCurVer.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurVer.Location = new System.Drawing.Point(6, 22);
-            this.lblCurVer.Name = "lblCurVer";
-            this.lblCurVer.Size = new System.Drawing.Size(151, 29);
-            this.lblCurVer.TabIndex = 0;
-            this.lblCurVer.Text = "Current Version";
-            // 
             // lblNewVer
             // 
             this.lblNewVer.AutoSize = true;
@@ -84,6 +74,16 @@
             this.lblNewVer.Size = new System.Drawing.Size(97, 29);
             this.lblNewVer.TabIndex = 1;
             this.lblNewVer.Text = "Update to";
+            // 
+            // lblCurVer
+            // 
+            this.lblCurVer.AutoSize = true;
+            this.lblCurVer.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurVer.Location = new System.Drawing.Point(6, 22);
+            this.lblCurVer.Name = "lblCurVer";
+            this.lblCurVer.Size = new System.Drawing.Size(151, 29);
+            this.lblCurVer.TabIndex = 0;
+            this.lblCurVer.Text = "Current Version";
             // 
             // groupBox2
             // 
@@ -117,18 +117,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actions";
             // 
-            // rbUpdate
+            // btnContinue
             // 
-            this.rbUpdate.AutoSize = true;
-            this.rbUpdate.Checked = true;
-            this.rbUpdate.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbUpdate.Location = new System.Drawing.Point(6, 25);
-            this.rbUpdate.Name = "rbUpdate";
-            this.rbUpdate.Size = new System.Drawing.Size(244, 33);
-            this.rbUpdate.TabIndex = 0;
-            this.rbUpdate.TabStop = true;
-            this.rbUpdate.Text = "Download Update Now!";
-            this.rbUpdate.UseVisualStyleBackColor = true;
+            this.btnContinue.Location = new System.Drawing.Point(395, 25);
+            this.btnContinue.Name = "btnContinue";
+            this.btnContinue.Size = new System.Drawing.Size(126, 69);
+            this.btnContinue.TabIndex = 2;
+            this.btnContinue.Text = "Continue";
+            this.btnContinue.UseVisualStyleBackColor = true;
+            this.btnContinue.Click += new System.EventHandler(this.BtnContinue_Click);
             // 
             // rbWait
             // 
@@ -141,15 +138,18 @@
             this.rbWait.Text = "I Can Wait...";
             this.rbWait.UseVisualStyleBackColor = true;
             // 
-            // btnContinue
+            // rbUpdate
             // 
-            this.btnContinue.Location = new System.Drawing.Point(395, 25);
-            this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(126, 69);
-            this.btnContinue.TabIndex = 2;
-            this.btnContinue.Text = "Continue";
-            this.btnContinue.UseVisualStyleBackColor = true;
-            this.btnContinue.Click += new System.EventHandler(this.BtnContinue_Click);
+            this.rbUpdate.AutoSize = true;
+            this.rbUpdate.Checked = true;
+            this.rbUpdate.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbUpdate.Location = new System.Drawing.Point(6, 25);
+            this.rbUpdate.Name = "rbUpdate";
+            this.rbUpdate.Size = new System.Drawing.Size(244, 33);
+            this.rbUpdate.TabIndex = 0;
+            this.rbUpdate.TabStop = true;
+            this.rbUpdate.Text = "Download Update Now!";
+            this.rbUpdate.UseVisualStyleBackColor = true;
             // 
             // FrmUpdate
             // 

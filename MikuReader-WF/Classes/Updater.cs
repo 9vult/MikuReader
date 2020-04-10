@@ -27,7 +27,7 @@ namespace MikuReader.wf.Classes
             if (float.Parse(info.Update_major) > float.Parse(WFClient.CLIENT_MAJOR)
                 || float.Parse(info.Update_minor) > float.Parse(WFClient.CLIENT_MINOR))
             {
-                new FrmUpdate(info).Show();
+                new FrmUpdate(info).ShowDialog();
             }
 
             // AutoUpdater.Start("https://raw.githubusercontent.com/ninevult/MikuReader/master/MikuReader-WF/updater/wfupdate.xml");
