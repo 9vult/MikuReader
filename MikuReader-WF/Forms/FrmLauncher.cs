@@ -11,6 +11,7 @@ using System.Text;
 using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MikuReader.wf.Classes.Region;
 
 namespace MikuReader.wf.Forms
 {
@@ -24,6 +25,8 @@ namespace MikuReader.wf.Forms
 
         Font bigFont;
         Font smallFont;
+
+        Launcher ll; // ll for LauncherLanguage
 
         public FrmLauncher()
         {
@@ -39,6 +42,17 @@ namespace MikuReader.wf.Forms
 
             bigFont = new Font(fonts.Families[0], 36.0F);
             smallFont = new Font(fonts.Families[0], 20.0F);
+
+            // language setting
+            ll = WFClient.lh.CurrentLanguage.Launcher;
+            tabpageManga.Text = ll.Tab_manga;
+            tabpageHentai.Text = ll.Tab_hentai;
+            btnRefresh.Text = ll.Btn_refresh;
+            btnEdit.Text = ll.Btn_edit;
+            BtnUpdate.Text = ll.Btn_update;
+            btnBrowse.Text = ll.Btn_browse;
+            btnRead.Text = ll.Btn_read;
+            lblStatus.Text = ll.Lbl_ready;
         }
 
         private void FrmLauncher_Load(object sender, EventArgs e)
@@ -90,7 +104,7 @@ namespace MikuReader.wf.Forms
             {
                 if (selected.IsDownloading())
                 {
-                    MessageBox.Show("Please wait for this title to finish downloading.");
+                    MessageBox.Show(ll.Msg_dlwait);
                     return;
                 }
 
@@ -100,7 +114,7 @@ namespace MikuReader.wf.Forms
                     new FrmSinglePageReader(selected).Show();
             }
             else
-                MessageBox.Show("Could not find the specified title");
+                MessageBox.Show(ll.Msg_notfound);
 
         }
 
@@ -170,7 +184,7 @@ namespace MikuReader.wf.Forms
                 return selected;
             }
             else
-                MessageBox.Show("Could not find the specified title");
+                MessageBox.Show(ll.Msg_notfound);
 
             return null;
         }
@@ -244,17 +258,17 @@ namespace MikuReader.wf.Forms
                     }
                 } else
                 {
-                    MessageBox.Show("An error occured while updating manga: Invalid manga type");
+                    MessageBox.Show(ll.Msg_invalid);
                 }
             }
             if (updates.Count > 0)
             {
-                MessageBox.Show("Downloading " + updates.Count + " new chapters...");
+                MessageBox.Show(ll.Msg_downloading1 + updates.Count + ll.Msg_downloading2);
                 WFClient.dlm.DownloadNext();
             }
             else
             {
-                MessageBox.Show("All up to date!");
+                MessageBox.Show(ll.Msg_uptodate);
             }
         }
 
@@ -268,12 +282,12 @@ namespace MikuReader.wf.Forms
             Console.WriteLine(percent + " | " + (int)percent);
 
             progressBar1.Value = (int)percent;
-            lblStatus.Text = "Downloading to " + WFClient.dlm.GetDownloadName() + "...";
+            lblStatus.Text = ll.Lbl_downloading + WFClient.dlm.GetDownloadName() + "...";
 
             if (percent == 100)
             {
                 progressBar1.Value = 0;
-                lblStatus.Text = "Ready";
+                lblStatus.Text = ll.Lbl_ready;
                 RepopulateItems();
             }
         }

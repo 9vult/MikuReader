@@ -63,9 +63,29 @@ namespace MikuReader.wf.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] eng {
+            get {
+                object obj = ResourceManager.GetObject("eng", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Franchise_Bold_hinted {
             get {
                 object obj = ResourceManager.GetObject("Franchise_Bold_hinted", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] jpn {
+            get {
+                object obj = ResourceManager.GetObject("jpn", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -97,6 +117,16 @@ namespace MikuReader.wf.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] spa {
+            get {
+                object obj = ResourceManager.GetObject("spa", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

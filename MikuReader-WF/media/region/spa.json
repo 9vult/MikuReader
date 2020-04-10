@@ -1,0 +1,22 @@
+﻿{
+  "code": "spa",
+  "name": "Español",
+  "author": "9volt",
+  "launcher": {
+    "tab_manga": "Manga",
+    "tab_hentai": "Hentai",
+    "btn_refresh": "Actualizar",
+    "btn_edit": "Editar",
+    "btn_update": "Poner al día",
+    "btn_browse": "Ojear",
+    "btn_read": "Leer",
+    "lbl_ready": "Estar lista",
+    "lbl_downloading": "Descargando a ",
+    "msg_dlwait": "Espere a que este título termine de descargarse.",
+    "msg_notfound": "No se pudo encontrar el título especificado",
+    "msg_invalid": "Se produjo un error al actualizar el manga: Tipo de manga no válido",
+    "msg_downloading1": "Descargando ",
+    "msg_downloading2": " nuevos capítulos...",
+    "msg_uptodate": "¡Todo actualizado!"
+  }
+}

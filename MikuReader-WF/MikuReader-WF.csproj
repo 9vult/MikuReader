@@ -81,6 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Region\Language.cs" />
+    <Compile Include="Classes\Region\LanguageHelper.cs" />
+    <Compile Include="Classes\Region\Launcher.cs" />
     <Compile Include="Classes\SettingsHelper.cs" />
     <Compile Include="Classes\UpdateInfo.cs" />
     <Compile Include="Classes\Updater.cs" />
@@ -181,6 +184,9 @@
     </Compile>
     <None Include="Firefox\omni.ja" />
     <EmbeddedResource Include="media\files\Franchise-Bold-hinted.ttf" />
+    <EmbeddedResource Include="media\region\eng.json" />
+    <EmbeddedResource Include="media\region\spa.json" />
+    <EmbeddedResource Include="media\region\jpn.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

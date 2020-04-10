@@ -37,17 +37,17 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabpageManga = new System.Windows.Forms.TabPage();
             this.lstManga = new System.Windows.Forms.ListBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabpageHentai = new System.Windows.Forms.TabPage();
             this.lstHentai = new System.Windows.Forms.ListBox();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabpageManga.SuspendLayout();
+            this.tabpageHentai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,24 +122,24 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabpageManga);
+            this.tabControl1.Controls.Add(this.tabpageHentai);
             this.tabControl1.Location = new System.Drawing.Point(280, 109);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(482, 311);
             this.tabControl1.TabIndex = 6;
             // 
-            // tabPage1
+            // tabpageManga
             // 
-            this.tabPage1.Controls.Add(this.lstManga);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(474, 278);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "MangaDex";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabpageManga.Controls.Add(this.lstManga);
+            this.tabpageManga.Location = new System.Drawing.Point(4, 29);
+            this.tabpageManga.Name = "tabpageManga";
+            this.tabpageManga.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpageManga.Size = new System.Drawing.Size(474, 278);
+            this.tabpageManga.TabIndex = 0;
+            this.tabpageManga.Text = "Manga";
+            this.tabpageManga.UseVisualStyleBackColor = true;
             // 
             // lstManga
             // 
@@ -152,16 +152,16 @@
             this.lstManga.Size = new System.Drawing.Size(468, 272);
             this.lstManga.TabIndex = 0;
             // 
-            // tabPage2
+            // tabpageHentai
             // 
-            this.tabPage2.Controls.Add(this.lstHentai);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(474, 278);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "nHentai";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabpageHentai.Controls.Add(this.lstHentai);
+            this.tabpageHentai.Location = new System.Drawing.Point(4, 29);
+            this.tabpageHentai.Name = "tabpageHentai";
+            this.tabpageHentai.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpageHentai.Size = new System.Drawing.Size(474, 278);
+            this.tabpageHentai.TabIndex = 1;
+            this.tabpageHentai.Text = "Hentai";
+            this.tabpageHentai.UseVisualStyleBackColor = true;
             // 
             // lstHentai
             // 
@@ -173,6 +173,25 @@
             this.lstHentai.Name = "lstHentai";
             this.lstHentai.Size = new System.Drawing.Size(468, 272);
             this.lstHentai.TabIndex = 0;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(477, 428);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(142, 38);
+            this.btnEdit.TabIndex = 7;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(12, 548);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(55, 20);
+            this.lblStatus.TabIndex = 8;
+            this.lblStatus.Text = "Ready";
             // 
             // btnSettings
             // 
@@ -194,25 +213,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(477, 428);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(142, 38);
-            this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(12, 548);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(55, 20);
-            this.lblStatus.TabIndex = 8;
-            this.lblStatus.Text = "Ready";
             // 
             // FrmLauncher
             // 
@@ -240,8 +240,8 @@
             this.Text = "MikuReader/2";
             this.Load += new System.EventHandler(this.FrmLauncher_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabpageManga.ResumeLayout(false);
+            this.tabpageHentai.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,8 +260,8 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabpageManga;
+        private System.Windows.Forms.TabPage tabpageHentai;
         private System.Windows.Forms.ListBox lstManga;
         private System.Windows.Forms.ListBox lstHentai;
         private System.Windows.Forms.Button btnEdit;

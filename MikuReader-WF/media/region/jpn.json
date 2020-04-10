@@ -1,0 +1,22 @@
+﻿{
+  "code": "jpn",
+  "name": "日本語",
+  "author": "9volt",
+  "launcher": {
+    "tab_manga": "マンガ",
+    "tab_hentai": "ヘンタイ",
+    "btn_refresh": "リフレッシュ",
+    "btn_edit": "編集",
+    "btn_update": "更新",
+    "btn_browse": "閲覧",
+    "btn_read": "読む",
+    "lbl_ready": "オーケー",
+    "lbl_downloading": "ダウンロード ",
+    "msg_dlwait": "このタイトルのダウンロードが完了するまでお待ちください。",
+    "msg_notfound": "指定されたタイトルが見つかりませんでした。",
+    "msg_invalid": "マンガの更新中にエラーが発生しました：無効なマンガの種類",
+    "msg_downloading1": "",
+    "msg_downloading2": "の新しい章をダウンロード",
+    "msg_uptodate": "すべて最新です！"
+  }
+}

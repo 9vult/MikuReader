@@ -1,0 +1,22 @@
+﻿{
+    "code": "eng",
+    "name": "English (US)",
+    "author": "9volt",
+  "launcher": {
+    "tab_manga": "Manga",
+    "tab_hentai": "Hentai",
+    "btn_refresh": "Refresh",
+    "btn_edit": "Edit",
+    "btn_update": "Update",
+    "btn_browse": "Browse",
+    "btn_read": "Read",
+    "lbl_ready": "Ready",
+    "lbl_downloading": "Downloading to ",
+    "msg_dlwait": "Please wait for this title to finish downloading.",
+    "msg_notfound": "Could not find the specified title",
+    "msg_invalid": "An error occurred while updating manga: Invalid manga type",
+    "msg_downloading1": "Downloading ",
+    "msg_downloading2": " new chapters...",
+    "msg_uptodate": "All up to date!"
+  }
+}
