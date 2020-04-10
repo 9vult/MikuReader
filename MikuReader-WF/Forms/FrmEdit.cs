@@ -117,7 +117,7 @@ namespace MikuReader.wf.Forms
             {
                 btnEnable.Enabled = false;
 
-                if (title is Manga m)
+                if (title is Manga m && m is MangaDex)
                 {
                     cmboLang.Items.Clear();
 
@@ -136,14 +136,15 @@ namespace MikuReader.wf.Forms
 
                     cmboGroup.Enabled = true;
                     cmboLang.Enabled = true;
-                    btnChapSelect.Enabled = true;
                 }
+                if (title is Manga)
+                    btnChapSelect.Enabled = true; // should allow chapter download for any manga
             }
         }
 
         private void CmboLang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (title is Manga m)
+            if (title is Manga m && m is MangaDex)
             {
                 cmboGroup.Items.Clear();
                 cmboGroup.Items.Add("{Any}");

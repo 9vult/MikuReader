@@ -168,8 +168,8 @@ namespace MikuReader.wf.Forms
                     break;
                 case "kissmanga":
 
-                    MessageBox.Show("Sorry, can't do this yet! ;(\n\n(ignore the download started box)");
-                    break;
+                    // MessageBox.Show("Sorry, can't do this yet! ;(\n\n(ignore the download started box)");
+                    // break;
                     // TODO
 
                     string kName = KissMangaHelper.GetName(url);

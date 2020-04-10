@@ -228,11 +228,24 @@ namespace MikuReader.wf.Forms
             {
                 Chapter[] u = m.GetUpdates();
                 updates.AddRange(u);
-            }
 
-            foreach (Chapter c in updates)
-            {
-                WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                if (m is MangaDex)
+                {
+                    foreach (Chapter c in u)
+                    {
+                        WFClient.dlm.AddToQueue(new MangaDexDownload(c));
+                    }
+                }
+                else if (m is KissManga)
+                {
+                    foreach (Chapter c in u)
+                    {
+                        WFClient.dlm.AddToQueue(new KissMangaDownload(c));
+                    }
+                } else
+                {
+                    MessageBox.Show("An error occured while updating manga: Invalid manga type");
+                }
             }
             if (updates.Count > 0)
             {

@@ -112,7 +112,33 @@ namespace MikuReader.Core
             
             List<Chapter> result = new List<Chapter>();
 
+            String[] dlc = GetDLChapters();
+            bool doFullSetup;
 
+            if (!overrideDlc)
+            {
+                doFullSetup = true;
+            }
+            else // override
+            {
+                doFullSetup = false;
+            }
+
+            foreach (string chapterUrl in KissMangaHelper.GetChapterUrls(KissMangaHelper.KISS_URL + "/manga/" + mangaRoot.Name))
+            {
+                string[] urlSplits = chapterUrl.Split('/');
+                string chapID = urlSplits[urlSplits.Length - 1];
+                string chapNum = chapID.Substring(8); // remove "chapter_"
+                if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
+                {                    
+                    DirectoryInfo chapDir = null; // Only create folder if doing full setup
+                    if (doFullSetup)
+                        chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                    Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                    chapters.Add(newchapter);
+                    result.Add(newchapter);
+                }
+            }
 
             chapters = result;
             return result.ToArray();
@@ -121,10 +147,26 @@ namespace MikuReader.Core
         public override Chapter[] GetUpdates()
         {
             List<Chapter> result = new List<Chapter>();
-            string jsonText = MangaDexHelper.GetMangaJSON(MangaDexHelper.GetMangaUrl(GetID()));
-            JObject jobj = JObject.Parse(jsonText);
 
             String[] dlc = GetDLChapters();
+            bool doFullSetup = true;
+
+            foreach (string chapterUrl in KissMangaHelper.GetChapterUrls(KissMangaHelper.KISS_URL + "/manga/" + mangaRoot.Name))
+            {
+                string[] urlSplits = chapterUrl.Split('/');
+                string chapID = urlSplits[urlSplits.Length - 1];
+                string chapNum = chapID.Substring(8); // remove "chapter_"
+                if ((!doFullSetup) || (doFullSetup && dlc == null) || (doFullSetup && dlc[0].Equals("-1")) || (doFullSetup && dlc.Contains(chapNum)))
+                {
+                    if (!Directory.Exists(Path.Combine(mangaRoot.FullName, chapID)))
+                    {
+                        DirectoryInfo chapDir = FileHelper.CreateFolder(mangaRoot, chapID);
+                        Chapter newchapter = new Chapter(chapDir, chapID, chapNum, doFullSetup);
+                        chapters.Add(newchapter);
+                        result.Add(newchapter);
+                    }
+                }
+            }
 
             return result.ToArray();
         }
