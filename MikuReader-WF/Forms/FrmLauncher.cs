@@ -150,7 +150,7 @@ namespace MikuReader.wf.Forms
         private Title GetSelected()
         {
             Title selected = null;
-            if (tabControl1.SelectedTab.Text.ToLower() == "mangadex")
+            if (tabControl1.SelectedTab == tabpageManga)
             {
                 string selectedText = lstManga.SelectedItem.ToString();
                 string name = selectedText.Substring(0, selectedText.LastIndexOf('»')).Trim();

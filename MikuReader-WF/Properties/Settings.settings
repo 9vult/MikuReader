@@ -1,8 +1,11 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MikuReader2.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MikuReader.wf.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="approot" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="language" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -30,7 +30,15 @@ namespace MikuReader.wf.Classes.Region
             languages.Add(spa.Name, spa);
 
             // TODO
-            CurrentLanguage = jpn;
+            if (Properties.Settings.Default["language"].Equals(string.Empty))
+            {
+                Properties.Settings.Default["language"] = eng.Name;
+                Properties.Settings.Default.Save();
+                CurrentLanguage = eng;
+            } else
+            {
+                CurrentLanguage = languages[Properties.Settings.Default["language"].ToString()];
+            }
         }
         
         public Language GetLanguageByName(string name)

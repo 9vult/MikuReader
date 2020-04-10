@@ -32,6 +32,9 @@ namespace MikuReader.wf.Forms
             chkUpdates.Checked = SettingsHelper.CheckForUpdates;
 
             txtDir.Text = (string)Properties.Settings.Default["approot"];
+
+            cmboLanguage.Items.AddRange(WFClient.lh.GetLanguageNames());
+            cmboLanguage.SelectedIndex = cmboLanguage.Items.IndexOf(WFClient.lh.CurrentLanguage.Name);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -62,6 +65,12 @@ namespace MikuReader.wf.Forms
                 }
             }
 
+            if (!cmboLanguage.SelectedItem.ToString().Equals(Properties.Settings.Default["language"].ToString()))
+            {
+                DialogResult dr = MessageBox.Show("Changing the language requires a restart", "Confirmation", MessageBoxButtons.OK);
+                Properties.Settings.Default["language"] = cmboLanguage.SelectedItem.ToString();
+                Properties.Settings.Default.Save();
+            }
 
             SettingsHelper.Save();
             WFClient.logger.Log("Settings saved.");

@@ -39,6 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtDir = new System.Windows.Forms.TextBox();
             this.chkUpdates = new System.Windows.Forms.CheckBox();
+            this.cmboLanguage = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -71,14 +73,14 @@
             this.groupBox1.Controls.Add(this.rbDouble);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 134);
+            this.groupBox1.Size = new System.Drawing.Size(168, 178);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reader";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(364, 152);
+            this.btnSave.Location = new System.Drawing.Point(364, 196);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(121, 44);
             this.btnSave.TabIndex = 3;
@@ -88,7 +90,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(12, 152);
+            this.btnAbout.Location = new System.Drawing.Point(12, 196);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(121, 44);
             this.btnAbout.TabIndex = 4;
@@ -98,13 +100,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.cmboLanguage);
             this.groupBox2.Controls.Add(this.btnBrowse);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtDir);
             this.groupBox2.Controls.Add(this.chkUpdates);
             this.groupBox2.Location = new System.Drawing.Point(186, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(291, 134);
+            this.groupBox2.Size = new System.Drawing.Size(291, 178);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Application";
@@ -146,6 +150,24 @@
             this.chkUpdates.Text = "Check for updates on startup";
             this.chkUpdates.UseVisualStyleBackColor = true;
             // 
+            // cmboLanguage
+            // 
+            this.cmboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboLanguage.FormattingEnabled = true;
+            this.cmboLanguage.Location = new System.Drawing.Point(6, 144);
+            this.cmboLanguage.Name = "cmboLanguage";
+            this.cmboLanguage.Size = new System.Drawing.Size(279, 28);
+            this.cmboLanguage.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 121);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Interface Language";
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -181,5 +203,7 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDir;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmboLanguage;
     }
 }
