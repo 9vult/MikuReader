@@ -13,5 +13,6 @@ namespace MikuReader.wf.Classes.Region
         public string Author { get; set; }
 
         public Launcher Launcher { get; set; }
+        public Settings Settings { get; set; }
     }
 }

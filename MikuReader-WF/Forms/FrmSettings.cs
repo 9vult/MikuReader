@@ -1,5 +1,6 @@
 ﻿using MikuReader.Core;
 using MikuReader.wf.Classes;
+using MikuReader.wf.Classes.Region;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,24 @@ namespace MikuReader.wf.Forms
 {
     public partial class FrmSettings : Form
     {
+        private Settings sl;
+
         public FrmSettings()
         {
             InitializeComponent();
+
+            sl = WFClient.lh.CurrentLanguage.Settings;
+
+            // Language setup
+            groupBoxReader.Text = sl.Group_reader;
+            groupBoxApplication.Text = sl.Group_application;
+            rbSingle.Text = sl.Rb_single;
+            rbDouble.Text = sl.Rb_double;
+            chkUpdates.Text = sl.Chk_update;
+            lblAppDir.Text = sl.Lbl_appdir;
+            lblLang.Text = sl.Lbl_lang;
+            btnAbout.Text = sl.Btn_about;
+            btnSave.Text = sl.Btn_save;
         }
 
         private void FrmSettings_Load(object sender, EventArgs e)
@@ -44,10 +60,7 @@ namespace MikuReader.wf.Forms
 
             if (!txtDir.Text.Equals((string)Properties.Settings.Default["approot"]))
             {
-                DialogResult dr = MessageBox.Show("Changing the default save location may have undesirable side effects." +
-                    "\n\nAre you sure?",
-                    "Confirmation",
-                    MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show(sl.Msg_saveloc, "Confirmation", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     if (!txtDir.Text.Equals(""))
@@ -67,14 +80,14 @@ namespace MikuReader.wf.Forms
 
             if (!cmboLanguage.SelectedItem.ToString().Equals(Properties.Settings.Default["language"].ToString()))
             {
-                DialogResult dr = MessageBox.Show("Changing the language requires a restart", "Confirmation", MessageBoxButtons.OK);
+                DialogResult dr = MessageBox.Show(sl.Msg_lang, "Confirmation", MessageBoxButtons.OK);
                 Properties.Settings.Default["language"] = cmboLanguage.SelectedItem.ToString();
                 Properties.Settings.Default.Save();
             }
 
             SettingsHelper.Save();
             WFClient.logger.Log("Settings saved.");
-            MessageBox.Show("All settings saved.");
+            MessageBox.Show(sl.Msg_saved);
         }
 
         private void BtnAbout_Click(object sender, EventArgs e)

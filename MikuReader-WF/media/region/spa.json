@@ -18,5 +18,19 @@
     "msg_downloading1": "Descargando ",
     "msg_downloading2": " nuevos capítulos...",
     "msg_uptodate": "¡Todo actualizado!"
+  },
+  "settings": {
+    "group_reader": "Lectora",
+    "group_application": "Aplicación",
+    "rb_single": "Única página",
+    "rb_double": "Doble página",
+    "chk_update": "Buscar actualizaciones al inicio",
+    "lbl_appdir": "Directorio de aplicaciones",
+    "lbl_lang": "Lenguaje de interfaz",
+    "btn_about": "Acerca de",
+    "btn_save": "Salvar",
+    "msg_saveloc": "Cambiar la ubicación de guardado predeterminada puede tener efectos secundarios indeseables.\n\nEstas segura?",
+    "msg_lang": "Changing the language requires a restart",
+    "msg_saved": "Cambiar el idioma requiere un reinicio"
   }
 }

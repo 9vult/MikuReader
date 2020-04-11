@@ -31,18 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             this.rbSingle = new System.Windows.Forms.RadioButton();
             this.rbDouble = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxReader = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxApplication = new System.Windows.Forms.GroupBox();
+            this.lblLang = new System.Windows.Forms.Label();
+            this.cmboLanguage = new System.Windows.Forms.ComboBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblAppDir = new System.Windows.Forms.Label();
             this.txtDir = new System.Windows.Forms.TextBox();
             this.chkUpdates = new System.Windows.Forms.CheckBox();
-            this.cmboLanguage = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxReader.SuspendLayout();
+            this.groupBoxApplication.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbSingle
@@ -67,16 +67,16 @@
             this.rbDouble.Text = "Double Page";
             this.rbDouble.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // groupBoxReader
             // 
-            this.groupBox1.Controls.Add(this.rbSingle);
-            this.groupBox1.Controls.Add(this.rbDouble);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 178);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Reader";
+            this.groupBoxReader.Controls.Add(this.rbSingle);
+            this.groupBoxReader.Controls.Add(this.rbDouble);
+            this.groupBoxReader.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxReader.Name = "groupBoxReader";
+            this.groupBoxReader.Size = new System.Drawing.Size(168, 178);
+            this.groupBoxReader.TabIndex = 2;
+            this.groupBoxReader.TabStop = false;
+            this.groupBoxReader.Text = "Reader";
             // 
             // btnSave
             // 
@@ -98,20 +98,38 @@
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // groupBox2
+            // groupBoxApplication
             // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.cmboLanguage);
-            this.groupBox2.Controls.Add(this.btnBrowse);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.txtDir);
-            this.groupBox2.Controls.Add(this.chkUpdates);
-            this.groupBox2.Location = new System.Drawing.Point(186, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(291, 178);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Application";
+            this.groupBoxApplication.Controls.Add(this.lblLang);
+            this.groupBoxApplication.Controls.Add(this.cmboLanguage);
+            this.groupBoxApplication.Controls.Add(this.btnBrowse);
+            this.groupBoxApplication.Controls.Add(this.lblAppDir);
+            this.groupBoxApplication.Controls.Add(this.txtDir);
+            this.groupBoxApplication.Controls.Add(this.chkUpdates);
+            this.groupBoxApplication.Location = new System.Drawing.Point(186, 12);
+            this.groupBoxApplication.Name = "groupBoxApplication";
+            this.groupBoxApplication.Size = new System.Drawing.Size(291, 178);
+            this.groupBoxApplication.TabIndex = 5;
+            this.groupBoxApplication.TabStop = false;
+            this.groupBoxApplication.Text = "Application";
+            // 
+            // lblLang
+            // 
+            this.lblLang.AutoSize = true;
+            this.lblLang.Location = new System.Drawing.Point(6, 121);
+            this.lblLang.Name = "lblLang";
+            this.lblLang.Size = new System.Drawing.Size(149, 20);
+            this.lblLang.TabIndex = 10;
+            this.lblLang.Text = "Interface Language";
+            // 
+            // cmboLanguage
+            // 
+            this.cmboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmboLanguage.FormattingEnabled = true;
+            this.cmboLanguage.Location = new System.Drawing.Point(6, 144);
+            this.cmboLanguage.Name = "cmboLanguage";
+            this.cmboLanguage.Size = new System.Drawing.Size(279, 28);
+            this.cmboLanguage.TabIndex = 9;
             // 
             // btnBrowse
             // 
@@ -124,14 +142,14 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
-            // label1
+            // lblAppDir
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "App Directory";
+            this.lblAppDir.AutoSize = true;
+            this.lblAppDir.Location = new System.Drawing.Point(2, 59);
+            this.lblAppDir.Name = "lblAppDir";
+            this.lblAppDir.Size = new System.Drawing.Size(105, 20);
+            this.lblAppDir.TabIndex = 7;
+            this.lblAppDir.Text = "App Directory";
             // 
             // txtDir
             // 
@@ -150,43 +168,25 @@
             this.chkUpdates.Text = "Check for updates on startup";
             this.chkUpdates.UseVisualStyleBackColor = true;
             // 
-            // cmboLanguage
-            // 
-            this.cmboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmboLanguage.FormattingEnabled = true;
-            this.cmboLanguage.Location = new System.Drawing.Point(6, 144);
-            this.cmboLanguage.Name = "cmboLanguage";
-            this.cmboLanguage.Size = new System.Drawing.Size(279, 28);
-            this.cmboLanguage.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 121);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Interface Language";
-            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 252);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBoxApplication);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxReader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MikuReader Settings";
             this.Load += new System.EventHandler(this.FrmSettings_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBoxReader.ResumeLayout(false);
+            this.groupBoxReader.PerformLayout();
+            this.groupBoxApplication.ResumeLayout(false);
+            this.groupBoxApplication.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -195,15 +195,15 @@
 
         private System.Windows.Forms.RadioButton rbSingle;
         private System.Windows.Forms.RadioButton rbDouble;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxReader;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxApplication;
         private System.Windows.Forms.CheckBox chkUpdates;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAppDir;
         private System.Windows.Forms.TextBox txtDir;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLang;
         private System.Windows.Forms.ComboBox cmboLanguage;
     }
 }

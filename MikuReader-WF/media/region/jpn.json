@@ -18,5 +18,19 @@
     "msg_downloading1": "",
     "msg_downloading2": "の新しい章をダウンロード",
     "msg_uptodate": "すべて最新です！"
+  },
+  "settings": {
+    "group_reader": "リーダー",
+    "group_application": "アプリケーション",
+    "rb_single": "単一ページ",
+    "rb_double": "二重ページ",
+    "chk_update": "起動時に更新を確認する",
+    "lbl_appdir": "アプリディレクトリ",
+    "lbl_lang": "インターフェース言語",
+    "btn_about": "約",
+    "btn_save": "セーブ",
+    "msg_saveloc": "デフォルトの保存場所を変更すると、望ましくない副作用が生じる可能性があります。\n\n本気ですか？",
+    "msg_lang": "言語を変更するには再起動が必要です",
+    "msg_saved": "すべての設定が保存されました。"
   }
 }

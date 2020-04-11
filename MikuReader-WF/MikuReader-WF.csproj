@@ -84,6 +84,7 @@
     <Compile Include="Classes\Region\Language.cs" />
     <Compile Include="Classes\Region\LanguageHelper.cs" />
     <Compile Include="Classes\Region\Launcher.cs" />
+    <Compile Include="Classes\Region\Settings.cs" />
     <Compile Include="Classes\SettingsHelper.cs" />
     <Compile Include="Classes\UpdateInfo.cs" />
     <Compile Include="Classes\Updater.cs" />
@@ -263,4 +264,5 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Geckofx45.45.0.34\build\Geckofx45.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.45.0.34\build\Geckofx45.targets'))" />
   </Target>
+  <ProjectExtensions />
 </Project>

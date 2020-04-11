@@ -1,7 +1,7 @@
 ﻿{
-    "code": "eng",
-    "name": "English (US)",
-    "author": "9volt",
+  "code": "eng",
+  "name": "English (US)",
+  "author": "9volt",
   "launcher": {
     "tab_manga": "Manga",
     "tab_hentai": "Hentai",
@@ -18,5 +18,19 @@
     "msg_downloading1": "Downloading ",
     "msg_downloading2": " new chapters...",
     "msg_uptodate": "All up to date!"
+  },
+  "settings": {
+    "group_reader": "Reader",
+    "group_application": "Application",
+    "rb_single": "Single Page",
+    "rb_double": "Double Page",
+    "chk_update": "Check for updates on startup",
+    "lbl_appdir": "App Directory",
+    "lbl_lang": "Interface Language",
+    "btn_about": "About",
+    "btn_save": "Save",
+    "msg_saveloc": "Changing the default save location may have undesirable side effects.\n\nAre you sure?",
+    "msg_lang": "Changing the language requires a restart",
+    "msg_saved": "All settings saved."
   }
 }
