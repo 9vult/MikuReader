@@ -73,12 +73,20 @@ namespace MikuReader.wf.Forms
         {
             if (cmboPage.SelectedIndex < cmboPage.Items.Count - 1)
                 cmboPage.SelectedIndex += 1;
+            else if (cmboChapter.SelectedIndex < cmboChapter.Items.Count - 1)
+                cmboChapter.SelectedIndex += 1;
+            
         }
 
         private void PreviousPage()
         {
             if (cmboPage.SelectedIndex > 0)
                 cmboPage.SelectedIndex -= 1;
+            else if (cmboChapter.SelectedIndex > 0)
+            {
+                cmboChapter.SelectedIndex -= 1;
+                cmboPage.SelectedIndex = cmboPage.Items.Count - 1;
+            }
         }
 
         private void LoadImage()
